@@ -141,3 +141,7 @@ function fury_m( event )
 		print(Mdamage)
 	end
 end
+
+function Defile( event )
+	local caster = event.caster
+end
