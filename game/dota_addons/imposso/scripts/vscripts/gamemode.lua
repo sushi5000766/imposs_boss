@@ -28,6 +28,10 @@ require('libraries/boss_spells/fire/ligh_follows')
 require('libraries/boss_spells/fire/fire_raze')
 require('libraries/boss_spells/fire/fire_storm')
 
+-- This library will contain game mechanics: Difficulty, Alignment, Boss States, Energy
+require('libraries/mechanics')
+
+
 
 require('libraries/boss_spells/ai/fire_ai')
 

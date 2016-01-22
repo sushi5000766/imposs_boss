@@ -1,0 +1,13 @@
+<root>
+  <styles>
+    <include src="file://{resources}/styles/custom_game/testing_ui.css" />
+  </styles>
+  <scripts>
+    <include src="file://{resources}/scripts/custom_game/testing_ui.js" />
+  </scripts>
+  <Panel class='OpenTestingUI'>
+    <Button id="Button" onactivate="OpenTestingUI()">
+      <Label id="Label" text="TEST CONSOLE" />
+    </Button>
+  </Panel>
+</root>
