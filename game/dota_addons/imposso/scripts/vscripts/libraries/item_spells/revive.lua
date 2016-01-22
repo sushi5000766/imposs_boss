@@ -157,3 +157,30 @@ function sheild_purge( event )
 
 	caster:Purge( true, false, false, false, false )
 end
+
+function gold_give( event )
+	local caster = event.caster
+	local caster_num = caster:GetPlayerOwnerID()
+	local gold = PlayerResource:GetGold(caster_num)
+
+	local gold_pick = ParticleManager:CreateParticle("particles/econ/items/alchemist/alchemist_midas_knuckles/alch_knuckles_lasthit_coins.vpcf", PATTACH_ABSORIGIN, caster)
+	ParticleManager:SetParticleControl(gold_pick, 1, caster:GetAbsOrigin())
+
+	if caster:IsHero() == true then
+		caster:SetGold((gold + 5), false)
+		keys.target:EmitSound("DOTA_Item.Hand_Of_Midas")
+	end
+end
+
+--[[
+Timers:CreateTimer(RandomFloat(30, 60), function()
+    local Ymax = 7104 --Temporary
+    local Ymin = 4544
+    local Xmax = -3072
+    local Xmin = -6976 
+    local spot = Vector(RandomInt(Xmin, Xmax), RandomInt(Ymin, Ymax), 0)
+    local gold_item = CreateItem("item_gold_drop", nil, nil)
+    CreateItemOnPositionSync(spot, gold_item)
+    
+    return RandomFloat(30, 60)
+end)]]--

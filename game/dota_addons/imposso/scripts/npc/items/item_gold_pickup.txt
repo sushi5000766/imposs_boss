@@ -1,0 +1,59 @@
+"item_gold_drop" 
+{
+    "ID"           "1200"
+    "BaseClass"    "item_datadriven"
+    "AbilityTextureName" "item_rapier"
+    "Model"        "models/props_gameplay/gold_bag.vmdl" 
+    "ModelScale"       "0.5"
+    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
+    "ItemQuality"  "artifact"
+
+    "ItemCost"     "0"
+    "ItemKillable" "0" 
+    "ItemSellable" "0"
+    "ItemPurchasable" "0"
+    "ItemDroppable" "0"
+    "ItemShareability" "ITEM_NOT_SHAREABLE"
+    "ItemInitialCharges" "1"
+
+    "SideShop"     "0" 
+    "SecretShop"   "0"
+
+    "ItemStackable" "0"
+    "ItemPermanent" "0"
+
+    "precache"
+    {
+        "particle"  "particles/econ/items/alchemist/alchemist_midas_knuckles/alch_knuckles_lasthit_coins.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "gold"    "5"
+        }
+    }
+
+    "ItemCastOnPickup"              "1"
+    "OnSpellStart"
+    {
+        "SpendCharge"         {}
+        "RunScript"
+        {
+            "ScriptFile"            "libraries/item_spells/revive.lua"
+            "Function"              "gold_give"
+        }
+
+        "FireEffect"
+        {
+            "EffectName"        "particles/econ/items/alchemist/alchemist_midas_knuckles/alch_knuckles_lasthit_coins.vpcf"
+            "EffectAttachType"  "follow_overhead"
+            "Target"            "CASTER"
+        }
+    }
+} 
+
+
+ 
