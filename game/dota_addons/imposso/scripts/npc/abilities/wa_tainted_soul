@@ -1,0 +1,98 @@
+"wa_tainted_soul" //needs animations + precache
+{
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       				"ability_datadriven"
+    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "FightRecapLevel"       		"1"
+    "AbilityTextureName"      		"vengefulspirit_wave_of_terror"
+
+    "AbilityCastPoint"        		"0.35"		
+    "AbilityCooldown"       		"19"		
+    "AbilityManaCost"       		"5"
+    "AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+    
+    "MaxLevel"               		"5"
+    "RequiredLevel"          		"0"
+    "LevelsBetweenUpgrades"  		"0"
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  	"FIELD_INTEGER"
+            "health_regen" 	"-26"
+        }
+        "02"
+        { 
+            "var_type"  	"FIELD_INTEGER"
+            "attack_damage"	"50"
+        }
+        "03"
+        { 
+            "var_type"  	"FIELD_INTEGER"
+            "mana_regen" 	"15"
+        }
+        "04"
+        { 
+            "var_type"  	"FIELD_INTEGER"
+            "duration" 		"15"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"  "modifier_tainted_soul_buff"
+        "Target"     	"CASTER"
+        "Duration"    	"%duration"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  	"DOTA_Item.MaskOfMadness.Activate"
+        "Target"    	"CASTER"
+      }
+    }  
+
+    "Modifiers"
+	  {
+	    "modifier_tainted_soul_buff"
+	    {
+	      "Passive"      	"0"
+	      "IsHidden"      	"0"
+	      "IsPurgable"		"1"
+	      "IsBuff"			"1"
+	      "IsDebuff"		"0"
+	      "IsStunDebuff"	"0"
+	  
+	      "EffectName"    		""		// MoM Red Aura 
+	      "EffectAttachType"  	"follow_origin"
+
+	      "Properties"
+	      {
+	        "MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" 	"%attack_damage"
+	        "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"				"%mana_regen"		             
+	      }
+	    }
+
+	    "modifier_tainted_soul_debuff"
+	    {
+	      "Passive"      	"0"
+	      "IsHidden"      	"0"
+	      "IsPurgable"		"1"
+	      "IsBuff"			"0"
+	      "IsDebuff"		"1"
+	      "IsStunDebuff"	"0"
+	  
+	      "EffectName"    		""		// Silencer Q
+	      "EffectAttachType"  	"follow_overhead"
+
+	      "Properties"
+	      {
+	        "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"			"%health_regen"		             
+	      }
+	    }
+	  }  
+}   
