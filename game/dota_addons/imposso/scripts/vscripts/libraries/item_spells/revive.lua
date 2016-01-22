@@ -170,7 +170,7 @@ function gold_give( event )
 		caster:SetGold((gold + 5), false)
 		keys.target:EmitSound("DOTA_Item.Hand_Of_Midas")
 	end
-end
+end 
 
 --[[
 Timers:CreateTimer(RandomFloat(30, 60), function()

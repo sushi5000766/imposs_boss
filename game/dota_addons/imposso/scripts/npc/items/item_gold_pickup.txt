@@ -17,7 +17,7 @@
     "ItemInitialCharges" "1"
 
     "SideShop"     "0" 
-    "SecretShop"   "0"
+    "SecretShop"   "0" 
 
     "ItemStackable" "0"
     "ItemPermanent" "0"
