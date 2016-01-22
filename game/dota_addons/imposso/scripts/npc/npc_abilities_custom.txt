@@ -530,7 +530,7 @@
 	    "AnimationIgnoresModelScale" "1"
 	
 	    // Stats
-	    //----------------------------------------------------------------------------------------
+	      //----------------------------------------------------------------------------------------
 	    "AbilityDamage"           "0"
 	    "AbilityManaCost"         "45"
 	    "AbilityCooldown"         "31"
@@ -707,6 +707,61 @@
 	      }
 	    }
 	  }
+	"dk_defile"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			""	// Zett Wraith Spell
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel" 						"5"
+
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"500"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"AbilityManaCost"				"15"
+		"AbilityCooldown"				"9"
+
+		"AOERadius"						"%radius"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"275"
+			}
+
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spirit_speed"			"999"
+			}
+
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300"
+			}
+
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"125"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	".lua"
+				"Function"		"AbilityName"
+			}
+		}
+	}
 //============================================================================================
 // DRUID: 			0/7 COMPLETE
 //============================================================================================
@@ -5499,6 +5554,10 @@
 		    "AbilityCooldown"       		"19"		
 		    "AbilityManaCost"       		"5"
 		    "AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+
+
+
+
 		
 		    "MaxLevel"               		"5"
 		    "RequiredLevel"          		"0"
@@ -5584,6 +5643,66 @@
 		        }
 		      }  
 		  }   
+	"wa_mystic_veil" //needs sound + animations + precache
+	  {
+	    // General  
+	    // ----------------------------------------------------------------------------------------
+	    "BaseClass"              	"ability_datadriven"
+	    "AbilityBehavior"        	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityTextureName"     	"nyx_assassin_mana_burn"
+	
+	    "AbilityType"            	"DOTA_ABILITY_TYPE_BASIC"
+	    "MaxLevel"               	"1"
+	    "RequiredLevel"          	"0"
+	    "LevelsBetweenUpgrades"  	"0"	
+	    "AbilityCastPoint"       	"0.0"
+	    "AbilityManaCost"         	"5"
+	    "AbilityCooldown"         	"12"
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        { 
+	            "var_type"  		"FIELD_FLOAT"
+	            "duration" 			"1.5"
+	        }
+	    }
+	
+	    "OnSpellStart"
+	    {
+	    	"RunScript"
+        	{
+        		"ScriptFile"		"libraries/player_spells/_shared/invulnerability.lua"
+        		"Function"			"PurgeBuffs"
+        	}
+
+		    "ApplyModifier"
+		    {
+		      	"ModifierName"  	"modifier_mystic_veil"
+		        "Target"     		"CASTER"
+		        "Duration"    		"%duration"
+		    }
+	    }
+	
+	    "Modifiers"
+	    {
+		    "modifier_mystic_veil"
+		    {
+		        "Passive"      		"0"
+		        "IsHidden"      	"0"
+		        "IsBuff"      		"1"
+		        "IsPurgable"    	"1"
+		    
+		        "EffectName"    	"particles/units/heroes/hero_medusa/medusa_mana_shield_shell_add.vpcf"
+		        "EffectAttachType"  "follow_origin"
+		
+		        "States"
+		        {
+		        	"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+		        }
+		    }
+	    }
+	  }
 //============================================================================================
 // SHARED ABILITIES
 //============================================================================================
