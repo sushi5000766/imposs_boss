@@ -1,0 +1,44 @@
+"item_mana_item"
+  {
+    "ID"              "1104"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "BaseClass"           "item_datadriven"
+    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+    "AbilityTextureName"      "item_clarity"
+
+    "AbilityCooldown"       "45"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "0"
+    "ItemCost"            "5"
+    "ItemInitialCharges"      "1"
+    "ItemDroppable"         "0"
+    "ItemSellable"          "1"
+    "ItemStackable"         "1"
+    "ItemRequiresCharges"     "1"
+    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+    "ItemPermanent"     "0"
+    
+    "MaxUpgradeLevel"       "1"
+    "ItemBaseLevel"         "1"
+
+    "OnSpellStart"
+    {
+      "SpendCharge" {}
+      "FireEffect"
+      {
+        "EffectName"        "particles/generic_gameplay/generic_manaburn.vpcf"
+        "EffectAttachType"  "follow_origin"
+        "Target"            "CASTER"
+      }
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/item_spells/revive.lua"
+        "Function"    "mana_give"
+      }
+    }
+  }

@@ -1,0 +1,121 @@
+"fm_incinerate"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL" 
+    "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "lina_light_strike_array"
+
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+    
+    "AbilityCastRange"        "400"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "6"
+
+    "AbilityManaCost"       "19"
+
+    "AbilityModifierSupportValue" "0.5"
+
+    "precache"
+    {     
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+      "particle"  "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_base_attack.vpcf"
+      "particle"  "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_base_attack_impact.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "220"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "burn" "26 29 32 35 38"
+        }
+        "03"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "duration" "4"
+        }
+        "04"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "reduction" "100"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "TrackingProjectile"
+      {
+          "Target"            "TARGET"
+          "EffectName"        "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_base_attack.vpcf"
+          "Dodgeable"         "1"
+          "ProvidesVision"    "0"
+          "VisionRadius"      "0"
+          "MoveSpeed"         "1300"
+          "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_2"
+      }
+    }
+
+    "OnProjectileHitUnit"
+    {
+      "DeleteOnHit"     "1"
+
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/fire_mage/aura.lua"
+        "Function"    "incinerate"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Invoker.SunStrike.Ignite"
+        "Target"    "TARGET"
+      }     
+
+      "FireEffect"
+      {
+        "EffectName"        "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_base_attack_impact.vpcf"
+        "EffectAttachType"  "follow_origin"
+        "Target"            "TARGET"
+      }
+
+      "ApplyModifier"
+      {
+        "ModifierName"  "modifier_hellfire_blast_dot"
+        "Target"    "TARGET"
+      }
+    }
+
+    "Modifiers"
+    {
+      "modifier_hellfire_blast_dot"
+      {
+        "IsHidden"  "0"
+        "Duration"  "%duration"
+
+        "ThinkInterval"   "1"
+        "OnIntervalThink"
+        {
+          "Damage"
+          {
+            "Target"  "TARGET"
+            "Type"    "DAMAGE_TYPE_MAGICAL"
+            "Damage"  "%burn"
+          }
+        }
+      }
+    }
+  }

@@ -1,0 +1,71 @@
+"dr_starfall"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityTextureName"     "mirana_starfall"
+    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+
+    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "AbilityCastPoint"       "0.3"
+
+    "AbilityCastRange"        "500"
+
+    "Precache"
+    {
+      "particle"      "particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf"
+      "soundfile"     "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+    }
+
+    // Stats
+    //----------------------------------------------------------------------------------------
+    "AbilityDamage"           "0"
+    "AbilityManaCost"         "24"
+    "AbilityCooldown"         "15"
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "330 360 390 420 450"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "FireSound"
+      {
+        "EffectName"  "Ability.Starfall"
+        "Target"    "CASTER"
+      }
+
+      "FireEffect"
+      {
+        "EffectName"        "particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf"
+        "EffectAttachType"  "follow_origin"
+        "Target"            "TARGET"
+      }
+      
+      "DelayedAction"
+      {
+        "Delay"     "0.33"
+        "Action"    
+        {
+          "Damage"
+          {
+            "Target"    "TARGET"
+            "Type"      "DAMAGE_TYPE_MAGICAL"
+            "Damage"    "%damage"
+          }
+        }
+      }
+    }
+  }

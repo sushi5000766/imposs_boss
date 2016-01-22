@@ -1,0 +1,66 @@
+"LightFollow"
+  { 
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityTextureName"     "nevermore_dark_lord"
+
+    "AbilityCastRange"        "0"
+    "AbilityCastPoint"        "0.0"
+
+    "AbilityManaCost"       "0"
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_techies/techies_suicide_base.vpcf"
+    }
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"  "ghost_form"
+        "Target"     "CASTER"
+        "Duration"    "19"
+      }
+
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/boss_spells/fire/ligh_follows.lua"
+        "Function"    "light_follow"
+      }
+    }
+
+    "OnProjectileFinish"
+    {
+      "RunScript"
+      {
+       "ScriptFile"  "libraries/boss_spells/fire/ligh_follows.lua"
+       "Function"    "light_damage"
+      }       
+    }
+
+    "Modifiers"
+    {
+      "ghost_form"
+      {
+        "Passive"      "0"
+        "IsHidden"      "1"
+        "IsDebuff"      "0"
+
+        "StatusEffectName"     "particles/status_fx/status_effect_blur.vpcf"
+        "StatusEffectPriority" "10"
+
+        "OverrideAnimation" "ACT_DOTA_TELEPORT"
+
+        "States"
+        {
+          "MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_ATTACK_IMMUNE"  "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_DISARMED"     "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_STUNNED"   "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_PROVIDES_VISION"  "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+    }
+  }

@@ -1,0 +1,118 @@
+"pl_exodus"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilityTextureName"     "omniknight_guardian_angel"
+    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO"
+    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+
+    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "AbilityCastPoint"       "0.0"
+    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
+    "AnimationPlaybackRate"  "1"
+    "AnimationIgnoresModelScale" "1"
+
+    "AbilityChannelTime"    "6"
+
+    "precache"
+    {     
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+      "particle"  "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_aoe.vpcf"
+    }
+
+    // Stats
+    //----------------------------------------------------------------------------------------
+    "AbilityDamage"           "0"
+    "AbilityManaCost"         "125"
+    "AbilityCooldown"         "90"
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "channel" "6"
+        }
+    }
+
+    "OnAbilityPhaseStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/paladan/holy.lua"
+        "Function"    "ex_disable"
+      }
+    }
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"  "exodus_mod"
+        "Target"     "CASTER"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_KeeperOfTheLight.Illuminate.Charge"
+        "Target"    "CASTER"
+      }
+    }
+
+    "OnChannelInterrupted"
+    {
+      "RemoveModifier"
+      {
+        "ModifierName"  "exodus_mod"
+        "Target"     "CASTER"
+      }
+    }
+
+    "OnChannelSucceeded"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/paladan/holy.lua"
+        "Function"    "sacrifice"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_KeeperOfTheLight.Illuminate.Discharge"
+        "Target"    "CASTER"
+      }
+
+      "FireEffect"
+      {
+        "EffectName"        "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_aoe.vpcf"
+        "EffectAttachType"  "follow_overhead"
+        "Target"            "CASTER"
+      }
+
+      "RemoveModifier"
+      {
+        "ModifierName"  "exodus_mod"
+        "Target"     "CASTER"
+      }
+    }
+
+    "Modifiers"
+    {
+      "exodus_mod"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsBuff"      "1"
+    
+        "EffectName"    "particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
+        "EffectAttachType"  "follow_origin"
+      }
+    }
+  }

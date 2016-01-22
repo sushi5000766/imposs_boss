@@ -1,0 +1,33 @@
+"mana_up_ab"
+  {
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "rubick_empty1"
+    "MaxLevel"                      "6"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "mana" "0 100 200 300 400 500"
+        }
+    }
+    
+    "Modifiers"
+    {
+      "mana_up_buff"
+      {
+          "Passive"                        "1"
+          "IsHidden"                        "1" 
+          "IsPurgable"                      "0"  
+
+          "Properties"
+          {
+            "MODIFIER_PROPERTY_MANA_BONUS" "%mana" 
+          }
+      }
+    }
+  }

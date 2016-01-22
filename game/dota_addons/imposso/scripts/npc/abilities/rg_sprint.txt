@@ -1,0 +1,66 @@
+"rg_sprint"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL" 
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "windrunner_windrun"
+
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+    
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "15"
+
+    "AbilityManaCost"       "0"
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "speed" "60"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "duration" "5"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"  "rg_movement"
+        "Target"     "CASTER"
+        "Duration"    "5"
+      }
+    }
+
+    "Modifiers"
+    {
+      "rg_movement"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsDebuff"      "0"
+        "IsBuff"        "1"
+        "IsPurgable"    "1"
+
+        "EffectName"    "particles/units/heroes/hero_windrunner/windrunner_windrun_blur.vpcf"
+        "EffectAttachType"  "follow_origin"
+    
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "60" 
+        }
+      }
+    }
+  }

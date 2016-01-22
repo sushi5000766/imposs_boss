@@ -1,0 +1,74 @@
+"ro_sprint"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL" 
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "clinkz_wind_walk"
+    
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "15"
+
+    "AbilityManaCost"       "0"
+
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "precache"
+    {
+      "soundfile"         "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "speed" "60"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "duration" "8"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "FireSound"
+      {
+        "Target"        "CASTER"
+        "EffectName"      "Hero_Slardar.Sprint" // Find the name for actual sound
+      }
+      "ApplyModifier"
+      {
+        "ModifierName"  "ro_movement"
+        "Target"     "CASTER"
+        "Duration"    "8"
+      }
+    }
+
+    "Modifiers"
+    {
+      "ro_movement"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsDebuff"      "0"
+
+        "EffectName"    "particles/units/heroes/hero_windrunner/windrunner_windrun_blur.vpcf"
+        "EffectAttachType"  "follow_origin"
+    
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "60" 
+        }
+      }
+    }
+  }

@@ -1,0 +1,90 @@
+
+
+  "rg_crit_attack"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "AbilityTextureName"      "windrunner_powershot"
+
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "precache"
+    {     
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "chance" "7"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "multiply" "40"
+        }
+    }
+
+    "Modifiers"
+    {
+      "rg_crit_strike"
+      {
+          "Passive"   "1"
+          "IsHidden"  "1"
+
+          "OnAttackStart"
+          {
+              "RemoveModifier"
+              {
+                  "ModifierName"  "rg_crit_attack"
+                  "Target"    "CASTER"
+              }
+
+              "Random"
+              {
+                  "Chance"  "7"
+                  "OnSuccess"
+                  {    
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "rg_crit_attack"
+                        "Target"      "CASTER"    
+                    }        
+                  }
+              }
+          }
+      }
+
+      "rg_crit_attack"
+      {
+          "IsHidden"  "1"
+          "Properties"
+          {
+              "MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "250"
+          }
+
+          "OnAttackLanded"
+          {
+              "RemoveModifier"
+              {
+                  "ModifierName"  "rg_crit_attack"
+                  "Target"      "CASTER"    
+              }
+
+              "FireSound"
+              {
+                "EffectName"  "Hero_BountyHunter.Jinada"
+                "Target"    "TARGET"
+              }
+          }
+      }
+    }
+  }

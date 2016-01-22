@@ -1,0 +1,39 @@
+"item_team_revive_item"
+  {
+    "ID"              "1101"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetFlags"    "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+    "BaseClass"           "item_datadriven"
+    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+    "AbilityTextureName"      "item_gem"
+
+    "AbilityCastRange"        "250"
+
+    "AbilityCooldown"       "1"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "0"
+    "ItemCost"            "15"
+    "ItemInitialCharges"      "1"
+    "ItemDroppable"         "0"
+    "ItemSellable"          "1"
+    "ItemStackable" "1"
+    "ItemRequiresCharges"     "1"
+    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+    
+    "MaxUpgradeLevel"       "1"
+    "ItemBaseLevel"         "1"
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/item_spells/revive.lua"
+        "Function"    "grave_apply"
+      }
+    }
+  }

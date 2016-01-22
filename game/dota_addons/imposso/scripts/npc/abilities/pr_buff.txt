@@ -1,0 +1,94 @@
+"pr_buff"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "phantom_lancer_sunwarrior_phantom_edge"
+    
+    "AbilityCastRange"        "500"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "0"
+
+    "AbilityManaCost"       "16"
+
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "precache"
+    {    	
+    	"soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "20"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "armor" "3"
+        }
+        "03"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "regen" "20"
+        }
+        "04"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "magic" "20"
+        }
+        "05"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "duration" "60"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/priest/healer.lua"
+        "Function"    "pr_buff"
+      }
+
+      "FireSound"
+      {
+      	"EffectName"	"Hero_Omniknight.GuardianAngel.Cast"
+      	"Target" 		"TARGET"
+      }
+    }
+
+    "Modifiers"
+        {
+          "modifier_pr_buff"
+          {
+            "Passive"      "0"
+            "IsHidden"      "0"
+            "IsDebuff"      "0"
+            "IsBuff"        "1"
+            "IsPurgable"    "1"
+        
+            "EffectName"    "particles/units/heroes/hero_omniknight/omniknight_guardian_angel_halo_buff.vpcf"
+            "EffectAttachType"  "follow_overhead"
+        
+            "Properties"
+            {
+              "MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "20"
+              "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "20"
+              "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"    "25"
+              "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"      "3"
+            }
+          }
+        }         
+  }

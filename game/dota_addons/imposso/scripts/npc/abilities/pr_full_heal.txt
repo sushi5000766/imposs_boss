@@ -1,0 +1,45 @@
+
+
+  "pr_full_heal"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "chen_penitence"
+    
+    "AbilityCastRange"        "500"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "70"
+
+    "AbilityManaCost"       "55"
+
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "precache"
+    {     
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_chen.vsndevts"
+      "particle"  "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_chakra_magic.vpcf"
+    }
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/priest/healer.lua"
+          "Function"    "full_heal"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Chen.HandOfGodHealHero"
+        "Target"    "TARGET"
+      }
+    }    
+  }    

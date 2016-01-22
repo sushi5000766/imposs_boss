@@ -1,0 +1,112 @@
+"wa_life_drain"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_BASIC"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "death_prophet_spirit_siphon"
+
+    "AbilityCooldown"       "11"
+
+    "AbilityManaCost"       "90"
+
+    "AbilityCastRange"        "1100"
+    "AbilityCastPoint"        "0.2 0.2 0.2"
+    "AbilityChannelTime"      "6.0"
+
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_pugna/pugna_life_drain.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "100 108 116 124 132"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "drain" "120"
+        }
+        "03"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "mana" "16"
+        }
+        "04"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "duration" "6"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"  "modifier_life_drain"
+        "Target"    "TARGET"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Pugna.LifeDrain.Target"
+        "Target"    "CASTER"
+      }
+    }
+
+    "OnChannelFinish"
+    {
+      "RemoveModifier"
+      {
+        "ModifierName"  "modifier_life_drain"
+        "Target"    "TARGET"
+      }
+    }
+
+    "Modifiers"
+    {
+      "modifier_life_drain"
+      {
+        "IsDebuff"  "1"
+        "OnCreated"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "libraries/player_spells/warlock/lock.lua"
+            "Function"    "LifeDrainParticle"
+          }
+        }
+
+        "OnDestroy"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "libraries/player_spells/warlock/lock.lua"
+            "Function"    "LifeDrainParticleEnd"
+          }
+        }
+
+        "ThinkInterval"   "1.0"
+        "OnIntervalThink"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "libraries/player_spells/warlock/lock.lua"
+            "Function"    "LifeDrainHealthTransfer"
+          }
+        }
+      }
+    }
+  }

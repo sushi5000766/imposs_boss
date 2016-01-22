@@ -1,0 +1,65 @@
+"ro_cripple"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_BASIC"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "antimage_mana_break"
+    
+    "AbilityCastRange"        "175"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "5"
+
+    "AbilityManaCost"       "11"
+
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "Precache"
+    {
+      "particle"      "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+      "soundfile"         "soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
+      "particle"  "particles/econ/items/antimage/antimage_weapon_basher_ti5/am_manaburn_basher_ti_5.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "200 215 230 245 260"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "mana" "30"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/rogue/shadow.lua"
+        "Function"    "cripple"
+      }
+
+      "FireSound"
+      {
+        "Target"        "CASTER"
+        "EffectName"      "Hero_Riki.Backstab" // Find the name for actual sound
+      }
+
+      "FireEffect"
+      {
+        "EffectName"        "particles/econ/items/antimage/antimage_weapon_basher_ti5/am_manaburn_basher_ti_5.vpcf"
+        "EffectAttachType"  "follow_overhead"
+        "Target"            "TARGET"
+      }
+    }
+  }

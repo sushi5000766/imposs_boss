@@ -1,0 +1,64 @@
+"ro_assassinate"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_BASIC"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "phantom_assassin_coup_de_grace"
+    
+    "AbilityCastRange"        "175"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "5"
+
+    "AbilityManaCost"       "11"
+
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "Precache"
+    {
+      "particle"      "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+      "soundfile"         "soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "450 475 500 525 550"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/rogue/shadow.lua"
+        "Function"    "assassinate"
+      }
+
+      "FireSound"
+      {
+        "Target"        "CASTER"
+        "EffectName"      "Hero_Riki.Backstab" // Find the name for actual sound
+      }
+
+      "FireEffect"
+      {
+        "EffectName"  "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+        "EffectAttachType"  "start_at_customorigin"
+        
+        "ControlPointEntities"
+        {
+          "TARGET"  "follow_origin"
+          "TARGET"  "follow_origin"
+        }
+      }
+    }
+  }

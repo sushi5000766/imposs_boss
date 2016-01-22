@@ -1,0 +1,73 @@
+"pl_heal"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "omniknight_degen_aura"
+    
+    "AbilityCastRange"        "500"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "1"
+
+    "AbilityManaCost"       "29"
+
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "precache"
+    {     
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "heal" "500"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "close" "150"
+        }
+        "03"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "bonus" "350"
+        }
+        "4"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "aura" "500"
+        }
+
+    }
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/paladan/holy.lua"
+        "Function"    "paly_heal"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Omniknight.Purification"
+        "Target"    "TARGET"
+      }
+
+      "FireEffect"
+      {
+        "EffectName"        "particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
+        "EffectAttachType"  "follow_overhead"
+        "Target"            "TARGET"
+      }
+    }
+  }  

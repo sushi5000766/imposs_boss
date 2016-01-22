@@ -1,0 +1,35 @@
+"fire_storm"
+  { 
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityTextureName"     "invoker_chaos_meteor"
+
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_BOTH"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+
+    "MaxLevel"               "1"
+  
+    "AbilityCastRange"        "0"
+    "AbilityCastPoint"        "0.0"
+
+    "AbilityManaCost"       "0"
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "800"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/boss_spells/fire/fire_storm.lua"
+        "Function"    "fireStorm"
+      }
+    }  
+  }

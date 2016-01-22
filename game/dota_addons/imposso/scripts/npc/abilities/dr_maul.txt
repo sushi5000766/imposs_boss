@@ -1,0 +1,60 @@
+"dr_maul"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityTextureName"     "lone_druid_true_form_battle_cry"
+    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+
+    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "AbilityCastPoint"       "0.3"
+
+    "AbilityCastRange"        "150"
+
+    "precache"
+     {
+      "soundfile"   "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts" 
+     }
+
+    // Stats
+    //----------------------------------------------------------------------------------------
+    "AbilityDamage"           "0"
+    "AbilityManaCost"         "15"
+    "AbilityCooldown"         "7"
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "315 330 345 360 375"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "bonus" "145"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "FireSound"
+      {
+        "EffectName"  "Hero_Slardar.Bash"
+        "Target"    "TARGET"
+      }
+
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/druid/bear.lua"
+        "Function"    "maul"
+      }
+    }
+  }

@@ -1,0 +1,71 @@
+"fire_storm_test"
+{
+    // General        
+    "BaseClass"                "ability_datadriven"
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
+    // Time         
+    "AbilityCooldown"                "0.0"
+    // Cost        
+    "AbilityManaCost"                "0"
+    // Special        
+    "OnSpellStart"
+    {
+        "SpawnUnit"
+        {
+            "UnitName"    "npc_stom_test"
+            "UnitCount"    "1"
+            "SpawnRadius"    "50"
+            "Target"        "CASTER"
+
+            "OnSpawn"
+            {
+                "ApplyModifier"
+                {
+                    "ModifierName"    "leap_mod"
+                    "Target"        "TARGET"
+                }
+            }
+        }
+    }
+    "Modifiers"
+    {
+        "leap_mod"
+        {
+            "Passive"            "0"
+            "IsHidden"            "1"
+            "IsDebuff"            "0"
+
+
+            "ThinkInterval" "0.03" 
+            "OnIntervalThink"
+            {
+                "Rotate"
+                {
+                    "Target"       "TARGET"
+                    "PitchYawRoll"  "10 10 0"
+                }
+            }
+    
+    
+            "OnCreated"
+            {
+
+                "RunScript"
+                {
+                    "ScriptFile"    "libraries/boss_spells/fire/fire_storm.lua"
+                    "Function"      "Leap"
+                }
+
+                "ApplyMotionController"
+                // For this: gfycat.com/BraveHideousGiantschnauzer -> check: bit.ly/1KWulqA
+                {
+                    "Target"        "TARGET"
+                    "ScriptFile"    "libraries/boss_spells/fire/fire_storm.lua"
+                    "HorizontalControlFunction" "LeapHorizonal"
+                    "VerticalControlFunction"   "LeapVertical"         
+                }
+            }
+        }
+    }
+}

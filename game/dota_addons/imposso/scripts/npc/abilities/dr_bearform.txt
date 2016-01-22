@@ -1,0 +1,90 @@
+
+
+  "dr_bearform"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityTextureName"     "lone_druid_synergy"
+    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO"
+    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+
+    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "AbilityCastPoint"       "0.0"
+
+    "Precache"
+    {
+      "particle"      "particles/units/heroes/hero_furion/furion_sprout_e.vpcf"
+      "soundfile"     "soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+    }
+
+    // Stats
+    //----------------------------------------------------------------------------------------
+    "AbilityDamage"           "0"
+    "AbilityManaCost"         "5"
+    "AbilityCooldown"         "1"
+
+    "OnSpellStart"
+    {
+      "FireSound"
+      {
+        "Target"          "CASTER"
+        "EffectName"        "Hero_Ursa.Overpower"
+      }
+
+      "ApplyModifier"
+      {
+        "ModifierName"  "mod_bearform"
+        "Target"     "CASTER"
+        "Duration"    "0.1"
+      }
+
+      "FireEffect"
+          {
+            "EffectName"        "particles/units/heroes/hero_furion/furion_sprout_e.vpcf"
+            "EffectAttachType"  "follow_origin"
+            "Target"            "CASTER"
+          }
+
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/druid/bear.lua"
+        "Function"    "bearform"
+      }
+    }
+
+    "Modifiers"
+    {
+      "mod_bearform"
+      {
+        "Passive"      "0"
+        "IsHidden"      "1"
+        "IsBuff"      "0"
+        "Duration"  ".1"
+
+        "States"
+        {
+          "MODIFIER_STATE_STUNNED"    "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_SILENCED"   "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+
+      "mod_attack_range"
+      {
+        "Passive"      "0"
+        "IsHidden"      "1"
+        "IsBuff"      "0"
+
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "-450" 
+        }
+      }
+    }
+  }

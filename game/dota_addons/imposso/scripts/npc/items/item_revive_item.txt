@@ -1,0 +1,45 @@
+"item_revive_item"
+  {
+    "ID"              "1100"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "BaseClass"           "item_datadriven"
+    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
+    "AbilityTextureName"      "item_bloodstone"
+
+    "AbilityCooldown"       "0"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "0"
+    "ItemCost"            "45"
+    "ItemInitialCharges"      "1"
+    "ItemDroppable"         "0"
+    "ItemSellable"          "1"
+    "ItemStackable" "1"
+    "ItemRequiresCharges"     "0"
+    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+    
+    "MaxUpgradeLevel"       "1"
+    "ItemBaseLevel"         "1"
+
+    "Modifiers"
+    {
+      "modifier_reincarnation"
+      {
+        "Passive" "1"
+        "IsHidden"  "1"
+
+        "OnDeath"
+        {
+          "RunScript"
+          {
+            "ScriptFile"    "libraries/item_spells/revive.lua"
+            "Function"      "Reincarnation"
+          }
+        }
+      }
+    }
+  }

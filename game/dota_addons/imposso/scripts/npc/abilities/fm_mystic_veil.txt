@@ -1,0 +1,73 @@
+"fm_mystic_veil"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"     "templar_assassin_refraction_damage"
+    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO"
+    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+
+    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "AbilityCastPoint"       "0.0"
+    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
+    "AnimationPlaybackRate"  "1"
+    "AnimationIgnoresModelScale" "1"
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_FLOAT"
+            "duration" "1.5"
+        }
+    }
+
+    // Stats
+    //----------------------------------------------------------------------------------------
+    "AbilityDamage"           "0"
+    "AbilityManaCost"         "5"
+    "AbilityCooldown"         "12.0"
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"  "veil_mod"
+        "Target"     "CASTER"
+        "Duration"    "1.5"
+      }
+
+      "RunScript"
+      {
+        "ScriptFile"    "libraries/item_spells/revive.lua"
+        "Function"      "sheild_purge"
+      }
+    }
+
+    "Modifiers"
+    {
+      "veil_mod"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsBuff"      "1"
+        "IsPurgable"    "0"
+
+        "Duration"  "1.5"
+    
+        "EffectName"    "particles/units/heroes/hero_medusa/medusa_mana_shield_shell_add.vpcf"
+        "EffectAttachType"  "follow_origin"
+
+        "States"
+        {
+          "MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+    }
+  }

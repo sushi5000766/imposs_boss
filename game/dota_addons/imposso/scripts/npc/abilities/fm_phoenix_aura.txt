@@ -1,0 +1,97 @@
+"fm_phoenix_aura"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "AbilityTextureName"      "nevermore_requiem_demon"
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "chance" "10"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "spell" "20"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "attack" "30"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "radius" "500"
+        }
+    }
+
+    "Modifiers"
+    {
+      //Static bonus mana which applies to od only
+
+      "modifier_fm_phoenix_aura"
+      {
+        "Passive" "1"
+        "IsPurgable"  "0"
+        "IsHidden"  "1"
+        "Aura" "modifier_fm_phoenix_aura_effect" // this should be the actual mana restore on proc
+        "Aura_Radius" "500"
+        "Aura_Teams" "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "Aura_Types" "DOTA_UNIT_TARGET_ALL"
+        "Aura_ApplyToCaster" "1"
+      } 
+
+      "modifier_fm_phoenix_aura_effect"
+      {
+
+        "EffectName" "particles/items_fx/aura_assault.vpcf"
+        "EffectAttachType" "follow_origin"
+            
+        "OnAbilityExecuted"
+        {
+          "Random"
+          {
+            "Chance"  "10"
+
+            "OnSuccess"
+            {
+              "RunScript"
+              {
+                "ScriptFile"  "libraries/player_spells/fire_mage/aura.lua"
+                "Function"    "spell_mana"
+                "Target"  "unit"
+              }
+            }
+          }
+        }
+
+        "OnAttackLanded"
+        {
+          "Random"
+          {
+            "Chance"  "10"
+
+            "OnSuccess"
+            {
+              "RunScript"
+              {
+                "ScriptFile"  "libraries/player_spells/fire_mage/aura.lua"
+                "Function"    "attack_mana"
+                "Target"  "ATTACKER"
+              }
+            }
+          }
+        }
+      }
+    }
+  }

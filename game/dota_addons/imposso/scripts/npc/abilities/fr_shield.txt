@@ -1,0 +1,107 @@
+"fr_shield"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "ancient_apparition_ice_blast"
+
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+    
+    "AbilityCastRange"        "500"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "4"
+
+    "AbilityManaCost"       "45"
+
+    "precache"
+    {     
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "absorb" "750"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "duration" "40"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/frost_mage/ice.lua"
+        "Function"    "ice_shield"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Ancient_Apparition.ColdFeetFreeze"
+        "Target"    "TARGET"
+      }
+
+      "RemoveModifier"
+      {
+        "Target"    "TARGET"
+        "ModifierName"  "modifier_ice_shield"
+      }
+
+      "ApplyModifier"
+      {
+        "Target"    "TARGET"
+        "ModifierName"  "modifier_ice_shield"
+      }
+    }
+    "Modifiers"
+    {
+      "modifier_ice_shield"
+      {
+        "IsBuff"        "1"
+        "IsPurgable"    "1"
+        "Duration"      "40"
+      
+        "ThinkInterval"   "0.03"
+
+        "OnIntervalThink"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "libraries/player_spells/frost_mage/ice.lua"
+            "Function"    "ice_shield_health"
+          }
+        }
+
+        "OnTakeDamage"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "libraries/player_spells/frost_mage/ice.lua"
+            "Function"    "ice_shield_absorb"
+            "DamageTaken" "%attack_damage"
+          }
+        }
+
+        "OnDestroy"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "libraries/player_spells/frost_mage/ice.lua"
+            "Function"    "end_ice_particle"
+          }
+        }
+      }
+    }
+  }    

@@ -1,0 +1,79 @@
+"fire_ball"
+  { 
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityTextureName"     "techies_suicide"
+
+    "MaxLevel"               "1"
+  
+    "AbilityCastRange"        "0"
+    "AbilityCastPoint"        "0.0"
+
+    "AbilityManaCost"       "0"
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "50000"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "radius" "400"
+        }
+    }
+
+    "precache"
+     {
+      "soundfile"   "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts" 
+      "particle"  "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_base_attack_impact.vpcf"
+      "particle"   "particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_calldown_explosion.vpcf"
+     }
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/boss_spells/fire/fire_ball.lua"
+        "Function"    "fire_ball"
+      }
+
+      "FireSound"
+      {
+        "Target"          "CASTER"
+        "EffectName"        "Hero_Clinkz.SearingArrow"
+      }
+    }
+
+    "OnProjectileFinish"
+    {
+
+      "Damage"
+      {
+        "Target"
+        {
+          "Center"    "PROJECTILE"
+          "Radius"   "360"
+          "Teams"   "DOTA_UNIT_TARGET_TEAM_BOTH"
+          "Types"   "DOTA_UNIT_TARGET_HERO"
+        }
+        "Type"      "DAMAGE_TYPE_PURE"
+        "Damage"    "10000"
+      }
+
+      "FireSound"
+      {
+        "Target"          "CASTER"
+        "EffectName"        "Hero_Clinkz.SearingArrow.Impact"
+      }
+
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/boss_spells/fire/fire_ball.lua"
+        "Function"    "fireball_explode"
+        "TARGET"      "PROJECTILE"
+      }       
+    }  
+  }

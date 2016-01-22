@@ -1,0 +1,49 @@
+"revive_ability"
+  {
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "rubick_empty1"
+    "MaxLevel"                      "1"
+    
+    "Modifiers"
+    {
+      "revive_buff"
+      {
+          "Passive"                        "0"
+          "IsHidden"                        "0"
+          "Duration"            "3"    
+
+          "StatusEffectName"     "particles/status_fx/status_effect_life_stealer_rage.vpcf"
+          "StatusEffectPriority" "10"
+
+          "States"
+          {
+              "MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+          }
+      }
+
+      "grave_buff"
+      {
+          "Passive"                        "0"
+          "IsHidden"                        "0"
+          "Duration"            "3"    
+
+          "States"
+          {
+              "MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+          }
+      }
+
+      "grave_paly"
+      {
+          "Passive"                        "0"
+          "IsHidden"                        "0"
+          "Duration"            "3"    
+
+          "States"
+          {
+              "MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+          }
+      }
+    }
+  }

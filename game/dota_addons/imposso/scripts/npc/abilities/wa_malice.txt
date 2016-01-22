@@ -1,0 +1,98 @@
+"wa_malice" ///needs sound
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "visage_gravekeepers_cloak"
+    
+    "AbilityCastRange"        "500"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "8"
+
+    "AbilityManaCost"       "16"
+
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "Precache"
+    {
+      "particle"      "particles/units/heroes/hero_warlock/warlock_fatal_bonds_icon.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "10"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "AS" "10"
+        }
+        "03"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "MS" "30"
+        }
+        "04"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "steal" "100"
+        }
+        "05"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "duration" "17"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"  "malice_buff"
+        "Target"     "TARGET"
+        "Duration"    "17"
+      }
+    }  
+
+    "Modifiers"
+      {
+        "malice_buff"
+        {
+          "Passive"      "0"
+          "IsHidden"      "0"
+          "IsDebuff"      "0"
+          "IsBuff"        "1"
+          "IsPurgable"    "1"
+      
+          "EffectName"    "particles/units/heroes/hero_warlock/warlock_fatal_bonds_icon.vpcf"
+          "EffectAttachType"  "follow_overhead"
+
+          "OnAttackLanded"
+          {
+            "Lifesteal"
+            {
+              "Target"            "ATTACKER"
+              "LifestealPercent"  "100"
+            }
+          }
+      
+          "Properties"
+          {
+            "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "10"
+            "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "10" 
+            "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"   "30"
+
+          }
+        }
+      }  
+  }   

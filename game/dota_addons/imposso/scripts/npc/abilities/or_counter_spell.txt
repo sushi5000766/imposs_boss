@@ -1,0 +1,86 @@
+"or_counter_spell"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityTextureName"     "silencer_last_word"
+    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+    "AbilityUnitDamageType"  "DAMAGE_TYPE_MAGICAL"
+
+    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "AbilityCastPoint"       "0.1"
+    "AbilityCastAnimation"   "ACT_DOTA_CAST_ABILITY_2"
+    "AnimationPlaybackRate"  "1"
+    "AnimationIgnoresModelScale" "1"
+
+    // Stats
+    //----------------------------------------------------------------------------------------
+    "AbilityManaCost"         "35"
+    "AbilityCooldown"         "33.0"
+    "AbilityCastRange"        "170"
+
+    "Precache"
+    {
+      "soundfile"   "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
+      "particle"  "particles/units/heroes/hero_silencer/silencer_curse_aoe.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "250"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "Damage"
+      {
+        "Target"    "TARGET"
+        "Type"      "DAMAGE_TYPE_PHYSICAL"
+        "Damage"    "250"
+      }
+
+      "FireEffect"
+      {
+        "EffectName"        "particles/units/heroes/hero_silencer/silencer_curse_aoe.vpcf"
+        "EffectAttachType"  "follow_origin"
+        "Target"            "TARGET"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Silencer.GlobalSilence.Cast"
+        "Target"    "CASTER"
+      }
+
+      "ApplyModifier"
+      {
+        "ModifierName"  "spell_countered"
+        "Target"     "TARGET"
+        "Duration"    "2"
+      }
+    }
+
+    "Modifiers"
+    {
+      "spell_countered"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsDebuff"      "1"
+    
+        "EffectName"    "particles/generic_gameplay/generic_silence.vpcf"
+        "EffectAttachType"  "follow_overhead"
+      }
+    }
+  }

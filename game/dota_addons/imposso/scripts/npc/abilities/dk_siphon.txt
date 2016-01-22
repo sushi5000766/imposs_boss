@@ -1,0 +1,96 @@
+"dk_siphon"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_BASIC"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "death_prophet_carrion_swarm"
+
+    "AbilityUnitDamageType" "DAMAGE_TYPE_PURE"
+    
+    "AbilityCastRange"        "300"
+    "AbilityCastPoint"        "0.35"
+
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "AbilityCooldown"       "8"
+
+    "AbilityManaCost"       "17"
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "300 320 340 360 380"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "heal" "130 150 170 190 210"
+        }
+    }
+
+    "Precache"
+    {
+      "particle"      "particles/econ/items/death_prophet/death_prophet_acherontia/death_prophet_acher_swarm.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+    }
+
+    "OnSpellStart"
+    {
+      "FireSound"
+      {
+        "EffectName"  "Hero_DeathProphet.CarrionSwarm"
+        "Target"    "CASTER"
+      }
+
+      "LinearProjectile"
+      {
+          "Target"      "POINT"
+          "EffectName"  "particles/econ/items/death_prophet/death_prophet_acherontia/death_prophet_acher_swarm.vpcf"
+          "MoveSpeed"   "1100"
+          "StartRadius"   "125"
+          "StartPosition" "attach_attack1"
+          "EndRadius"     "125"
+          "FixedDistance" "800"
+          "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+          "TargetTypes"   "DOTA_UNIT_TARGET_BASIC"
+          "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+          "HasFrontalCone"    "0"
+          "ProvidesVision" "1"
+          "VisionRadius" "300"
+      }
+    }
+
+    "OnProjectileHitUnit"
+    {
+      "DeleteOnHit"  "0"
+      
+      "Damage"
+      {
+        "Target"    "TARGET"
+        "Type"      "DAMAGE_TYPE_PURE"
+        "Damage"    "%damage"
+      }
+      "Heal"
+      {
+        "Target"        "CASTER"
+        "HealAmount"  "%heal"
+      }
+
+      "OnKill"
+      {
+        "Heal"
+      {
+        "Target"        "CASTER"
+        "HealAmount"  "%heal"
+      }
+      }
+    }
+  }

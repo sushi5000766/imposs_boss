@@ -1,0 +1,115 @@
+"dr_renew"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "treant_living_armor"
+
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+    
+    "AbilityCastRange"        "500"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "1"
+
+    "AbilityManaCost"       "29"
+
+    "Precache"
+    {
+      "particle"      "particles/items_fx/healing_flask.vpcf"
+      "soundfile"     "soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "heal" "300"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "hot" "100"
+        }
+        "03"
+        { 
+            "var_type"  "FIELD_FLOAT"
+            "mana" "3.5"
+        }
+        "04"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "Rmana" "1"
+        }
+        "05"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "Duration" "6"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"  "mod_renew"
+        "Target"     "TARGET"
+        "Duration"    "6"
+      }
+
+      "FireSound"
+      {
+        "Target"          "CASTER"
+        "EffectName"        "Hero_Treant.LivingArmor.Target"
+      }
+    }
+
+    "Modifiers"
+    {
+      "mod_renew"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsDebuff"      "0"
+        "IsBuff"        "1"
+        "IsPurgable"    "1"
+      
+        //Purge(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions)"
+    
+        "EffectName"    "particles/items_fx/healing_flask.vpcf"
+        "EffectAttachType"  "follow_origin"
+    
+        "OnCreated"
+        {
+          "Heal"
+          {
+            "Target"        "TARGET"
+            "HealAmount"  "300"
+          }
+        }
+
+        "ThinkInterval"  "1.0"
+        "OnIntervalThink"
+        {
+          "Heal"
+          {
+            "Target"        "TARGET"
+            "HealAmount"  "100"
+          }
+
+          "RunScript"
+          {
+            "ScriptFile"  "libraries/player_spells/druid/bear.lua"
+            "Function"    "renew"
+          }
+        }
+      }
+    }
+  }  

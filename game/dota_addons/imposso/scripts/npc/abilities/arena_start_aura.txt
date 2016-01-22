@@ -1,0 +1,42 @@
+"arena_start_aura"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_BOTH"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_ALL"
+    "AbilityTextureName"      "nevermore_requiem_demon"
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "Modifiers"
+    {
+      //Static bonus mana which applies to od only
+
+      "arena_start_mod"
+      {
+        "Passive" "1"
+        "IsPurgable"  "0"
+        "IsHidden"  "1"
+        "Aura" "arena_start_effect" // this should be the actual mana restore on proc
+        "Aura_Radius" "3000"
+        "Aura_Teams" "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "Aura_Types" "DOTA_UNIT_TARGET_ALL"
+        "Aura_ApplyToCaster" "1"
+      } 
+
+      "arena_start_effect"
+      {
+
+        "IsHidden"  "1"
+            
+        "States"
+        {
+          "MODIFIER_STATE_STUNNED"    "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_INVULNERABLE"   "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+    }
+  }

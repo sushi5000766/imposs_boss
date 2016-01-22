@@ -1,0 +1,69 @@
+"rg_snipe"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL" 
+    "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "mirana_arrow"
+
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+    
+    "AbilityCastRange"        "1000"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityChannelTime" "1.0"
+
+    "AbilityCooldown"       "16"
+
+    "AbilityManaCost"       "22"
+
+    "precache"
+    {     
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+      "particle"  "particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "275 307 339 371 403"
+        }
+    }
+
+    
+
+    "OnChannelSucceeded"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/ranger/rapid_fire.lua"
+        "Function"    "snipe"
+      }     
+    }
+
+    "OnProjectileHitUnit"
+    {
+      "DeleteOnHit"  "1"
+      "Damage"
+      {
+        "Target"    "TARGET"
+        "Type"      "DAMAGE_TYPE_MAGICAL"
+        "Damage"    "%damage"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Windrunner.PowershotDamage"
+        "Target"    "CASTER"
+      }
+    }
+  }

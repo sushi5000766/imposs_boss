@@ -1,0 +1,171 @@
+  "dk_fury"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilityTextureName"     "juggernaut_omni_slash"
+    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+
+    "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL | DAMAGE_TYPE_PHYSICAL"
+
+    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "AbilityCastPoint"       "0.3"
+
+    "AbilityCastRange"        "200"
+
+    "AbilityChannelTime"    "2"
+
+    "Precache"
+    {
+      "particle"      "particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf"
+      "particle"      "particles/units/heroes/hero_abaddon/abaddon_death_coil_explosion.vpcf"
+      "soundfile"         "soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+    }
+
+    // Stats
+    //----------------------------------------------------------------------------------------
+    "AbilityDamage"           "0"
+    "AbilityManaCost"         "28"
+    "AbilityCooldown"         "12"
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "Pdamage" "34 36 38 40 42"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "Mdamage" "430 446 462 478 494"
+        }
+        "03"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "reduction" "70"
+        }
+        "04"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "amplify" "350"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "FireSound"
+      {
+          "EffectName"    "Hero_LifeStealer.Rage"
+          "Target"        "CASTER"
+      }
+
+      "ApplyModifier"
+      {
+          "Target" "TARGET"
+          "ModifierName" "modifier_dk_drain"
+      }
+
+      "ApplyModifier"
+      {
+        "ModifierName"  "animation_repeat"
+        "Target"     "CASTER"
+      }
+    }
+    "OnChannelSucceeded"
+    {
+        "RemoveModifier"
+        {
+            "Target" "TARGET"
+            "ModifierName" "modifier_dk_drain"
+        }
+
+        "RemoveModifier"
+        {
+            "Target" "CASTER"
+            "ModifierName" "animation_repeat"
+        }
+
+        "RunScript"
+        {
+          "ScriptFile"  "libraries/player_spells/death_knight/undead.lua"
+          "Function"    "fury_m"
+        }
+
+        "FireEffect"
+        {
+          "EffectName"        "particles/units/heroes/hero_abaddon/abaddon_death_coil_explosion.vpcf"
+          "EffectAttachType"  "follow_overhead"
+          "Target"            "TARGET"
+        }
+    }
+
+    "OnChannelFinish"
+    {
+        "RemoveModifier"
+        {
+            "Target" "TARGET"
+            "ModifierName" "modifier_dk_drain"
+        }
+
+        "RemoveModifier"
+        {
+            "Target" "CASTER"
+            "ModifierName" "animation_repeat"
+        }
+    }
+
+    "Modifiers" 
+    { 
+        "modifier_dk_drain" 
+        {
+            "IsDebuff" "1"
+            "ThinkInterval" ".2"
+            "OnIntervalThink"
+            {
+                "RunScript"
+                {
+                  "ScriptFile"  "libraries/player_spells/death_knight/undead.lua"
+                  "Function"    "fury_p"
+                }
+                
+                "FireEffect"
+                {
+                  "EffectName"        "particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf"
+                  "EffectAttachType"  "follow_overhead"
+                  "Target"            "TARGET"
+                }
+            }
+        }
+
+        "animation_repeat"
+        {
+          "IsHidden" "1"
+
+          "ThinkInterval" "0.2"
+          "OnIntervalThink"
+          {
+              // Looping Animation
+              "ApplyModifier"
+              {
+                  "ModifierName"  "animation_play"
+                  "Target"        "CASTER"
+              }
+          }
+        }
+
+        "animation_play"
+        {
+          "IsHidden" "1"
+          "Duration" "0.1"
+          "OverrideAnimation"     "ACT_DOTA_ATTACK"
+        }
+    }
+  }

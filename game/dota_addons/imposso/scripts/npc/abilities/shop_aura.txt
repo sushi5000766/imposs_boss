@@ -1,0 +1,47 @@
+"shop_aura"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "AbilityTextureName"      "nevermore_requiem_demon"
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "Modifiers"
+    {
+      //Static bonus mana which applies to od only
+
+      "modifier_fm_phoenix_aura"
+      {
+        "Passive" "1"
+        "IsPurgable"  "0"
+        "IsHidden"  "1"
+        "Aura" "shop_aura_effect" // this should be the actual mana restore on proc
+        "Aura_Radius" "3000"
+        "Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "Aura_Types" "DOTA_UNIT_TARGET_HERO"
+        "Aura_ApplyToCaster" "1"
+      } 
+
+      "shop_aura_effect"
+      {
+
+        "IsHidden"  "1"
+        "States"
+        {
+          //"MODIFIER_STATE_SILENCED"    "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+        } 
+
+        "Properties"
+         {
+            "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "1000"
+            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "50" 
+         }           
+      }
+    }
+  }

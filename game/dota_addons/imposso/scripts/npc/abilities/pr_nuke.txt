@@ -1,0 +1,64 @@
+"pr_nuke"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_BOTH"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_BASIC"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "chen_hand_of_god"
+    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+    
+    "AbilityCastRange"        "500"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "20"
+
+    "AbilityManaCost"       "65"
+
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "precache"
+    {     
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+      "particle"  "particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning_end.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "500 525 550 575 600"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "reduction" "80"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "amplify" "100"
+        }
+
+    }
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/priest/healer.lua"
+        "Function"    "nuke"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Omniknight.Repel"
+        "Target"    "CASTER"
+      }
+    }    
+  } 

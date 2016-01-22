@@ -1,0 +1,88 @@
+"dr_rend"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_BASIC"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "lone_druid_rabid"
+
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+    
+    "AbilityCastRange"        "150"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "18"
+
+    "AbilityManaCost"       "15"
+
+    "Precache"
+    {
+      "soundfile"     "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "130 137 144 151 158"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "bleed" "110 112 114 116 118"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "FireSound"
+      {
+        "EffectName"  "Hero_PhantomAssassin.CoupDeGrace"
+        "Target"    "TARGET"
+      }
+
+      "ApplyModifier"
+      {
+        "ModifierName"  "mod_rend"
+        "Target"     "TARGET"
+        "Duration"    "10"
+      }
+    }
+
+    "Modifiers"
+    {
+      "mod_rend"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsDebuff"      "0"
+    
+        "OnCreated"
+        {
+          "Damage"
+          {
+            "Target"    "TARGET"
+            "Type"      "DAMAGE_TYPE_PHYSICAL"
+            "Damage"    "%damage"
+          }
+        }
+
+        "ThinkInterval"  "2.0"
+        "OnIntervalThink"
+        {
+          "Damage"
+          {
+            "Target"    "TARGET"
+            "Type"      "DAMAGE_TYPE_PHYSICAL"
+            "Damage"    "%bleed"
+          }
+        }
+      }
+    }
+  }

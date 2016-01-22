@@ -1,0 +1,146 @@
+"fm_meteor"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL" 
+    "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "invoker_chaos_meteor"
+
+    "AbilityCastAnimation"   "ACT_DOTA_CAST_ABILITY_1"
+
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+    
+    "AbilityCastRange"        "3000"
+    "AbilityCastPoint"        "0.35"
+
+
+
+    "AbilityChannelTime" "4.0"
+
+    "AbilityCooldown"       "26"
+
+    "AbilityManaCost"       "44"
+
+    "precache"
+    {     
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+      "particle"  "particles/fm_meteor.vpcf"
+      "particle"  "particles/econ/items/invoker/invoker_apex/invoker_sun_strike_immortal1.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "850 900 950 1000 1050"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "channel" "4"
+        }
+        "03"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "immune" "15"
+        }
+        "04"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "reduction" "80"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+          "ModifierName" "modifier_channeling"
+          "Target" "CASTER"
+      }
+    }
+
+    "OnChannelFinish"
+    {
+      "RemoveModifier"
+      {
+        "ModifierName" "modifier_channeling"
+        "Target" "CASTER"
+      }
+    }
+
+    "OnChannelSucceeded"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/fire_mage/aura.lua"
+        "Function"    "meteor"
+      }
+
+      "DelayedAction"
+      {
+        "Delay"     "1.6"
+        "Action"    
+        {
+          "FireSound"
+          {
+            "EffectName"  "Hero_Invoker.ChaosMeteor.Impact"
+            "Target"    "TARGET"
+          }
+
+          "FireEffect"
+          {
+            "EffectName"        "particles/econ/items/invoker/invoker_apex/invoker_sun_strike_immortal1.vpcf"
+            "EffectAttachType"  "follow_origin"
+            "Target"            "TARGET"
+          }
+
+          "ApplyModifier"
+          {
+            "ModifierName"  "modifier_meteor_debuff"
+            "Target"    "TARGET"
+          }
+        }
+      }      
+    }
+
+    "Modifiers"
+    {
+      "modifier_meteor_debuff"
+      {
+        "IsHidden"  "0"
+        "Duration"  "15"
+      }
+
+      "modifier_channeling"
+      {
+        "IsHidden" "1"
+
+        "ThinkInterval" "1.0"
+        "OnIntervalThink"
+        {
+            // Looping Animation
+            "ApplyModifier"
+            {
+                "ModifierName"  "channelling_animation"
+                "Target"        "CASTER"
+            }
+        }
+      }
+
+      "channelling_animation"
+      {
+          "IsHidden" "1"
+          "Duration" "0.9"
+          "OverrideAnimation" "ACT_DOTA_CAST_ABILITY_1"
+      }
+    }
+  }

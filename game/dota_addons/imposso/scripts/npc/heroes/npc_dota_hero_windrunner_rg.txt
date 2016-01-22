@@ -1,0 +1,66 @@
+"npc_dota_hero_windrunner_rg"
+  {
+    "UnitLabel"         "ranger"
+    "AbilityLayout"     "6"
+    "override_hero"     "npc_dota_hero_windrunner"
+    "SoundSet"          "0" 
+    "Ability1"        "rg_multishot" 
+    "Ability2"        "rg_rapid_fire" 
+    "Ability3"        "rg_snipe" 
+    "Ability4"        "fm_mystic_veil"
+    "Ability5"        "rg_unstable"
+    "Ability6"        "rg_sprint"
+    "Ability7"        "rg_crit_attack"
+    "Ability8"        "death_ability"
+    "Ability9"        "mana_up_ab"
+    "Ability10"       "health_up_ab"
+    "Ability11"       ""
+    "Ability12"       ""
+    "Ability13"       ""
+    "Ability14"       ""
+    "Ability15"       ""
+    "Ability16"       ""
+
+    "UnitLabel"                    "hero"
+
+    "ArmorPhysical"       "0"                 // Physical protection.
+    "MagicalResistance"       "0"                 // Magical protection (percentage).
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"     // Type of attack - melee, ranged, etc.
+    "AttackDamageMin"     "25"     // Damage range min.
+    "AttackDamageMax"     "50"     // Damage range max.
+    "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
+    "AttackRate"        "1.0"     // Speed of attack.
+    "AttackAnimationPoint"    "0.5"   // Normalized time in animation cycle to attack.
+    "AttackAcquisitionRange"  "800"   // Range within a target can be acquired.
+    "AttackRange"       "600"   // Range within a target can be attacked.
+    "ProjectileModel"     "particles/units/heroes/hero_windrunner/windrunner_base_attack.vpcf" // Particle system model for projectile.
+    "ProjectileSpeed"     "1300"   // Speed of projectile.
+
+    //"AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+    "AttributeBaseStrength"   "0"                   // Base strength
+    "AttributeStrengthGain"   "0"                   // Strength bonus per level.
+    "AttributeBaseIntelligence" "0"                   // Base intelligence
+    "AttributeIntelligenceGain" "0"                   // Intelligence bonus per level.
+    "AttributeBaseAgility"    "0"                   // Base agility
+    "AttributeAgilityGain"    "0"                   // Agility bonus per level.
+
+    "BountyXP"          "0"                 // Experience earn.
+    "BountyGoldMin"       "0"                   // Gold earned min.
+    "BountyGoldMax"       "0"                   // Gold earned max.
+
+    //"BoundsHullName"      "DOTA_HULL_SIZE_HERO"
+    //"RingRadius"        "70"
+
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"       "280"                 // Speed.
+    "MovementTurnRate"      "1.0"                 // Turning rate.
+
+    "StatusHealth"        "2500"                 // Base health.
+    "StatusHealthRegen"     "0"                 // Health regeneration rate.
+    "StatusMana"        "200"                   // Base mana.
+    "StatusManaRegen"     "1"                 // Mana regeneration rate.
+
+    "VisionDaytimeRange"    "3000"                  // Range of vision at night time.
+    "VisionNighttimeRange"    "3000"                  // Range of vision at night time.
+  }

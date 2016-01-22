@@ -1,0 +1,58 @@
+"item_immune_item"
+  {
+    "ID"              "1106"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "BaseClass"           "item_datadriven"
+    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+    "AbilityTextureName"      "item_smoke_of_deceit"
+
+    "AbilityCooldown"       "45"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "0"
+    "ItemCost"            "10"
+    "ItemInitialCharges"      "1"
+    "ItemDroppable"         "0"
+    "ItemSellable"          "1"
+    "ItemStackable"         "1"
+    "ItemRequiresCharges"     "1"
+    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+    "ItemPermanent"     "0"
+    
+    "MaxUpgradeLevel"       "1"
+    "ItemBaseLevel"         "1"
+
+    "OnSpellStart"
+    {
+      "SpendCharge" {}
+      "ApplyModifier"
+      {
+        "ModifierName"  "immune_item_mod"
+        "Target"     "CASTER"
+        "Duration"    "2"
+      }
+
+    }
+
+    "Modifiers"
+    {
+      "immune_item_mod"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsDebuff"      "0"
+    
+        "EffectName"    "particles/items3_fx/lotus_orb_shield.vpcf"
+        "EffectAttachType"  "follow_origin"
+    
+        "States"
+        {
+          "MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+    }
+  }

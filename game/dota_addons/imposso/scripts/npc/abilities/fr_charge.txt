@@ -1,0 +1,80 @@
+
+
+  "fr_charge"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL" 
+    "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "ancient_apparition_cold_feet"
+
+    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+    
+    "AbilityCastRange"        "800"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "12"
+
+    "AbilityManaCost"       "16"
+
+    "precache"
+    {     
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+      "particle"  "particles/units/heroes/hero_jakiro/jakiro_ice_path_shards.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "240 252 264 276 288"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "reduction" "60"
+        }
+    }
+
+    "OnSpellStart"
+    {       
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/frost_mage/ice.lua"
+        "Function"    "ice_charge"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Tusk.IceShards.Projectile"
+        "Target"    "CASTER"
+      }
+
+      "ApplyMotionController"
+      // For this: gfycat.com/BraveHideousGiantschnauzer -> check: bit.ly/1KWulqA
+      {
+          "Target"    "CASTER"
+          "ScriptFile"    "libraries/player_spells/frost_mage/ice.lua"
+          "HorizontalControlFunction" "ice_slide"       
+      }
+    }
+
+    "Modifiers"
+    {
+      "slide_mod"
+      {
+        "Passive"      "0"
+        "IsHidden"      "1"
+        "IsDebuff"      "0"
+      }
+    }
+  }

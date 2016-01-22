@@ -1,0 +1,117 @@
+"wa_torment"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_BASIC"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "vengefulspirit_wave_of_terror"
+    
+    "AbilityCastRange"        "500"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "11"
+
+    "AbilityManaCost"       "90"
+
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "Precache"
+    {
+      "particle"      "particles/units/heroes/hero_warlock/warlock_upheaval_debuff.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "200 206 212 218 224"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "dot" "90 92 94 99 98"
+        }
+        "03"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "duration" "10"
+        }
+        "04"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "AS" "100"
+        }
+        "05"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "reduction" "70"
+        }
+        "06"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "amplify" "200"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"  "torment_debuff"
+        "Target"     "TARGET"
+        "Duration"    "10"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Pugna.Decrepify"
+        "Target"    "TARGET"
+      }
+    }  
+
+    "Modifiers"
+      {
+        "torment_debuff"
+        {
+          "Passive"      "0"
+          "IsHidden"      "0"
+          "IsDebuff"      "0"
+      
+          "EffectName"    "particles/units/heroes/hero_warlock/warlock_upheaval_debuff.vpcf"
+          "EffectAttachType"  "follow_origin"
+
+          "OnCreated"
+          {
+            "Damage"
+            {
+              "Target"    "TARGET"
+              "Type"      "DAMAGE_TYPE_MAGICAL"
+              "Damage"    "200"
+            }
+          }
+
+          "ThinkInterval"  "2.0"
+          "OnIntervalThink"
+          {
+            "Damage"
+            {
+              "Target"    "TARGET"
+              "Type"      "DAMAGE_TYPE_MAGICAL"
+              "Damage"    "90"
+            }
+          }
+
+          "Properties"
+          {
+            "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-10" 
+          }
+        }
+      }  
+  }   

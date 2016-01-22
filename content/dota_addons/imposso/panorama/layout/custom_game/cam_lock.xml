@@ -1,0 +1,13 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/cam_lock.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/cam_lock.js" />
+	</scripts>
+	<Panel class='LockButton'>
+		<Button id="Button" onactivate="OnButtonPressed()">
+			<Label id="Label" text="Camera Lock Near" />
+		</Button>
+	</Panel>
+</root>

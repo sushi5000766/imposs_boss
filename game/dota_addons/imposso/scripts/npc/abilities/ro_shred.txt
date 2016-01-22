@@ -1,0 +1,77 @@
+"ro_shred"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_BASIC"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "slardar_amplify_damage"
+    
+    "AbilityCastRange"        "200"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "180"
+
+    "AbilityManaCost"       "0"
+
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "Precache"
+    {
+      "particle"      "particles/items3_fx/star_emblem_brokenshield_caster.vpcf"
+      "soundfile"     "soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "50"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"  "shred_debuff"
+        "Target"     "TARGET"
+        "Duration"    "20"
+      }
+
+      "FireSound"
+      {
+        "Target"        "CASTER"
+        "EffectName"      "Hero_Dazzle.Weave" // Find the name for actual sound
+      }
+
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/rogue/shadow.lua"
+        "Function"    "amplify"
+      }
+    }
+
+    "Modifiers"
+    {
+      "shred_debuff"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsDebuff"      "1"
+    
+        "EffectName"    "particles/items3_fx/star_emblem_brokenshield_caster.vpcf"
+        "EffectAttachType"  "follow_overhead"
+    
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"  "50" 
+        }
+      }
+    }         
+  }

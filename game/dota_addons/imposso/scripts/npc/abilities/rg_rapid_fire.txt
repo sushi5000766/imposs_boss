@@ -1,0 +1,150 @@
+  "rg_rapid_fire"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilityTextureName"     "windrunner_focusfire"
+    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+
+    "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+
+    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "AbilityCastPoint"       "0.3"
+
+    "AbilityCastRange"        "600"
+
+    "AbilityChannelTime"    "4"
+
+    "Precache"
+    {
+      "particle"      "particles/units/heroes/hero_windrunner/windrunner_base_attack.vpcf"
+      "soundfile"         "soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+    }
+
+    // Stats
+    //----------------------------------------------------------------------------------------
+    "AbilityManaCost"         "45"
+    "AbilityCooldown"         "45"
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "50 62 74 86 98"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "duration" "4"
+        }
+    }
+
+    "OnSpellStart"
+    {
+
+      "ApplyModifier"
+      {
+          "Target" "TARGET"
+          "ModifierName" "modifier_rapid_arrow"
+      }
+
+      "ApplyModifier"
+      {
+        "ModifierName"  "rg_animation_repeat"
+        "Target"     "CASTER"
+      }
+    }
+    "OnChannelSucceeded"
+    {
+        "RemoveModifier"
+        {
+            "Target" "TARGET"
+            "ModifierName" "modifier_rapid_arrow"
+        }
+
+        "RemoveModifier"
+        {
+            "Target" "CASTER"
+            "ModifierName" "rg_animation_repeat"
+        }
+    }
+
+    "OnChannelFinish"
+    {
+        "RemoveModifier"
+        {
+            "Target" "TARGET"
+            "ModifierName" "modifier_rapid_arrow"
+        }
+
+        "RemoveModifier"
+        {
+            "Target" "CASTER"
+            "ModifierName" "rg_animation_repeat"
+        }
+    }
+
+    "OnProjectileHitUnit"
+    {
+        "DeleteOnHit"    "1"
+        "Damage"
+        {
+            "Target"        "TARGET"
+            "Type"            "DAMAGE_TYPE_MAGICAL"
+            "Damage"        "%damage"
+        }
+    }
+
+    "Modifiers" 
+    { 
+        "modifier_rapid_arrow" 
+        {
+            "IsDebuff" "1"
+            "ThinkInterval" ".3"
+            "OnIntervalThink"
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_windrunner/windrunner_base_attack.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "1"
+                    "VisionRadius"        "10"
+                    "MoveSpeed"            "1500"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+
+        "rg_animation_repeat"
+        {
+          "IsHidden" "1"
+
+          "ThinkInterval" "1"
+          "OnIntervalThink"
+          {
+              // Looping Animation
+              "ApplyModifier"
+              {
+                  "ModifierName"  "rg_animation_play"
+                  "Target"        "CASTER"
+              }
+          }
+        }
+
+        "rg_animation_play"
+        {
+          "IsHidden" "1"
+          "Duration" ".9"
+          "OverrideAnimation"     "ACT_DOTA_ATTACK"
+        }
+    }
+  }

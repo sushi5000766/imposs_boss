@@ -1,0 +1,112 @@
+
+
+  "or_charge"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_NONE"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_NONE"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "ancient_apparition_cold_feet"
+
+    "AbilityCastAnimation"   "ACT_DOTA_RUN"
+
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+    
+    "AbilityCastRange"        "800"
+    "AbilityCastPoint"        "0.15"
+
+    "AbilityCooldown"       "28"
+
+    "AbilityManaCost"       "13"
+
+    "Precache"
+    {
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+      "particle"  "particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_dust_b_gravelmaw.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "range" "800"
+        }
+    }
+
+    "OnAbilityPhaseStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/warrior/tank.lua"
+        "Function"    "shop_charge"
+      }
+    }
+
+    "OnSpellStart"
+    {      
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Beastmaster.Primal_Roar"
+        "Target"    "CASTER"
+      }
+
+      "ApplyModifier"
+      {
+        "ModifierName"  "war_slide_mod"
+        "Target"     "CASTER"
+      }
+
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/warrior/tank.lua"
+        "Function"    "war_charge"
+        "Target" "POINT"
+      }
+
+      "ApplyMotionController"
+      // For this: gfycat.com/BraveHideousGiantschnauzer -> check: bit.ly/1KWulqA
+      {
+          "Target"    "CASTER"
+          "ScriptFile"    "libraries/player_spells/warrior/tank.lua"
+          "HorizontalControlFunction" "war_slide"       
+      }
+    }
+
+    "Modifiers"
+    {
+      "war_slide_mod"
+      {
+        "Passive"      "0"
+        "IsHidden"      "1"
+        "IsDebuff"      "0"
+    
+        "EffectName"    "particles/units/heroes/hero_windrunner/windrunner_windrun_blur.vpcf"
+        "EffectAttachType"  "follow_origin"
+    
+        "OnDestroy"
+        {
+          "FireEffect"
+          {
+            "EffectName"        "particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_dust_b_gravelmaw.vpcf"
+            "EffectAttachType"  "follow_origin"
+            "Target"            "CASTER"
+          }
+        }
+
+        "OverrideAnimation"     "ACT_DOTA_RUN"
+
+        "ThinkInterval"  "0.5"
+        "OnIntervalThink"
+        {
+          "OverrideAnimation"     "ACT_DOTA_RUN"
+        }
+      }
+    }
+  }

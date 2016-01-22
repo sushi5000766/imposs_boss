@@ -1,0 +1,64 @@
+
+"dk_shadow_guard"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+    "AbilityTextureName"     "abaddon_aphotic_shield"
+    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO"
+    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+
+    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "AbilityCastPoint"       "0.0"
+    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
+    "AnimationPlaybackRate"  "1"
+    "AnimationIgnoresModelScale" "1"
+
+    // Stats
+    //----------------------------------------------------------------------------------------
+    "AbilityDamage"           "0"
+    "AbilityManaCost"         "5"
+    "AbilityCooldown"         "9"
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"  "mod_shaddow_guard"
+        "Target"     "CASTER"
+        "Duration"    "2"
+      }
+
+      "RunScript"
+      {
+        "ScriptFile"    "libraries/item_spells/revive.lua"
+        "Function"      "sheild_purge"
+      }
+    }
+
+    "Modifiers"
+    {
+      "mod_shaddow_guard"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsBuff"      "1"
+        "IsPurgable"    "0"
+        "Duration"  "2"
+    
+        "EffectName"    "particles/units/heroes/hero_medusa/medusa_mana_shield_shell_add.vpcf"
+        "EffectAttachType"  "follow_origin"
+
+        "States"
+        {
+          "MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+    }
+  }

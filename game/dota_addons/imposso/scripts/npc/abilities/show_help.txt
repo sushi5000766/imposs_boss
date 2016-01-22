@@ -1,0 +1,8 @@
+"show_help"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityTextureName"      "question_mark"
+    
+  }

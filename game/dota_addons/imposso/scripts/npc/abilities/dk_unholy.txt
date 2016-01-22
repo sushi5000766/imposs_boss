@@ -1,0 +1,109 @@
+"dk_unholy"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+    "AbilityTextureName"     "abaddon_borrowed_time"
+    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO"
+    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+
+    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "AbilityCastPoint"       "0.0"
+    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
+    "AnimationPlaybackRate"  "1"
+    "AnimationIgnoresModelScale" "1"
+
+    // Stats
+    //----------------------------------------------------------------------------------------
+    "AbilityDamage"           "0"
+    "AbilityManaCost"         "45"
+    "AbilityCooldown"         "31"
+
+    
+
+    "Precache"
+    {
+      "particle"      "particles/econ/items/undying/undying_manyone/undying_pale_tombstone.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "heal" "1000"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "capped" "500"
+        }
+        "03"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "range" "300"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "FireSound"
+      {
+        "EffectName"    "Hero_Undying.FleshGolem.Cast"
+        "Target"      "CASTER"
+      }
+
+      "ApplyModifier"
+      {
+        "ModifierName"  "mod_unholy"
+        "Target"     "CASTER"
+        "Duration"    "4"
+      }
+
+      "FireEffect"
+       {
+         "EffectName"        "particles/econ/items/undying/undying_manyone/undying_pale_tombstone.vpcf"
+         "EffectAttachType"  "follow_origin"
+         "Target"            "CASTER"
+       }
+      
+    }
+
+    "Modifiers"
+    {
+      "mod_unholy"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsBuff"      "1"
+        "Duration"  "4"
+    
+        "StatusEffectName"     "particles/status_fx/status_effect_gods_strength.vpcf"
+        "StatusEffectPriority" "10"
+
+        "ThinkInterval"  "1.0"
+        "OnIntervalThink"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "libraries/player_spells/death_knight/undead.lua"
+            "Function"    "unholy"
+          }
+
+          "FireEffect"
+           {
+             "EffectName"        "particles/econ/items/undying/undying_manyone/undying_pale_tombstone.vpcf"
+             "EffectAttachType"  "follow_origin"
+             "Target"            "CASTER"
+           }
+        }     
+      }
+    }
+  }

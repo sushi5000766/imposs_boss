@@ -1,0 +1,91 @@
+"pl_taunt"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "keeper_of_the_light_blinding_light"
+    
+    "AbilityCastRange"        "450"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "11"
+
+    "AbilityManaCost"       "27"
+
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "precache"
+    {     
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "duration" "3"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/paladan/holy.lua"
+        "Function"    "paly_taunt"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Axe.BerserkersCall.Start"
+        "Target"    "CASTER"
+      }
+
+      "ApplyModifier"
+      {
+        "ModifierName"  "taunt_mod"
+        "Target"     "TARGET"
+        "Duration"    "3"
+      }
+    }
+
+    "Modifiers"
+    {
+      "taunt_mod"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsDebuff"      "1"
+
+        "StatusEffectName"    "particles/status_fx/status_effect_beserkers_call.vpcf"      
+        "StatusEffectPriority"  "10"
+
+        "ThinkInterval"  "0.1"
+        "OnIntervalThink"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "libraries/player_spells/paladan/holy.lua"
+            "Function"    "paly_taunt"
+          }
+        }
+
+        "OnDestroy"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "libraries/player_spells/paladan/holy.lua"
+            "Function"    "taunt_end"
+          }
+        }
+    
+      }
+    }
+  }

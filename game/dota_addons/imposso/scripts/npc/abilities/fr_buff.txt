@@ -1,0 +1,100 @@
+"fr_buff"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "tusk_frozen_sigil"
+
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+    
+    "AbilityCastRange"        "500"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "19"
+
+    "AbilityManaCost"       "5"
+
+    "Precache"
+    {
+      "particle"      "particles/units/heroes/hero_tusk/tusk_frozen_sigil_status.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "increase" "50"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "mana" "3"
+        }
+        "03"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "26"
+        }
+        "04"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "duration" "15"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"  "frost_buff"
+        "Target"     "TARGET"
+        "Duration"    "15"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Lich.FrostArmor"
+        "Target"    "TARGET"
+      }
+    }  
+
+    "Modifiers"
+      {
+        "frost_buff"
+        {
+          "Passive"      "0"
+          "IsHidden"      "0"
+          "IsDebuff"      "0"
+          "IsBuff"        "1"
+          "IsPurgable"    "1"
+      
+          "EffectName"    "particles/units/heroes/hero_tusk/tusk_frozen_sigil_status.vpcf"
+          "EffectAttachType"  "follow_overhead"
+
+          "ThinkInterval"  "1.0"
+          "OnIntervalThink"
+          {
+            "Damage"
+            {
+              "Target"    "TARGET"
+              "Type"      "DAMAGE_TYPE_MAGICAL"
+              "Damage"    "26"
+            }
+          }
+      
+          "Properties"
+          {
+            "MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" "150"
+            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "3" 
+          }
+        }
+      }  
+  }   

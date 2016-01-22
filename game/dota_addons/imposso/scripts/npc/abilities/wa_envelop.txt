@@ -1,0 +1,170 @@
+
+  "wa_envelop"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilityTextureName"     "spectre_desolate"
+    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO"
+    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+
+    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "AbilityCastPoint"       "0.5"
+    "AbilityCastAnimation"   "ACT_DOTA_CHANNEL_ABILITY_3"
+    "AnimationPlaybackRate"  "1"
+    "AnimationIgnoresModelScale" "1"
+
+    "AbilityChannelTime"    "4"
+
+    // Stats
+    //----------------------------------------------------------------------------------------
+    "AbilityDamage"           "0"
+    "AbilityManaCost"         "125"
+    "AbilityCooldown"         "50"
+
+    "Precache"
+    {
+      "particle"      "particles/items2_fx/urn_of_shadows_damage.vpcf"
+      "particle"      "particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+      "soundfile"     "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "self" "175"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "175 200 225 250 275"
+        }
+        "03"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "chance" "30"
+        }
+        "04"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "bonus" "200"
+        }
+        "05"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "mana" "35"
+        }
+        "06"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "reduction" "80"
+        }
+    }
+
+    "OnAbilityPhaseStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/warlock/lock.lua"
+        "Function"    "shop_envelop"
+      }
+    }
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"  "envelop_mod"
+        "Target"     "CASTER"
+        "Duration"    "4"
+      }
+
+      "ApplyModifier"
+      {
+        "ModifierName"  "wa_animation_repeat"
+        "Target"     "CASTER"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Nevermore.Shadowraze"
+        "Target"    "CASTER"
+      }
+
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/warlock/lock.lua"
+        "Function"    "envelop"
+      }
+    }
+
+    "OnChannelFinish"
+    {
+      "RemoveModifier"
+      {
+        "ModifierName"  "envelop_mod"
+        "Target"     "CASTER"
+      }
+
+      "RemoveModifier"
+      {
+        "ModifierName"  "wa_animation_repeat"
+        "Target"     "CASTER"
+      }
+    }
+
+    "Modifiers"
+    {
+      "envelop_mod"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsDebuff"      "0"
+    
+        "EffectName"    "particles/items2_fx/urn_of_shadows_damage.vpcf"
+        "EffectAttachType"  "follow_origin"
+    
+        "ThinkInterval"  "1.0"
+        "OnIntervalThink"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "libraries/player_spells/warlock/lock.lua"
+            "Function"    "envelop"
+          }
+        }
+      }
+
+      "wa_animation_repeat"
+        {
+          "IsHidden" "1"
+
+          "ThinkInterval" "1"
+          "OnIntervalThink"
+          {
+              // Looping Animation
+              "ApplyModifier"
+              {
+                  "ModifierName"  "wa_animation_play"
+                  "Target"        "CASTER"
+              }
+          }
+        }
+
+        "wa_animation_play"
+        {
+          "IsHidden" "1"
+          "Duration" ".9"
+          "OverrideAnimation"     "ACT_DOTA_CHANNEL_ABILITY_3"
+        }
+    }
+
+  }

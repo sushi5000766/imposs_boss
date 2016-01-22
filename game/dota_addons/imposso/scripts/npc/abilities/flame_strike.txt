@@ -1,0 +1,40 @@
+"flame_strike"
+  { 
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityTextureName"     "ursa_earthshock"
+
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_BOTH"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+
+    "MaxLevel"               "1"
+  
+    "AbilityCastRange"        "0"
+    "AbilityCastPoint"        "0.0"
+
+    "AbilityManaCost"       "0"
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "75"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "radius" "400"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/boss_spells/fire/flame_strike.lua"
+        "Function"    "flame_strike"
+      }
+    }  
+  }

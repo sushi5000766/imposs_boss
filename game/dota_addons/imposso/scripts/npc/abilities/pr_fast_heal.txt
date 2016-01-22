@@ -1,0 +1,58 @@
+"pr_fast_heal"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "magnataur_shockwave_alt"
+    
+    "AbilityCastRange"        "500"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "1"
+
+    "AbilityManaCost"       "18"
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "precache"
+    {
+    	"soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+      "particle"  "particles/neutral_fx/roshan_death_aegis_spotlight.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "heal" "475"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "Heal"
+      {
+        "Target"        "TARGET"
+        "HealAmount"  "475"
+      }
+
+      "FireSound"
+      {
+      	"EffectName"	"Hero_Omniknight.Purification"
+      	"Target" 		"TARGET"
+      }
+
+      "FireEffect"
+      {
+        "EffectName"        "particles/neutral_fx/roshan_death_aegis_spotlight.vpcf"
+        "EffectAttachType"  "follow_origin"
+        "Target"            "TARGET"
+      }
+    }    
+  }   

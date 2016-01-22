@@ -1,0 +1,93 @@
+"pr_multi_heal"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityTextureName"     "luna_lucent_beam_alt2"
+    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO"
+    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+
+    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "AbilityCastPoint"       "0.0"
+    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
+    "AnimationPlaybackRate"  "1"
+    "AnimationIgnoresModelScale" "1"
+
+    "MaxLevel"               "1"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    // Stats
+    //----------------------------------------------------------------------------------------
+    "AbilityDamage"           "0"
+    "AbilityManaCost"         "55"
+    "AbilityCooldown"         "19"
+
+    "precache"
+    {       
+        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "heal" "600"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "radius" "800"
+        }
+    }
+
+    "OnSpellStart"
+    {
+        "ActOnTargets"
+        {
+            "Target"
+            {
+                "Center" "CASTER"
+                "Radius" "800"
+                "Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY" 
+                "Types" "DOTA_UNIT_TARGET_HERO"
+            }
+            "Action"
+            {
+                "TrackingProjectile"
+                {
+                    "Target" "TARGET"
+                    "EffectName" "particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot.vpcf"
+                    "Dodgeable" "1"
+                    "ProvidesVision" "1"
+                    "VisionRadius" "300"
+                    "MoveSpeed" "450"
+                    "SourceAttachment" "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+    }
+
+    "OnProjectileHitUnit"
+    {
+        "DeleteOnHit" "1"
+        "Heal"
+        {
+          "Target"        "TARGET"
+          "HealAmount"  "600"
+        }
+
+        "FireSound"
+        {
+        "EffectName"    "Hero_Dazzle.Shadow_Wave"
+        "Target"        "TARGET"
+        }
+    }
+  }   

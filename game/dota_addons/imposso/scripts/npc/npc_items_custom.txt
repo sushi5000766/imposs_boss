@@ -1,0 +1,321 @@
+"DOTAAbilities"
+{
+	"item_big_mana_item"
+	  {
+	    "ID"              "1105"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_bottle"
+	
+	    "AbilityCooldown"       "45"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "10"
+	    "ItemInitialCharges"      "1"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "1"
+	    "ItemStackable"         "1"
+	    "ItemRequiresCharges"     "1"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    "ItemPermanent"     "0"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "OnSpellStart"
+	    {
+	      "SpendCharge" {}
+	      "FireEffect"
+	      {
+	        "EffectName"        "particles/generic_gameplay/generic_manaburn.vpcf"
+	        "EffectAttachType"  "follow_origin"
+	        "Target"            "CASTER"
+	      }
+	      "RunScript"
+	      {
+	        "ScriptFile"  "libraries/item_spells/revive.lua"
+	        "Function"    "big_mana_give"
+	      }
+	    }
+	  }
+	"item_heal_big_item"
+	  {
+	    "ID"              "1103"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_flask"
+	
+	    "AbilityCooldown"       "35"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "10"
+	    "ItemInitialCharges"      "1"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "1"
+	    "ItemStackable"         "1"
+	    "ItemRequiresCharges"     "1"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    "ItemPermanent"     "0"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "OnSpellStart"
+	    {
+	      "SpendCharge" {}
+	      "FireEffect"
+	      {
+	        "EffectName"        "particles/units/heroes/hero_abaddon/abaddon_borrowed_time_heal.vpcf"
+	        "EffectAttachType"  "follow_origin"
+	        "Target"            "CASTER"
+	      }
+	      "Heal"
+	      {
+	        "Target"        "CASTER"
+	        "HealAmount"  "3000"
+	      }
+	    }
+	  }
+	"item_heal_item"
+	  {
+	    "ID"              "1102"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_tango"
+	
+	    "AbilityCooldown"       "35"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "5"
+	    "ItemInitialCharges"      "1"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "1"
+	    "ItemStackable"         "1"
+	    "ItemRequiresCharges"     "1"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    "ItemPermanent"     "0"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "OnSpellStart"
+	    {
+	      "SpendCharge" {}
+	      "FireEffect"
+	      {
+	        "EffectName"        "particles/units/heroes/hero_abaddon/abaddon_borrowed_time_heal.vpcf"
+	        "EffectAttachType"  "follow_origin"
+	        "Target"            "CASTER"
+	      }
+	      "Heal"
+	      {
+	        "Target"        "CASTER"
+	        "HealAmount"  "1750"
+	      }
+	    }
+	  }
+	"item_immune_item"
+	  {
+	    "ID"              "1106"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_smoke_of_deceit"
+	
+	    "AbilityCooldown"       "45"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "10"
+	    "ItemInitialCharges"      "1"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "1"
+	    "ItemStackable"         "1"
+	    "ItemRequiresCharges"     "1"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    "ItemPermanent"     "0"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "OnSpellStart"
+	    {
+	      "SpendCharge" {}
+	      "ApplyModifier"
+	      {
+	        "ModifierName"  "immune_item_mod"
+	        "Target"     "CASTER"
+	        "Duration"    "2"
+	      }
+	
+	    }
+	
+	    "Modifiers"
+	    {
+	      "immune_item_mod"
+	      {
+	        "Passive"      "0"
+	        "IsHidden"      "0"
+	        "IsDebuff"      "0"
+	    
+	        "EffectName"    "particles/items3_fx/lotus_orb_shield.vpcf"
+	        "EffectAttachType"  "follow_origin"
+	    
+	        "States"
+	        {
+	          "MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+	        }
+	      }
+	    }
+	  }
+	"item_mana_item"
+	  {
+	    "ID"              "1104"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_clarity"
+	
+	    "AbilityCooldown"       "45"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "5"
+	    "ItemInitialCharges"      "1"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "1"
+	    "ItemStackable"         "1"
+	    "ItemRequiresCharges"     "1"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    "ItemPermanent"     "0"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "OnSpellStart"
+	    {
+	      "SpendCharge" {}
+	      "FireEffect"
+	      {
+	        "EffectName"        "particles/generic_gameplay/generic_manaburn.vpcf"
+	        "EffectAttachType"  "follow_origin"
+	        "Target"            "CASTER"
+	      }
+	      "RunScript"
+	      {
+	        "ScriptFile"  "libraries/item_spells/revive.lua"
+	        "Function"    "mana_give"
+	      }
+	    }
+	  }
+	"item_revive_item"
+	  {
+	    "ID"              "1100"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
+	    "AbilityTextureName"      "item_bloodstone"
+	
+	    "AbilityCooldown"       "0"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "45"
+	    "ItemInitialCharges"      "1"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "1"
+	    "ItemStackable" "1"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "Modifiers"
+	    {
+	      "modifier_reincarnation"
+	      {
+	        "Passive" "1"
+	        "IsHidden"  "1"
+	
+	        "OnDeath"
+	        {
+	          "RunScript"
+	          {
+	            "ScriptFile"    "libraries/item_spells/revive.lua"
+	            "Function"      "Reincarnation"
+	          }
+	        }
+	      }
+	    }
+	  }
+	"item_team_revive_item"
+	  {
+	    "ID"              "1101"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_BASIC"
+	    "AbilityUnitTargetFlags"    "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_gem"
+	
+	    "AbilityCastRange"        "250"
+	
+	    "AbilityCooldown"       "1"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "15"
+	    "ItemInitialCharges"      "1"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "1"
+	    "ItemStackable" "1"
+	    "ItemRequiresCharges"     "1"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "OnSpellStart"
+	    {
+	      "RunScript"
+	      {
+	        "ScriptFile"  "libraries/item_spells/revive.lua"
+	        "Function"    "grave_apply"
+	      }
+	    }
+	  }
+}

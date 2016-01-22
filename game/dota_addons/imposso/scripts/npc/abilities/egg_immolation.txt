@@ -1,0 +1,41 @@
+"egg_immolation"
+{
+	"BaseClass"                "ability_datadriven"
+	"AbilityBehavior"          "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+    "MaxLevel"               "1"
+	
+	"Modifiers"
+    {
+      "fire_dot"
+      {
+        "Passive"      "1"
+        "IsHidden"      "0"
+        "IsDebuff"      "0"
+    
+        "ThinkInterval" "1"
+        "OnIntervalThink"
+        {
+          "Damage"
+          {
+            "Target"
+            {
+              "Center"    "CASTER"
+              "Radius"   "400"
+              "Teams"   "DOTA_UNIT_TARGET_TEAM_BOTH"
+              "Types"   "DOTA_UNIT_TARGET_HERO"
+            }
+            "Type"      "DAMAGE_TYPE_PURE"
+            "Damage"    "50"
+          }
+
+          "FireEffect"
+          {
+            "EffectName" "particles/econ/items/warlock/warlock_staff_glory/warlock_upheaval_infernal_cast_fire.vpcf"
+            "Target" "TARGET"
+            "EffectAttachType" "follow_origin"
+          }
+        }
+      }
+    }
+}

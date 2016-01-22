@@ -1,0 +1,62 @@
+"dk_reanimate"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "undying_soul_rip"
+    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+    
+    "AbilityCastRange"        "500"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "60"
+
+    "AbilityManaCost"       "0"
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "duration" "30"
+        }
+
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "mana" "600"
+        }
+    }
+
+    "precache"
+    { 
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+    }
+
+    "OnAbilityPhaseStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/death_knight/undead.lua"
+        "Function"    "pre_reanimate"
+      }
+    }
+
+    "OnSpellStart"
+    {
+      "FireSound"
+      {
+        "Target"    "CASTER"
+        "EffectName"  "Hero_Abaddon.BorrowedTime" 
+      }
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/death_knight/undead.lua"
+        "Function"    "reanimate"
+      }
+    }
+  }

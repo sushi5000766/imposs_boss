@@ -1,0 +1,148 @@
+"pl_strike"
+  {
+    // General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "FightRecapLevel"       "1"
+    "AbilityTextureName"      "magnataur_empower"
+    
+    "AbilityCastRange"        "180"
+    "AbilityCastPoint"        "0.35"
+
+    "AbilityCooldown"       "10"
+
+    "AbilityManaCost"       "32"
+
+    "MaxLevel"               "5"
+    "RequiredLevel"          "0"
+    "LevelsBetweenUpgrades"  "0"
+
+    "precache"
+    {     
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+      "particle"  "particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/antimage_manavoid_lightning_ti_5_gold.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "damage" "350 372 394 426 448"
+        }
+        "02"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "onhit" "40 49 58 67 76"
+        }
+        "03"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "immune" "2"
+        }
+        "04"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "AS" "75"
+        }
+        "05"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "mana" "8"
+        }
+        "06"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "duration" "9"
+        }
+        "07"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "reduction" "70"
+        }
+        "08"
+        { 
+            "var_type"  "FIELD_INTEGER"
+            "amplify" "70"
+        }
+    }
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "libraries/player_spells/paladan/holy.lua"
+        "Function"    "strike_apply"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Slardar.Bash"
+        "Target"    "TARGET"
+      }
+
+      "Damage"
+      {
+        "Target"    "TARGET"
+        "Type"      "DAMAGE_TYPE_MAGICAL"
+        "Damage"    "%damage"
+      }
+    }
+
+    "Modifiers"
+    {
+      "strike_safe"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsDebuff"      "0"
+        "IsBuff"        "1"
+        "IsPurgable"    "1"
+
+        "EffectName"    "particles/units/heroes/hero_medusa/medusa_mana_shield_shell_add.vpcf"
+        "EffectAttachType"  "follow_origin"
+
+        "States"
+        {
+          "MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+
+      "strike_speed"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsDebuff"      "0"
+
+        "OnAttackLanded"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "libraries/player_spells/paladan/holy.lua"
+            "Function"    "strike_damage"
+          }
+
+          "RunScript"
+          {
+            "ScriptFile"  "libraries/player_spells/paladan/holy.lua"
+            "Function"    "paly_mana"
+          }
+
+          "FireEffect"
+          {
+            "EffectName"        "particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/antimage_manavoid_lightning_ti_5_gold.vpcf"
+            "EffectAttachType"  "follow_overhead"
+            "Target"            "TARGET"
+          }
+        }
+    
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "75" 
+        }
+      }
+    }
+  }

@@ -1,0 +1,61 @@
+"boss_auto_attack"
+  { 
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"     "holdout_blade_fury"
+
+    "MaxLevel"               "1"
+  
+    "AbilityCastRange"        "0"
+    "AbilityCastPoint"        "0.0"
+
+    "AbilityManaCost"       "0"
+
+    "Modifiers"
+    {
+      "boss_line_attack"
+      {
+        "Passive"      "1"
+        "IsHidden"      "1"
+        "IsDebuff"      "0"
+
+        "OnAttackStart"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "libraries/boss_spells/fire/boss_auto.lua"
+            "Function"    "boss_auto_attack"
+          }
+        }
+      }
+    }
+
+    "OnProjectileFinish"
+    {
+      "Damage"
+      {
+        "Target"
+        {
+          "Center"    "PROJECTILE"
+          "Radius"   "125"
+          "Teams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+          "Types"   "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        }
+        "Type"      "DAMAGE_TYPE_PHYSICAL"
+        "Damage"    "250"
+      }        
+    }
+    "Modifiers"
+     {
+       "boss_move"
+       {
+         "Passive"      "1"
+         "IsHidden"      "1"
+     
+         "States"
+         {
+           "MODIFIER_STATE_NO_UNIT_COLLISION"    "MODIFIER_STATE_VALUE_ENABLED"
+         }
+       }
+     } 
+  }
