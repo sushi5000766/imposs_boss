@@ -1,0 +1,2 @@
+abilityQueue = {}
+aggroTable = {}

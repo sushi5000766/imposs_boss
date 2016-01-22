@@ -21,6 +21,7 @@
 
     "OnSpellStart"
     {
+        "PseudoRandom" "DOTA_PSEUDO_RANDOM_JUGG_CRIT"
       "RunScript"
       {
         "ScriptFile"  "libraries/boss_spells/fire/fire_storm.lua"
