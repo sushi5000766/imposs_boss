@@ -5706,6 +5706,174 @@
 //============================================================================================
 // SHARED ABILITIES
 //============================================================================================
+//============================================================================================
+// Ai, Serpent of the Sea
+//============================================================================================
+	"ai_auto_attack" //needs animations + sounds + precache
+		{
+		    // General  
+		    // ----------------------------------------------------------------------------------------
+		    "BaseClass"       				"ability_datadriven"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		    "FightRecapLevel"       		"1"
+		    "AbilityTextureName"      		"morphling_waveform"
+		
+		    "AbilitySpecial"
+		    {
+		        "01"
+		        { 
+		            "var_type"  		"FIELD_INTEGER"
+		            "damage" 			"250"
+		        }
+		        "02"
+		        { 
+		            "var_type"  		"FIELD_INTEGER"
+		            "radius"			"100"
+		        }
+		        "03"
+		        { 
+		            "var_type"  		"FIELD_INTEGER"
+		            "projectile_speed" 	"200"
+		        }
+		    }
+		
+		    "Modifiers"
+		      {
+		        "modifier_ai_auto_attack"
+		        {
+		          "Passive"      	"1"
+		          "IsHidden"      	"1"
+		          "IsPurgable"		"0"
+		          "IsBuff"			"0"
+		          "IsDebuff"		"0"
+		          "IsStunDebuff"	"0"
+
+		          "OnAttack"
+		          {
+		          	"RunScript"
+		          	{
+		          		"ScriptFile"		"libraries/boss_spells/water/ai_the_water_serpent.lua"
+		          		"Function"			"AutoAttack"
+		          		"radius"			"%radius"
+		          		"projectile_speed"	"%projectile_speed"
+		          	}
+		          }
+		
+		        }
+		      }
+
+		    "OnProjectileFinish"
+		      {
+		      	"FireEffect"
+		      	{
+		      		"EffectName"        ""
+		      		"EffectAttachType"  "world_origin"
+		      		"TargetPoint"       "POINT"
+		      	}
+
+		      	"ActOnTargets"
+		      	{
+		      		"TargetPoint"
+		      		{
+		      			"Center"  	"POINT"
+		      			"Radius" 	"%radius"
+		      			"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		      			"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		      		}
+		      	
+		      		"Action"    
+		      		{
+		      			"Damage"
+		      			{
+		      				"Target"		"TARGET"
+		      				"Type"			"DAMAGE_TYPE_MAGICAL"
+		      				"Damage"		"%damage"
+		      			}
+		      		}
+		      	}
+		      }  
+		}
+	"ai_burst" //needs animations + sounds + precache
+		{
+		    // General  
+		    // ----------------------------------------------------------------------------------------
+		    "BaseClass"       				"ability_datadriven"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		    "AbilityCooldown"				"15"
+		    "AbilityTextureName"      		"morphling_adaptive_strike"
+			
+		    "AbilitySpecial"
+		    {
+		    	"01"
+		    	{
+		    		"var_type"		"FIELD_INTEGER"
+		    		"attack_speed"	"100"
+		    	}
+		    }
+
+			"OnSpellStart"
+			{
+				"ApplyModifier"
+				{
+					"ModifierName"	"modifier_ai_burst"
+					"Target" 		"CASTER"
+					"Duration"		"5"
+				}
+			}
+
+		    "Modifiers"
+		      {
+		        "modifier_ai_burst"
+		        {
+		          "Passive"      	"0"
+		          "IsHidden"      	"0"
+		          "IsPurgable"		"0"
+		          "IsBuff"			"0"
+		          "IsDebuff"		"0"
+		          "IsStunDebuff"	"0"
+
+		          "Properties"
+		          {
+		          	"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_speed"
+		          }		
+		        }
+		      }
+		}
+	"ai_ais_influence" //needs animations + sounds + precache
+		{
+		    // General  
+		    // ----------------------------------------------------------------------------------------
+		    "BaseClass"       				"ability_datadriven"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		    "AbilityTextureName"      		"medusa_mana_shield"
+
+		    "Modifiers"
+		      {
+		        "modifier_influence_aura"
+		        {
+		          "Passive"      	"1"
+		          "IsHidden"      	"0"
+		          "IsPurgable"		"0"
+		          "IsBuff"			"0"
+		          "IsDebuff"		"0"
+		          "IsStunDebuff"	"0"
+
+		          "Aura"          	"modifier_ai_ais_influence"
+		          "Aura_Radius"   	"400"
+		          "Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		          "Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		          "Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+		          "Aura_ApplyToCaster" "0"	
+		        }
+
+		        "modifier_ai_ais_influence"
+		        {
+		        	"Passive"		"0"
+		        	"IsHidden"		"0"		        	
+		        }
+		      }
+
+		}
 
 //============================================================================================
 // MISCELLANEOUS
