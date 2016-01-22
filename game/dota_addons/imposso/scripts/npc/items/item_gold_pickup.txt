@@ -39,7 +39,7 @@
     "ItemCastOnPickup"              "1"
     "OnSpellStart"
     {
-        "SpendCharge"         {}
+        "SpendCharge"         {} 
         "RunScript"
         {
             "ScriptFile"            "libraries/item_spells/revive.lua"
@@ -56,4 +56,3 @@
 } 
 
 
- 

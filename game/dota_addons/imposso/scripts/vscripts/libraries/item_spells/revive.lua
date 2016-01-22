@@ -183,4 +183,4 @@ Timers:CreateTimer(RandomFloat(30, 60), function()
     CreateItemOnPositionSync(spot, gold_item)
     
     return RandomFloat(30, 60)
-end)]]--
+end)]]-- 
