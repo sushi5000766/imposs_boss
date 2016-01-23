@@ -83,6 +83,7 @@ function Precache( context )
   PrecacheResource("model", "particles/heroes/viper/viper.vmdl", context)
   PrecacheModel("models/heroes/viper/viper.vmdl", context)
   PrecacheModel("models/heroes/viper/viper.vmdl", context)
+  PrecacheModel("models/items/warlock/golem/hellsworn_golem/hellsworn_golem.vmdl", context)
 
   -- Sounds can precached here like anything else
   PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts", context)

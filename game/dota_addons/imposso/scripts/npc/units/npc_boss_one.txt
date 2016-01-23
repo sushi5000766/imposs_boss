@@ -2,7 +2,7 @@
     {
         // General
         "BaseClass"         "npc_dota_creature"  // Class of entity of link to.
-        "Model"           "models/heroes/phoenix/phoenix_bird.vmdl"  // Model.
+        "Model"           "models/items/warlock/golem/hellsworn_golem/hellsworn_golem.vmdl"  // Model.
         "ModelScale"		"1.8"
         "SoundSet"          "Creep_Good_Range"          // Name of sound set.
         "Level"           "0"
@@ -91,4 +91,5 @@
         // Bots
         //----------------------------------------------------------------
         "AttackDesire"        "0"   // How much bots want to attack them vs other non-hero things
-    }
+
+    } 
