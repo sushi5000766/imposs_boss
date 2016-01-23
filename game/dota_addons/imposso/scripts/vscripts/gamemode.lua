@@ -53,7 +53,8 @@ require('events')
 --SHOP
 
 --Locations
-shopLOC = Vector(-6208, -6848, 128)
+
+shopLOC = Vector(-6741, -6337, 129)
 arenaLOC = Vector(-5002, 5120, 129)
 bossLOC = Vector(-5002, 5864, 129)
 
@@ -61,6 +62,8 @@ SETGAME = "PREGAME"
 ShopToggle = 0
 heroTable = {}
 player_gem = {}
+player_deaths = {}
+total_deaths = {}
 
 late_pick_bool = {}
 
@@ -377,8 +380,25 @@ function GameMode:ArenaStart()
 
   for k, hero in pairs( heroTable ) do
     if late_pick_bool[k] ~= true then
+      if hero:HasModifier("powerup_mod") == true then
+        local powerup_roll = RandomInt(1, 4)
+          if powerup_roll == 1 then
+            local powerup_give = CreateItem("item_powerup_beserk", nil, nil) 
+            hero:AddItem(powerup_give)
+          elseif powerup_roll == 2 then
+            local powerup_give = CreateItem("item_powerup_spell", nil, nil) 
+            hero:AddItem(powerup_give)
+          elseif powerup_roll == 3 then
+            local powerup_give = CreateItem("item_powerup_tank", nil, nil) 
+            hero:AddItem(powerup_give)
+          elseif powerup_roll == 4 then
+            local powerup_give = CreateItem("item_powerup_regen", nil, nil) 
+            hero:AddItem(powerup_give)
+          end
+      end
       arena_count = arena_count + 1
       FindClearSpaceForUnit(hero, arenaLOC, true)
+      player_deaths[k] = 0
       PlayerResource:SetCameraTarget(k, hero)
       Timers:CreateTimer(0.1, function()
         PlayerResource:SetCameraTarget(k, nil)
@@ -426,16 +446,27 @@ function GameMode:OnEntityKilled( event )
               })
           end
 
-          local arena_start_dummy = CreateUnitByName("npc_dummy_unit", arenaLOC, false, nil, nil, DOTA_TEAM_NEUTRALS)
+          --[[local arena_start_dummy = CreateUnitByName("npc_dummy_unit", arenaLOC, false, nil, nil, DOTA_TEAM_NEUTRALS)
           arena_start_dummy:AddAbility("arena_start_aura")
           local abPass = arena_start_dummy:GetAbilityByIndex(0)
           local abAura = arena_start_dummy:GetAbilityByIndex(1)
           abAura:SetLevel(1) 
-          abPass:SetLevel(1)
+          abPass:SetLevel(1)]]--
           Timers:CreateTimer(5, function()
             UTIL_Remove(arena_start_dummy)
 
-            for k, v in pairs( heroTable ) do  
+            for k, v in pairs( heroTable ) do 
+              if v:HasModifier("token_mod") == true and player_deaths[k] == 0 then
+                v:SetGold((v:GetGold() + 22), false) 
+
+                for i=0, 5 do
+                  local token_item = v:GetItemInSlot(i)
+                  if token_item ~= nil and token_item:GetName() == "item_token_everliving" then                  
+                      v:RemoveItem(token_item)
+                  end
+                end
+
+              end
               v:SetGold((v:GetGold() + 45), false)           
               FindClearSpaceForUnit(heroTable[k], shopLOC, true)
               player_gem[k] = player_gem[k] + 1

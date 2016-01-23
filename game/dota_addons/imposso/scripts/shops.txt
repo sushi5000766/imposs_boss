@@ -9,10 +9,13 @@
     "item"    "item_mana_item"
     "item"    "item_big_mana_item"
     "item"    "item_immune_item"
+    "item"    "item_powerup"
+    "item"    "item_token_everliving"
   }
 
   "attributes"
   {
+    "item"    "item_testing_cheat"
   }
 
   "weapons_armor"

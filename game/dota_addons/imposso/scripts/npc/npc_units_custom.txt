@@ -94,7 +94,7 @@
 	        //----------------------------------------------------------------
 	        "AttackDesire"        "0"   // How much bots want to attack them vs other non-hero things
 	
-	    }
+	    } 
 	"npc_boss_two"
 	    {
 	        // General

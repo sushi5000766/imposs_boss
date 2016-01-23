@@ -292,6 +292,388 @@
 	      }
 	    }
 	  }
+	"item_powerup"
+	  {
+	    "ID"              "1108"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_bottle_empty"
+	
+	    "AbilityCooldown"       "80"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "5"
+	    "ItemInitialCharges"      "1"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "1"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "1"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    "ItemPermanent"     "0"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "precache"
+	    {
+	      "particle"  "particles/econ/items/kunkka/divine_anchor/hero_kunkka_dafx_skills/kunkka_spell_x_spot_mark_red_fxset.vpcf"
+	    }
+	
+	    "ItemCastOnPickup"              "1"
+	
+	    "OnSpellStart"
+	    {
+	      "SpendCharge" {}
+	      "ApplyModifier"
+	      {
+	        "ModifierName"  "powerup_mod"
+	        "Target"     "CASTER"
+	      }
+	    }
+	
+	    "Modifiers"
+	    {
+	      "powerup_mod"
+	      {
+	        "Passive"      "0"
+	        "IsHidden"      "0"
+	        "IsDebuff"      "0"
+	        "IsPurgable"    "0"
+	        "IsBuff"      "0"
+	    
+	        "EffectName"    "particles/econ/items/kunkka/divine_anchor/hero_kunkka_dafx_skills/kunkka_spell_x_spot_mark_red_fxset.vpcf"
+	        "EffectAttachType"  "follow_overhead"
+	  
+	      }
+	    }
+	  }
+	"item_powerup_beserk"
+	  {
+	    "ID"              "1109"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_bottle_haste"
+	
+	    "AbilityCooldown"       "80"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "1"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "1"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "1"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    "ItemPermanent"     "0"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "precache"
+	    {
+	      "particle"  "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_eztzhok_ovr_arc.vpcf"
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "attackspeed"    "50"
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "movespeed"    "100"
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "Duration"    "120"
+	        }
+	    }
+	
+	    "OnSpellStart"
+	    {
+	      "SpendCharge" {}
+	      "ApplyModifier"
+	      {
+	        "ModifierName"  "powerup_beserk_mod"
+	        "Target"     "CASTER"
+	        "Duration"    "120"
+	      }
+	    }
+	
+	    "Modifiers"
+	    {
+	      "powerup_beserk_mod"
+	      {
+	        "Passive"      "0"
+	        "IsHidden"      "0"
+	        "IsDebuff"      "0"
+	        "IsPurgable"    "1"
+	        "IsBuff"      "1"
+	    
+	        "EffectName"    "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_eztzhok_ovr_arc.vpcf"
+	        "EffectAttachType"  "follow_overhead"
+	
+	        "Properties"
+	        {
+	          "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "50"
+	          "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "100" 
+	        }
+	  
+	      }
+	    }
+	  }
+	"item_powerup_regen"
+	  {
+	    "ID"              "1112"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_bottle_regeneration"
+	
+	    "AbilityCooldown"       "80"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "1"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "1"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "1"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    "ItemPermanent"     "0"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "precache"
+	    {
+	      "particle"  "particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "health"    "65"
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "mana"    "3"
+	        }
+	    }
+	
+	    "OnSpellStart"
+	    {
+	      "SpendCharge" {}
+	      "ApplyModifier"
+	      {
+	        "ModifierName"  "powerup_tank_mod"
+	        "Target"     "CASTER"
+	      }
+	    }
+	
+	    "Modifiers"
+	    {
+	      "powerup_tank_mod"
+	      {
+	        "Passive"      "0"
+	        "IsHidden"      "0"
+	        "IsDebuff"      "0"
+	        "IsPurgable"    "1"
+	        "IsBuff"      "1"
+	    
+	        "EffectName"    "particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
+	        "EffectAttachType"  "follow_origin"
+	
+	        "Properties"
+	        {
+	          "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "65"
+	          "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"   "3"
+	        }  
+	      }
+	    }
+	  }
+	"item_powerup_spell"
+	  {
+	    "ID"              "1110"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_bottle_arcane"
+	
+	    "AbilityCooldown"       "80"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "1"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "1"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "1"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    "ItemPermanent"     "0"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "precache"
+	    {
+	      "particle"  "particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff_rune.vpcf"
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "mana"    "160"
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "spelldam"    "100"
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "Duration"    "16"
+	        }
+	    }
+	
+	    "OnSpellStart"
+	    {
+	      "SpendCharge" {}
+	      "ApplyModifier"
+	      {
+	        "ModifierName"  "powerup_spell_mod"
+	        "Target"     "CASTER"
+	        "Duration"    "16"
+	      }
+	    }
+	
+	    "Modifiers"
+	    {
+	      "powerup_spell_mod"
+	      {
+	        "Passive"      "0"
+	        "IsHidden"      "0"
+	        "IsDebuff"      "0"
+	        "IsPurgable"    "1"
+	        "IsBuff"      "1"
+	    
+	        "EffectName"    "particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff_rune.vpcf"
+	        "EffectAttachType"  "follow_origin"
+	
+	        "Properties"
+	        {
+	          "MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "100"
+	          "MODIFIER_PROPERTY_MANA_BONUS" "160" 
+	        }
+	  
+	      }
+	    }
+	  }
+	"item_powerup_tank"
+	  {
+	    "ID"              "1111"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_bottle_bounty"
+	
+	    "AbilityCooldown"       "80"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "1"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "1"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "1"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    "ItemPermanent"     "0"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "precache"
+	    {
+	      "particle"  "particles/units/heroes/hero_omniknight/omniknight_shoulder_ambient.vpcf"
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "reduc"    "20"
+	        }
+	        
+	    }
+	
+	    "OnSpellStart"
+	    {
+	      "SpendCharge" {}
+	      "ApplyModifier"
+	      {
+	        "ModifierName"  "powerup_tank_mod"
+	        "Target"     "CASTER"
+	      }
+	    }
+	
+	    "Modifiers"
+	    {
+	      "powerup_tank_mod"
+	      {
+	        "Passive"      "0"
+	        "IsHidden"      "0"
+	        "IsDebuff"      "0"
+	        "IsPurgable"    "1"
+	        "IsBuff"      "1"
+	    
+	        "EffectName"    "particles/units/heroes/hero_omniknight/omniknight_shoulder_ambient.vpcf"
+	        "EffectAttachType"  "follow_overhead"
+	
+	        "Properties"
+	        {
+	          "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "80"
+	        }  
+	      }
+	    }
+	  }
 	"item_revive_item"
 	  {
 	    "ID"              "1100"
@@ -373,6 +755,91 @@
 	      {
 	        "ScriptFile"  "libraries/item_spells/revive.lua"
 	        "Function"    "grave_apply"
+	      }
+	    }
+	  }
+	"item_testing_cheat"
+	  {
+	    "ID"              "1201"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_courier"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "1"
+	    "ItemSellable"          "1"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    "ItemPermanent"     "1"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "Modifiers"
+	    {
+	      "token_mod"
+	      {
+	        "Passive"      "1"
+	        "IsHidden"      "1"
+	        "IsDebuff"      "0"
+	
+	        "Properties"
+	        {
+	            "MODIFIER_PROPERTY_AVOID_CONSTANT" "100"
+	            "MODIFIER_PROPERTY_AVOID_SPELL" "100"
+	            "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE" "100" 
+	            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"   "100"
+	            "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"  "5000"
+	        }
+	    
+	      }
+	    }
+	  }
+	"item_token_everliving"
+	  {
+	    "ID"              "1107"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_medallion_of_courage"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "10"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "1"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    "ItemPermanent"     "1"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "Modifiers"
+	    {
+	      "token_mod"
+	      {
+	        "Passive"      "1"
+	        "IsHidden"      "1"
+	        "IsDebuff"      "0"
+	
+	        
+	    
 	      }
 	    }
 	  }

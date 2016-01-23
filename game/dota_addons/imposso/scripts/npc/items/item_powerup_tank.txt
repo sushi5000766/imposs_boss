@@ -1,0 +1,73 @@
+"item_powerup_tank"
+  {
+    "ID"              "1111"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "BaseClass"           "item_datadriven"
+    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+    "AbilityTextureName"      "item_bottle_bounty"
+
+    "AbilityCooldown"       "80"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "0"
+    "ItemCost"            "0"
+    "ItemInitialCharges"      "1"
+    "ItemDroppable"         "0"
+    "ItemSellable"          "1"
+    "ItemStackable"         "0"
+    "ItemRequiresCharges"     "1"
+    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+    "ItemPermanent"     "0"
+    
+    "MaxUpgradeLevel"       "1"
+    "ItemBaseLevel"         "1"
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_omniknight/omniknight_shoulder_ambient.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "reduc"    "20"
+        }
+        
+    }
+
+    "OnSpellStart"
+    {
+      "SpendCharge" {}
+      "ApplyModifier"
+      {
+        "ModifierName"  "powerup_tank_mod"
+        "Target"     "CASTER"
+      }
+    }
+
+    "Modifiers"
+    {
+      "powerup_tank_mod"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsDebuff"      "0"
+        "IsPurgable"    "1"
+        "IsBuff"      "1"
+    
+        "EffectName"    "particles/units/heroes/hero_omniknight/omniknight_shoulder_ambient.vpcf"
+        "EffectAttachType"  "follow_overhead"
+
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "80"
+        }  
+      }
+    }
+  }

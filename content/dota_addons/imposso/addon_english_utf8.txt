@@ -1,0 +1,594 @@
+﻿"lang"
+{
+	"Language"		"English"
+	"Tokens"
+	{		
+		"game_mode_15"				"BAREBONES"
+		"addon_game_name"			"Impossible Bosses"
+		
+		//"DOTA_Basics"							"ABILITIES"
+		//"DOTA_Upgrades"							"ITEMS"
+		//"DOTA_Shop_Category_Basics"				"ABILITIES"
+		//"DOTA_Shop_Category_Upgrades"			"ITEMS"
+
+		"npc_dota_hero_crystal_maiden"		"Frost Mage"
+		"npc_dota_hero_dragon_knight"		"Warrior"
+		"npc_dota_hero_furion"				"Druid"
+		"npc_dota_hero_lina"				"Fire Mage"
+		"npc_dota_hero_omniknight"			"Paladin"
+		"npc_dota_hero_vengefulspirit"		"Death Knight"
+		"npc_dota_hero_windrunner"			"Ranger"
+		"npc_dota_hero_warlock"				"Warlock"
+		"npc_dota_hero_silencer"			"Priest"
+		"npc_dota_hero_phantom_assassin"	"Rogue"
+
+		//ITEMS
+
+		"DOTA_Tooltip_ability_item_big_mana_item"                                         "Super Mana Potion"
+		"DOTA_Tooltip_ability_item_big_mana_item_Description"                             "Restores 500 mana when used"
+
+		"DOTA_Tooltip_ability_item_heal_big_item"                                         "Super Health Potion"
+		"DOTA_Tooltip_ability_item_heal_big_item_Description"                             "Heals 3000 hitpoints when used"
+
+		"DOTA_Tooltip_ability_item_heal_item"                                             "Health Potion"
+		"DOTA_Tooltip_ability_item_heal_item_Description"                                 "Heals 1750 hitpoints when used"
+
+		"DOTA_Tooltip_ability_item_immune_item"                                           "Savior Potion"
+		"DOTA_Tooltip_ability_item_immune_item_Description"                               "Makes you invulnerable for 2 seconds"
+
+		"DOTA_Tooltip_ability_item_mana_item"                                             "Mana Potion"
+		"DOTA_Tooltip_ability_item_mana_item_Description"                                 "Restores 300 mana when used"
+
+		"DOTA_Tooltip_ability_item_revive_item"                                           "Essence of Life"
+		"DOTA_Tooltip_ability_item_revive_item_Description"                               "You will be brought back to life 5 seconds after death with full health and mana"
+
+		"DOTA_Tooltip_ability_item_team_revive_item"                                      "Fallen Remedy"
+		"DOTA_Tooltip_ability_item_team_revive_item_Description"                          "Instantly resurrect a fallen comrade with 40% health and 0% mana"
+
+		///shop
+
+		"DOTA_Tooltip_ability_show_help"                                             "Shop Area"
+		"DOTA_Tooltip_ability_show_help_Description"                                 "This is the Shop Area. You Start With 1 Karma that you can spend by touching a Rune. \n \nGreen will permently grant hp. \nBlue will level up offencive ablities. \nPurple will permenently increase your mana. \nRed will grant movment speed."
+		
+		//--------------------
+		//Abilities
+		//--------------------
+		"DOTA_Tooltip_ability_example_ability"										"Detonation"
+		"DOTA_Tooltip_ability_example_ability_Description"				"Detonator channels a charge and releases an explosion around the caster if the channel is successful, dealing damage and knocking back all enemies in range of the explosion"
+		"DOTA_Tooltip_ability_example_ability_Lore"								""
+		"DOTA_Tooltip_ability_example_ability_duration"							"DURATION:"
+	    "DOTA_Tooltip_ability_example_ability_radius"							"RADIUS:"
+	    "DOTA_Tooltip_ability_example_ability_distance"							"KNOCKBACK DISTANCE:"
+	    "DOTA_Tooltip_ability_example_ability_height"							"KNOCKBACK HEIGHT:"
+
+	    ///DeathKnight
+
+	    "DOTA_Tooltip_ability_dk_fury"                                                    "Obliterate"
+		"DOTA_Tooltip_ability_dk_fury_Description"                                        "Unleash a furious string of attacks on at target attacking 10 times over 2 seconds. Each attack deals physical damage. The final hit will deal bonus magic damage."
+		"DOTA_Tooltip_Ability_dk_fury_Pdamage"    										  "Physical:"
+		"DOTA_Tooltip_Ability_dk_fury_Mdamage"    										  "Magical:"
+		"DOTA_Tooltip_Ability_dk_fury_reduction"    										  "%Reduc to Shadow:"
+		"DOTA_Tooltip_Ability_dk_fury_amplify"    										  "Bonus Magic Damage to Light/Nature:"
+
+		"DOTA_Tooltip_ability_dk_reanimate"                                               "Reanimate"
+		"DOTA_Tooltip_ability_dk_reanimate_Description"                                   "Instantly bring back to life a fallen ally as a powerful Skeleton for a short time or restore a portion of the target's mana. Mana restore will not work on other Death Knights"
+		"DOTA_Tooltip_ability_dk_reanimate_duration"                                      "Duration:"
+		"DOTA_Tooltip_ability_dk_reanimate_mana"                                          "Mana Restore:"
+
+		"DOTA_Tooltip_ability_dk_shadow_guard"                                            "Shadow Guard"
+		"DOTA_Tooltip_ability_dk_shadow_guard_Description"                                "Shadow energy surrounds this unit protecting it from enemy attacks and spells for 2 seconds, removing all buffs"
+
+		"DOTA_Tooltip_ability_dk_shadow_step"                                             "Shadow Step"
+		"DOTA_Tooltip_ability_dk_shadow_step_Description"                                 "Step through the shadows and instantly warp to a targeted ally gaining increased movement speed"
+		"DOTA_Tooltip_Ability_dk_shadow_step_range"    									  "Range:"	
+		"DOTA_Tooltip_Ability_dk_shadow_step_speed"										  "%Speed:"
+		"DOTA_Tooltip_Ability_dk_shadow_step_duration"									  "Duration:"
+
+		"DOTA_Tooltip_ability_dk_siphon"                                                  "Siphoning Wave"
+		"DOTA_Tooltip_ability_dk_siphon_Description"                                      "Unleash a shadow spirit toward a target point. Any units hit will be damaged and heal the Death Knight a small amount. If Siphoning Wave kills a unit the Death Knight will be healed again"
+		"DOTA_Tooltip_Ability_dk_siphon_damage"    										  "Damage:"
+		"DOTA_Tooltip_Ability_dk_siphon_heal"    										  "Heal:"
+
+		"DOTA_Tooltip_ability_dk_unholy"                                                  "Unholy Power"
+		"DOTA_Tooltip_ability_dk_unholy_Description"                                      "Activate to cause unholy energy to pour out of you distributing health every sec for 4 sec to you and your allies in a short range. Healing per unit is capped"
+		"DOTA_Tooltip_ability_dk_unholy_heal"                                         	  "Heal:"
+		"DOTA_Tooltip_ability_dk_unholy_capped"                                           "Max Heal per Unit:"
+		"DOTA_Tooltip_ability_dk_unholy_range"                                            "Radius:"
+
+		///Druid
+
+		"DOTA_Tooltip_ability_dr_bearform"                                                "Transform"
+		"DOTA_Tooltip_ability_dr_bearform_Description"                                    "Allows you to switch between caster and Bear form"
+
+		"DOTA_Tooltip_ability_dr_maul"                                                    "Maul"
+		"DOTA_Tooltip_ability_dr_maul_Description"                                        "Ferociously claw target enemy dealing damage. If target's remaining health is 20% or lower Maul will deal additional damage"
+		"DOTA_Tooltip_ability_dr_maul_damage"                                             "Damage:"
+		"DOTA_Tooltip_ability_dr_maul_bonus"                                              "Bonus:"
+
+		"DOTA_Tooltip_ability_dr_rend"                                                    "Rend"
+		"DOTA_Tooltip_ability_dr_rend_Description"                                        "Ferociously claw target dealing damage and wounding them causing them to bleed and take damage every 2 seconds for 10 seconds."
+		"DOTA_Tooltip_ability_dr_rend_damage"                                             "Damage:"
+		"DOTA_Tooltip_ability_dr_rend_bleed"                                              "Bleed:"
+
+		"DOTA_Tooltip_ability_dr_renew"                                                   "Renew"
+		"DOTA_Tooltip_ability_dr_renew_Description"                                       "Heals a friendly unit and continue to heal for several seconds. Target will also regenerate mana per second"
+		"DOTA_Tooltip_ability_dr_renew_heal"                                              "Heal:"
+		"DOTA_Tooltip_ability_dr_renew_hot"                                               "Heal over Time:"
+		"DOTA_Tooltip_ability_dr_renew_mana"                                              "Mana:"
+		"DOTA_Tooltip_ability_dr_renew_Rmana"                                             "Rogue Mana:"
+		"DOTA_Tooltip_ability_dr_renew_duration"                                          "Duration:"
+
+		"DOTA_Tooltip_ability_dr_sprint"                                                  "Rage"
+		"DOTA_Tooltip_ability_dr_sprint_Description"                                      "Increases move speed and attack speed for short time"
+		"DOTA_Tooltip_ability_dr_sprint_MS"                                               "%MoveSpeed:"
+		"DOTA_Tooltip_ability_dr_sprint_AS"                                               "%AttackSpeed:"
+		"DOTA_Tooltip_ability_dr_sprint_duration"                                         "Duration:"
+
+		"DOTA_Tooltip_ability_dr_starfall"                                                "Starfall"
+		"DOTA_Tooltip_ability_dr_starfall_Description"                                    "Calls down a star on an enemy"
+		"DOTA_Tooltip_ability_dr_starfall_damage"                                         "Damage:"
+
+		///FireMage
+
+		"DOTA_Tooltip_modifier_fm_phoenix_aura"                                           "Phoenix Aura"
+		"DOTA_Tooltip_modifier_fm_phoenix_aura_Description"                               "Gives nearby friendly units (500) a 10% chance on offensive spell cast to restore 20 mana and caster units a 10% chance on attack to restore 30 mana."
+
+		"DOTA_Tooltip_modifier_fm_phoenix_aura_effect"                                    "Phoenix Aura"
+		"DOTA_Tooltip_modifier_fm_phoenix_aura_effect_Description"                        "10% chance to restore mana on spell or attack"
+
+		///------------------------------------------------------------------------
+
+		"DOTA_Tooltip_ability_fm_counter_spell"                                           "Counter Spell"
+		"DOTA_Tooltip_ability_fm_counter_spell_Description"                               "Prevents the Boss's current spell from being cast. Only affects abilities in GRAY text."
+
+		"DOTA_Tooltip_ability_fm_enrage_spirit"                                           "Enrage Spirit"
+		"DOTA_Tooltip_ability_fm_enrage_spirit_Description"                               "Increases movement speed of nearby friendly units for a short time. Instantly restores mana to units within range of Legacy of the Phoenix"
+		"DOTA_Tooltip_ability_fm_enrage_spirit_radius"                                           "Range:"
+		"DOTA_Tooltip_ability_fm_enrage_spirit_speed"                                           "%MoveSpeed:"
+		"DOTA_Tooltip_ability_fm_enrage_spirit_duration"                                           "Duration:"
+		"DOTA_Tooltip_ability_fm_enrage_spirit_mana"                                           "Mana Restore:"
+
+		"DOTA_Tooltip_ability_fm_incinerate"                                              "Incinerate"
+		"DOTA_Tooltip_ability_fm_incinerate_Description"                                  "Unleash a fireball that will deal damage on impact and cause the target to burn. Only the impact damage is reduced to fire"
+		"DOTA_Tooltip_ability_fm_incinerate_damage"                                              "Damage:"
+		"DOTA_Tooltip_ability_fm_incinerate_burn"                                              "Burn:"
+		"DOTA_Tooltip_ability_fm_incinerate_duration"                                              "Duration:"
+		"DOTA_Tooltip_ability_fm_incinerate_duration"                                              "%Reduc to Fire:"
+
+		"DOTA_Tooltip_ability_fm_meteor"                                                  "Meteor"
+		"DOTA_Tooltip_ability_fm_meteor_Description"                                      "Calls down a meteor that does damage to current boss. Has unlimited range. Boss will gain temporary resistance to Meteor once the spell has finished casting."
+		"DOTA_Tooltip_ability_fm_meteor_damage"                                                  "Damage:"
+		"DOTA_Tooltip_ability_fm_meteor_channel"                                                  "Channel Time:"
+		"DOTA_Tooltip_ability_fm_meteor_immune"                                                  "Immune Time:"
+		"DOTA_Tooltip_ability_fm_meteor_reduction"                                                  "%Reduc to Fire:"
+
+		"DOTA_Tooltip_ability_fm_mystic_veil"                                             "Mystic Veil"
+		"DOTA_Tooltip_ability_fm_mystic_veil_Description"                                 "Mystical energy surrounds this unit protecting it from enemy attacks and spells"
+		"DOTA_Tooltip_ability_fm_mystic_veil_duration"                                             "Duration:"
+
+		"DOTA_Tooltip_ability_fm_phoenix_aura"                                            "Legacy of the Phoenix"
+		"DOTA_Tooltip_ability_fm_phoenix_aura_Description"                                "Gives nearby friendly units a chance on offensive spell cast to restore 20 mana and caster units a 10% chance on attack to restore 30 mana."
+
+		"DOTA_Tooltip_ability_fm_scorch"                                                  "Scorch"
+		"DOTA_Tooltip_ability_fm_scorch_Description"                                      "Sends out a wave of flame dealing 240 damage"
+		"DOTA_Tooltip_ability_fm_scorch_damage"                                                  "Damage:"
+		"DOTA_Tooltip_ability_fm_scorch_reduction"                                                  "%Reduc to Fire:"
+		"DOTA_Tooltip_ability_fm_scorch_amplify"                                                  "%Amp to Ice/water:"
+
+		///FrostMage
+
+		"DOTA_Tooltip_frost_buff"                                                         "Frozen Fervor"
+		"DOTA_Tooltip_frost_buff_Description"                                             "Has increased Damage and Mana Regen but losing Health"
+
+		"DOTA_Tooltip_modifier_fr_chill"                                                  "Chill"
+		"DOTA_Tooltip_modifier_fr_chill_Description"                                      "Restores 150 health and 20 mana on kill"
+
+		"DOTA_Tooltip_field_mod"                                                          "Freezing Field"
+		"DOTA_Tooltip_field_mod_Description"                                              "Attack and Movement slowed"
+
+		"DOTA_Tooltip_insta_mod"                                                          "Insta Cold"
+		"DOTA_Tooltip_insta_mod_Description"                                              "Attack and Movement slowed"
+
+		"DOTA_Tooltip_modifier_ice_shield"                                                "Ice Armor"
+		"DOTA_Tooltip_modifier_ice_shield_Description"                                    "Absorbs 750 damage and immune to Boss CC"
+
+		///-------------------------------------------------
+
+
+		"DOTA_Tooltip_ability_fr_buff"                                                    "Frozen Fervor"
+		"DOTA_Tooltip_ability_fr_buff_Description"                                        "Increase attack damage and mana regen but causes the unit to take damage per second"
+		"DOTA_Tooltip_ability_fr_buff_increase"                                                    "%Attack Damage:"
+		"DOTA_Tooltip_ability_fr_buff_mana"                                                    "Mana Regen:"
+		"DOTA_Tooltip_ability_fr_buff_damage"                                                    "Dmg to self:"
+		"DOTA_Tooltip_ability_fr_buff_duration"                                                    "Duration:"
+
+		"DOTA_Tooltip_ability_fr_charge"                                                  "Cold Shoulder"
+		"DOTA_Tooltip_ability_fr_charge_Description"                                      "Slide at a high speed toward target enemy dealing damage on impact."
+		"DOTA_Tooltip_ability_fr_charge_damage"                                                  "Damage:"
+		"DOTA_Tooltip_ability_fr_charge_reduction"                                                  "%Reduc to Ice/Water:"
+
+		"DOTA_Tooltip_ability_fr_chill"                                                   "Chill"
+		"DOTA_Tooltip_ability_fr_chill_Description"                                       "Restores Health and Mana on kill"
+
+		"DOTA_Tooltip_ability_fr_field"                                                   "Freezing Field"
+		"DOTA_Tooltip_ability_fr_field_Description"                                       "Slams the ground with immense force by dealing damage and slowing movement rate and attack rate of nearby enemy units"
+		"DOTA_Tooltip_ability_fr_field_damage"                                                   "Damage:"
+		"DOTA_Tooltip_ability_fr_field_AS"                                                   "%Attack Slow:"
+		"DOTA_Tooltip_ability_fr_field_MS"                                                   "%Move Slow:"
+		"DOTA_Tooltip_ability_fr_field_duration"                                                   "Duration:"
+		"DOTA_Tooltip_ability_fr_field_reduction"                                                   "%Reduc to Ice/Water:"
+
+		"DOTA_Tooltip_ability_fr_insta"                                                   "Insta Cold"
+		"DOTA_Tooltip_ability_fr_insta_Description"                                       "Blasts an enemy unit with frost. Cold damage slows units' movement and attack rate"
+		"DOTA_Tooltip_ability_fr_insta_damage"                                                   "Damage:"
+		"DOTA_Tooltip_ability_fr_insta_AS"                                                   "%Attack Slow:"
+		"DOTA_Tooltip_ability_fr_insta_MS"                                                   "%Move Slow:"
+		"DOTA_Tooltip_ability_fr_insta_duration"                                                   "Duration:"
+		"DOTA_Tooltip_ability_fr_insta_reduction"                                                   "%Reduc to Ice/Water:"
+		"DOTA_Tooltip_ability_fr_insta_amplify"                                                   "%Amp to Fire/Lightning:"
+
+		"DOTA_Tooltip_ability_fr_shield"                                                  "Ice Armor"
+		"DOTA_Tooltip_ability_fr_shield_Description"                                      "Shields an ally in Ice that will protect them from damage. Also the target will be immune to boss's crowd control while the shield holds"
+		"DOTA_Tooltip_ability_fr_shield_absorb"                                                    "Absorb Amount:"
+		"DOTA_Tooltip_ability_fr_shield_duration"                                                    "Duration:"
+
+		///Warrior
+
+		"DOTA_Tooltip_modifier_thunder_clap"                                              "Taunt Stomp"
+		"DOTA_Tooltip_modifier_thunder_clap_Description"                                  "This Unit has reduced movement and attack speed"
+
+		"DOTA_Tooltip_tank_avatar"                                                        "Warrior Spirit"
+		"DOTA_Tooltip_tank_avatar_Description"                                            "This Unit has increased health and damage"
+
+		"DOTA_Tooltip_shield_wall"                                                        "Shield Wall"
+		"DOTA_Tooltip_shield_wall_Description"                                            "This unit is immune to damage"
+
+		"DOTA_Tooltip_modifier_hoof_stomp"                                                "Titan Slam"
+		"DOTA_Tooltip_modifier_hoof_stomp_Description"                                    "This unit has its damaged reduced"
+
+		"DOTA_Tooltip_modifier_tank_taunt"                                                "Taunted"
+		"DOTA_Tooltip_modifier_tank_taunt_Description"                                    "This unit is forced to attack the Warrior"
+
+		///----------------------------------------------------------------
+
+		"DOTA_Tooltip_ability_or_avatar"                                                  "Warrior Spirit"
+		"DOTA_Tooltip_ability_or_avatar_Description"                                      "The Warrior gains increased health, damage, and size at a cost of movement speed"
+		"DOTA_Tooltip_ability_or_avatar_health"                                                  "Bonus Health:"
+		"DOTA_Tooltip_ability_or_avatar_damage"                                                  "Bonus Damage:"
+		"DOTA_Tooltip_ability_or_avatar_duration"                                                  "Duration:"
+
+		"DOTA_Tooltip_ability_or_charge"                                                  "Charge"
+		"DOTA_Tooltip_ability_or_charge_Description"                                      "Dash toward target point at an incredible speed."
+		"DOTA_Tooltip_ability_or_charge_range"                                                  "Max Range:"
+
+		"DOTA_Tooltip_ability_or_counter_spell"                                           "Sheild Bash"
+		"DOTA_Tooltip_ability_or_counter_spell_Description"                               "Deals damage and prevents your target's current spell from being cast. If a spell is successfully countered by this ability, double damage is dealt. Only affects abilities in GRAY text"
+		"DOTA_Tooltip_ability_or_counter_spell_damage"                                           "Damage:"
+
+		"DOTA_Tooltip_ability_or_shield_wall"                                             "Shield Wall"
+		"DOTA_Tooltip_ability_or_shield_wall_Description"                                 "Switch into a perfect stance preventing all damage from attacks and spells"
+		"DOTA_Tooltip_ability_or_shield_wall_duration"                                             "Duration:"
+
+		"DOTA_Tooltip_ability_or_titan_slam"                                              "Titan Slam"
+		"DOTA_Tooltip_ability_or_titan_slam_Description"                                  "Slams the target with immense force dealing damage and lowering your targets attack damage. Also lowers the Boss's Mana"
+		"DOTA_Tooltip_ability_or_titan_slam_damage"                                              "Damage:"
+		"DOTA_Tooltip_ability_or_titan_slam_reduce"                                              "Damage Reduction%:"
+		"DOTA_Tooltip_ability_or_titan_slam_deplete"                                              "Energy Deplete:"
+		"DOTA_Tooltip_ability_or_titan_slam_duration"                                              "Duration:"
+
+		"DOTA_Tooltip_ability_or_war_stomp"                                               "Taunt Stomp"
+		"DOTA_Tooltip_ability_or_war_stomp_Description"                                   "Forces enemies to attack the warrior, after a short delay the Warrior releases a stomp that damages and slows attack and movement speed of enemies"
+		"DOTA_Tooltip_ability_or_war_stomp_radius"                                               "Taunt Radius:"
+		"DOTA_Tooltip_ability_or_war_stomp_tauntdur"                                               "Taunt Duration:"
+		"DOTA_Tooltip_ability_or_war_stomp_delay"                                               "Delay:"
+		"DOTA_Tooltip_ability_or_war_stomp_damage"                                               "Stomp Damage:"
+		"DOTA_Tooltip_ability_or_war_stomp_slowradius"                                               "Stomp Radius:"
+		"DOTA_Tooltip_ability_or_war_stomp_AS"                                               "%Attack Slow:"
+		"DOTA_Tooltip_ability_or_war_stomp_MS"                                               "%Move Slow:"
+		"DOTA_Tooltip_ability_or_war_stomp_slowdur"                                               "Stomp Duration:"
+
+		///Paladin
+
+
+		"DOTA_Tooltip_modifier_pl_aura_effect"                                            "Sanctuary Aura"
+		"DOTA_Tooltip_modifier_pl_aura_effect_Description"                                "Units will be healed more by the Paladin"
+
+		"DOTA_Tooltip_blessing_mod"                                                       "Blessing Mod"
+		"DOTA_Tooltip_blessing_mod_Description"                                           "Unit is taking reduced damage and is protected from death"
+
+		"DOTA_Tooltip_protection_mod"                                                     "Protection Mod"
+		"DOTA_Tooltip_protection_mod_Description"                                         "Has been saved from death and is immune to damage"
+
+		"DOTA_Tooltip_divine_mod"                                                         "Divine Mod"
+		"DOTA_Tooltip_divine_mod_Description"                                             "This unit is immune to all damage"
+
+		"DOTA_Tooltip_exodus_mod"                                                         "Exodus Mod"
+		"DOTA_Tooltip_exodus_mod_Description"                                             "Preparing to sacrifice for the greater good"
+
+		"DOTA_Tooltip_strike_safe"                                                        "Invulnerability"
+		"DOTA_Tooltip_strike_safe_Description"                                            "Immune to Damage"
+
+		"DOTA_Tooltip_strike_speed"                                                       "Devine Fury"
+		"DOTA_Tooltip_strike_speed_Description"                                           "Has increases attack speed and Onhit Damage"
+
+		"DOTA_Tooltip_taunt_mod"                                                          "Taunted"
+		"DOTA_Tooltip_taunt_mod_Description"                                              "This unit is taunted"
+
+		//-------------------------------------------------
+
+		"DOTA_Tooltip_ability_pl_aura"                                                    "Pl Aura"
+		"DOTA_Tooltip_ability_pl_aura_Description"                                        ""
+
+		"DOTA_Tooltip_ability_pl_blessing"                                                "Blessing of Protection"
+		"DOTA_Tooltip_ability_pl_blessing_Description"                                    "Protect target ally reducing all damage taken. Any damage taken that would kill the target, will instead grant them a short period of invulnerability and increased Health regen. Can not be cast on other Paladins."
+		"DOTA_Tooltip_ability_pl_blessing_reduction"                                                "%Damage Reduction:"
+		"DOTA_Tooltip_ability_pl_blessing_duration"                                                "Reduction Duration:"
+		"DOTA_Tooltip_ability_pl_blessing_immune"                                                "Invulnerability Duration:"
+		"DOTA_Tooltip_ability_pl_blessing_heal"                                                "Invulnerability Regen:"
+
+		"DOTA_Tooltip_ability_pl_divine_shield"                                           "Divine Shield"
+		"DOTA_Tooltip_ability_pl_divine_shield_Description"                               "Surrounds this unit in divine light preventing all damage from attacks and spells for 4 sec."
+		"DOTA_Tooltip_ability_pl_divine_shield_duration"                                           "Duration:"
+
+		"DOTA_Tooltip_ability_pl_exodus"                                                  "Exodus"
+		"DOTA_Tooltip_ability_pl_exodus_Description"                                      "Consumes your life and resurrect all fallen allies with 100% health and the mana they died with. Players will be unable to cast resurrect or Exodus for 45 seconds. Can not be cast while invulnerable."
+		"DOTA_Tooltip_ability_pl_exodus_channel"                                                  "Channel Time:"
+
+		"DOTA_Tooltip_ability_pl_heal"                                                    "Heal"
+		"DOTA_Tooltip_ability_pl_heal_Description"                                        "Heals a target friendly. Units within range of your Sanctuary Aura will receive bonus healing. Units within range and under 20% health will receive additional bonus healing"
+		"DOTA_Tooltip_ability_pl_heal_heal"                                                    "Heal:"
+		"DOTA_Tooltip_ability_pl_heal_close"                                                    "Bonus::"
+		"DOTA_Tooltip_ability_pl_heal_bonus"                                                    "Additional:"
+		"DOTA_Tooltip_ability_pl_heal_aura"                                                    "Aura Range:"
+
+		"DOTA_Tooltip_ability_pl_strike"                                                  "Rightous Strike"
+		"DOTA_Tooltip_ability_pl_strike_Description"                                      "Slashes the target with divine force dealing magic damage and granting you a period of invulnerability. Grants the Paladin attack speed, bonus magic damage, and mana depletion on hit"
+		"DOTA_Tooltip_ability_pl_strike_damage"                                                  "Stike Damage:"
+		"DOTA_Tooltip_ability_pl_strike_onhit"                                                  "Onhit Damage:"
+		"DOTA_Tooltip_ability_pl_strike_immune"                                                  "Invulnerabliity Duration:"
+		"DOTA_Tooltip_ability_pl_strike_duration"                                                  "Duration:"
+		"DOTA_Tooltip_ability_pl_strike_mana"                                                  "Deplete Onhit:"
+		"DOTA_Tooltip_ability_pl_strike_reduction"                                                  "%Reduc to Light:"
+		"DOTA_Tooltip_ability_pl_strike_amplify"                                                  "%Amp to Shadow:"
+
+		"DOTA_Tooltip_ability_pl_taunt"                                                   "Taunt"
+		"DOTA_Tooltip_ability_pl_taunt_Description"                                       "Force target unit to focus their attacks on you."
+		"DOTA_Tooltip_ability_pl_taunt_duration"                                                   "Duration:"
+
+		///Priest 
+
+		"DOTA_Tooltip_modifier_pr_buff"                                                   "Sacred Word"
+		"DOTA_Tooltip_modifier_pr_buff_Description"                                       "Unit has increased damage, armor, health regen and magic resist"
+
+		//-----------------------------------------------------------
+
+		"DOTA_Tooltip_ability_pr_buff"                                                    "Sacred Word"
+		"DOTA_Tooltip_ability_pr_buff_Description"                                        "Increases a target friendly unit's damage, armor, regen and adds a slight resistance to magic"
+		"DOTA_Tooltip_ability_pr_buff_damage"                                                    "%Damage Increase"
+		"DOTA_Tooltip_ability_pr_buff_armor"                                                    "Armor:"
+		"DOTA_Tooltip_ability_pr_buff_regen"                                                    "Health Regen:"
+		"DOTA_Tooltip_ability_pr_buff_magic"                                                    "%Magic Resist"
+		"DOTA_Tooltip_ability_pr_buff_duration"                                                    "Duration:"
+
+		"DOTA_Tooltip_ability_pr_fast_heal"                                               "Heal"
+		"DOTA_Tooltip_ability_pr_fast_heal_Description"                                   "Heals a target friendly unit"
+		"DOTA_Tooltip_ability_pr_fast_heal_heal"                                               "Heal:"
+
+		"DOTA_Tooltip_ability_pr_full_heal"                                               "Divine Light"
+		"DOTA_Tooltip_ability_pr_full_heal_Description"                                   "Instantly restores 100% of target's health and 100 of their mana."
+
+		"DOTA_Tooltip_ability_pr_multi_heal"                                              "Healing Burst"
+		"DOTA_Tooltip_ability_pr_multi_heal_Description"                                  "Fires a light at all nearby that heals on contact"
+		"DOTA_Tooltip_ability_pr_multi_heal_heal"                                              "Heal:"
+		"DOTA_Tooltip_ability_pr_multi_heal_radius"                                              "Radius:"
+
+		"DOTA_Tooltip_ability_pr_nuke"                                                    "Omni Flash"
+		"DOTA_Tooltip_ability_pr_nuke_Description"                                        "On enemy cast deals damage to the target unit. On grave cast will revive the unit"
+		"DOTA_Tooltip_ability_pr_nuke_damage"                                                    "Damage:"
+		"DOTA_Tooltip_ability_pr_nuke_reduction"                                                    "%Reduc to light:"
+		"DOTA_Tooltip_ability_pr_nuke_amplify"                                                    "Amp to shadow:"
+
+		///Ranger
+
+		"DOTA_Tooltip_rapid_arrows"                                                       "Rapid Fire"
+		"DOTA_Tooltip_rapid_arrows_Description"                                           "Rapidly firing arrows"
+
+		"DOTA_Tooltip_rg_movement"                                                        "Sprint"
+		"DOTA_Tooltip_rg_movement_Description"                                            "The Rangers movment speed is increased"
+
+		"DOTA_Tooltip_unstable_dot"                                                       "Unstable Arcana"
+		"DOTA_Tooltip_unstable_dot_Description"                                           "This unit is taking damage over time with increased magic damage"
+
+		//----------------------------------------------------------
+
+		"DOTA_Tooltip_ability_rg_crit_attack"                                             "Headshot"
+		"DOTA_Tooltip_ability_rg_crit_attack_Description"                                 "Gives a chance to do critical strike"
+		"DOTA_Tooltip_ability_rg_crit_attack_chance"                                             "%Chance:"
+		"DOTA_Tooltip_ability_rg_crit_attack_multiply"                                             "%Multiply:"
+
+		"DOTA_Tooltip_ability_rg_multishot"                                               "Multi-Shot"
+		"DOTA_Tooltip_ability_rg_multishot_Description"                                   "Deals Damage to all enemies in  a short range"
+		"DOTA_Tooltip_ability_rg_multishot_damage"                                               "Damage:"
+		"DOTA_Tooltip_ability_rg_multishot_radius"                                               "Radius:"
+		"DOTA_Tooltip_ability_rg_multishot_targets"                                               "Max Targets"
+
+		"DOTA_Tooltip_ability_rg_rapid_fire"                                              "Rapid Fire"
+		"DOTA_Tooltip_ability_rg_rapid_fire_Description"                                  "Fires 3 arrows a second at a target enemy"
+		"DOTA_Tooltip_ability_rg_rapid_fire_damage"                                              "Damage per Arrow:"
+		"DOTA_Tooltip_ability_rg_rapid_fire_duration"                                              "Duration:"
+
+		"DOTA_Tooltip_ability_rg_snipe"                                                   "Snipe"
+		"DOTA_Tooltip_ability_rg_snipe_Description"                                       "A precise long range shot that deals damage to an enemy"
+		"DOTA_Tooltip_ability_rg_snipe_damage"                                                   "Damage:"
+
+		"DOTA_Tooltip_ability_rg_sprint"                                                  "Sprint"
+		"DOTA_Tooltip_ability_rg_sprint_Description"                                      "Run at increased movemnet speed or a short duration"
+		"DOTA_Tooltip_ability_rg_sprint_speed"                                                  "%Move Speed:"
+		"DOTA_Tooltip_ability_rg_sprint_duration"                                                  "Duration:"
+
+		"DOTA_Tooltip_ability_rg_unstable"                                                "Unstable Arcana"
+		"DOTA_Tooltip_ability_rg_unstable_Description"                                    "Throws a flask of unstable magic compounds that explodes and deals initial damage followed by damage over time. Also increases magic damage the boss takes from spells."
+		"DOTA_Tooltip_ability_rg_unstable_damage"                                                "Initial Damage:"
+		"DOTA_Tooltip_ability_rg_unstable_dot"                                                "Damage per Second:"
+		"DOTA_Tooltip_ability_rg_unstable_magic"                                                "%Magic Damage Taken:"
+		"DOTA_Tooltip_ability_rg_unstable_duration"                                                "Duration:"
+
+		///Rogue
+
+		"DOTA_Tooltip_closein_buff"                                                       "Killer Instinct"
+		"DOTA_Tooltip_closein_buff_Description"                                           "Has increased damage and mana deplete on hit"
+
+		"DOTA_Tooltip_shred_debuff"                                                       "Expose Weakness"
+		"DOTA_Tooltip_shred_debuff_Description"                                           "This unit is taking 50% more damage"
+
+		"DOTA_Tooltip_ro_unbreak"                                                         "Unbreakable Will"
+		"DOTA_Tooltip_ro_unbreak_Description"                                             "Immune to Damage"
+
+		"DOTA_Tooltip_ro_movement"                                                        "Sprint"
+		"DOTA_Tooltip_ro_movement_Description"                                            "The Rogues movement speed is increased"
+
+		//--------------------------------------------------------
+
+		"DOTA_Tooltip_ability_ro_assassinate"                                             "Assassinate"
+		"DOTA_Tooltip_ability_ro_assassinate_Description"                                 "Ferociously thrust your blades into your target's weak points dealing damage. If striking from behind, 20% more damage will be done"
+		"DOTA_Tooltip_ability_ro_assassinate_damage"                                             "Damage:"
+
+		"DOTA_Tooltip_ability_ro_closein"                                                 "Closein"
+		"DOTA_Tooltip_ability_ro_closein_Description"                                     "Moving at lightning speed, you appear directly behind the boss. Grants bonus damage and mana depletion on hit. Infinite range"
+		"DOTA_Tooltip_ability_ro_closein_damage"                                                 "Damage:"
+		"DOTA_Tooltip_ability_ro_closein_mana"                                                 "Mana Deplete:"
+		"DOTA_Tooltip_ability_ro_closein_duration"                                                 "Duration:"
+
+		"DOTA_Tooltip_ability_ro_cripple"                                                 "Cripple"
+		"DOTA_Tooltip_ability_ro_cripple_Description"                                     "Ferociously thrust your blades into your target's weak points dealing damage. Depletes energy"
+		"DOTA_Tooltip_ability_ro_cripple_damage"                                                 "Damage:"
+		"DOTA_Tooltip_ability_ro_cripple_mana"                                                 "Mana Deplete:"
+
+		"DOTA_Tooltip_ability_ro_shred"                                                   "Expose Weakness"
+		"DOTA_Tooltip_ability_ro_shred_Description"                                       "Increases the damage a boss takes from all Hero abilities. Last 20 seconds or until 1500 damage is caused by the effect"
+		"DOTA_Tooltip_ability_ro_shred_damage"                                                   "%Damage:"
+
+		"DOTA_Tooltip_ability_ro_sprint"                                                  "Sprint"
+		"DOTA_Tooltip_ability_ro_sprint_Description"                                      "Run at increased speed for a short time"
+		"DOTA_Tooltip_ability_ro_sprint_speed"                                                  "%Move Speed:"
+		"DOTA_Tooltip_ability_ro_sprint_duration"                                                  "Duration:"
+
+		"DOTA_Tooltip_ability_ro_unbreakable_will"                                        "Unbreakable Will"
+		"DOTA_Tooltip_ability_ro_unbreakable_will_Description"                            "Allows you to completely avoid any spell or attack"
+		"DOTA_Tooltip_ability_ro_unbreakable_will_duration"                                        "Duration:"
+
+		///Warlock 
+
+		"DOTA_Tooltip_envelop_mod"                                                        "Envelop Mod"
+		"DOTA_Tooltip_envelop_mod_Description"                                            "Sacrificing health for damage"
+
+		"DOTA_Tooltip_modifier_life_drain"                                                "Life Drain"
+		"DOTA_Tooltip_modifier_life_drain_Description"                                    "Draining Life"
+
+		"DOTA_Tooltip_malice_buff"                                                        "Malice Buff"
+		"DOTA_Tooltip_malice_buff_Description"                                            "Increased damage, AS, MS and Lifesteal"
+
+		"DOTA_Tooltip_torment_debuff"                                                     "Torment Debuff"
+		"DOTA_Tooltip_torment_debuff_Description"                                         "This unit is taking damage over time and has slow attack speed"
+
+		//--------------------------------------------------------------
+
+		"DOTA_Tooltip_ability_wa_envelop"                                                 "Enveloping Shadows"
+		"DOTA_Tooltip_ability_wa_envelop_Description"                                     "Consumes your health every second relinquishing it to the shadows; surges of dark surround the dark dealing damage. If the boss is at 30% or less health or lower surges will deal an extra damage. Boss will gain temporary resistance to this spell once casting has finished for 15 seconds. Does not deal extra damage to light."
+		"DOTA_Tooltip_ability_wa_envelop_self"                                                 "Self Damage:"
+		"DOTA_Tooltip_ability_wa_envelop_damage"                                                 "Damage:"
+		"DOTA_Tooltip_ability_wa_envelop_bonus"                                                 "Bonus Damage:"
+		"DOTA_Tooltip_ability_wa_envelop_mana"                                                 "Mana Deplete:"
+		"DOTA_Tooltip_ability_wa_envelop_reduction"                                                 "%Reduc to Shadow:"
+
+		"DOTA_Tooltip_ability_wa_life_drain"                                              "Soul Siphon"
+		"DOTA_Tooltip_ability_wa_life_drain_Description"                                  "Drains Health and Mana from the target unit"
+		"DOTA_Tooltip_ability_wa_life_drain_damage"                                              "Damage:"
+		"DOTA_Tooltip_ability_wa_life_drain_drain"                                              "%Heal:"
+		"DOTA_Tooltip_ability_wa_life_drain_mana"                                              "Mana Drain:"
+		"DOTA_Tooltip_ability_wa_life_drain_duration"                                              "Duration:"
+
+
+		"DOTA_Tooltip_ability_wa_malice"                                                  "Malice"
+		"DOTA_Tooltip_ability_wa_malice_Description"                                      "Increases targets attack damage, attack speed and movement speed. Also grants lifesteal"
+		"DOTA_Tooltip_ability_wa_malice_damage"                                                  "Attack Damage:"
+		"DOTA_Tooltip_ability_wa_malice_AS"                                                  "%Attack Speed:"
+		"DOTA_Tooltip_ability_wa_malice_MS"                                                  "%Movement Speed:"
+		"DOTA_Tooltip_ability_wa_malice_steal"                                                  "%Lifesteal"
+		"DOTA_Tooltip_ability_wa_malice_duration"                                                  "Duration:"
+
+
+		"DOTA_Tooltip_ability_wa_torment"                                                 "Torment"
+		"DOTA_Tooltip_ability_wa_torment_Description"                                     "Unleashes dark magic dealing initial damage and damage every 2 seconds. The tormented unit will have a slower attack rate"
+		"DOTA_Tooltip_ability_wa_torment_damage"                                                 "Initial Damage:"
+		"DOTA_Tooltip_ability_wa_torment_dot"                                                 "Damage over Time:"
+		"DOTA_Tooltip_ability_wa_torment_AS"                                                 "%Attack Slow:"
+		"DOTA_Tooltip_ability_wa_torment_duration"                                                 "Duration:"
+		"DOTA_Tooltip_ability_wa_torment_reduction"                                                 "%Reduc to Shadow:"
+		"DOTA_Tooltip_ability_wa_torment_amplify"                                                 "Extra Initial Damage to Light:"
+
+		///Fire Boss
+
+		"DOTA_Tooltip_ability_fire_ball"                                                  "Fire Ball"
+		"DOTA_Tooltip_ability_fire_ball_Description"                                      "Sends out a fire ball in a random direction that explodes after traveling 500 distance"
+		"DOTA_Tooltip_ability_fire_ball_damage"                                                  "Damage:"
+		"DOTA_Tooltip_ability_fire_ball_radius"                                                  "Radius:"
+
+		"DOTA_Tooltip_ability_fire_storm"                                                 "Fire Storm"
+		"DOTA_Tooltip_ability_fire_storm_Description"                                     "Calls down a hail of meteors that slowly fall from the sky and damage in a small aoe upon impact"
+		"DOTA_Tooltip_ability_fire_storm_damage"                                                 "Damage:"
+
+		"DOTA_Tooltip_ability_flame_strike"                                               "Flame Strike"
+		"DOTA_Tooltip_ability_flame_strike_Description"                                   "Summons a flamestrike under a random player dealing damage per second to the area"
+		"DOTA_Tooltip_ability_flame_strike_damage"                                               "Damage per Second:"
+		"DOTA_Tooltip_ability_flame_strike_radius"                                               "Radius:"
+
+		"DOTA_Tooltip_ability_flame_strike_five"                                          "Mega Flame Strike"
+		"DOTA_Tooltip_ability_flame_strike_five_Description"                              "Summons a giant flamestrike in a that damage players around the fire lord. CAN BE COUNTERED"
+		"DOTA_Tooltip_ability_flame_strike_five_damage"                                          "Damage per Second:"
+		"DOTA_Tooltip_ability_flame_strike_five_radius"                                          "Radius:"
+
+		"DOTA_Tooltip_ability_hell_fire"                                                  "Hell Fire"
+		"DOTA_Tooltip_ability_hell_fire_Description"                                      "The Fire Lord gains a massive attack speed increase for a short duration"
+		"DOTA_Tooltip_ability_hell_fire_speed"                                                  "%Attack Speed"
+		"DOTA_Tooltip_ability_hell_fire_duration"                                                  "Duration:"
+
+		"DOTA_Tooltip_ability_LightFollow"                                                "Devouring flame"
+		"DOTA_Tooltip_ability_LightFollow_Description"                                    "The Fire Lord becomes invulnerable and begins channeling his egg. After 5 seconds the arena will go dark exept for a small AoE around the egg. Players must follow the egg for the duration until light is restored"
+
+		"DOTA_Tooltip_ability_MassFireRaze"                                               "Flame Burst"
+		"DOTA_Tooltip_ability_MassFireRaze_Description"                                   "The Fire Lord sends out multiple small fire balls that damage player on impact. Deadly at close range. CAN BE COUNTERED"
+		"DOTA_Tooltip_ability_MassFireRaze_damage"                                               "Damage:"
+		
+		//------------------------
+		// Items
+		//------------------------
+		"DOTA_Tooltip_ability_item_example_item"										"Shield Blaster"
+		"DOTA_Tooltip_ability_item_example_item_Description"							"Gives the caster a 50% damage reduction for 4 seconds while firing a projectile that deals damage 125 PURE damage to any enemy it hits."
+		"DOTA_Tooltip_ability_item_example_item_Lore"								""
+		"DOTA_Tooltip_ability_item_example_item_duration"							"DURATION:"
+	    "DOTA_Tooltip_ability_item_example_item_damage_reduction"							"DAMAGE REDUCTION:"
+	    "DOTA_Tooltip_ability_item_example_item_radius"							"PROJECTILE RADIUS:"
+	    "DOTA_Tooltip_ability_item_example_item_speed"							"PROJECTILE SPEED:"
+	    "DOTA_Tooltip_ability_item_example_item_distance"							"DISTANCE:"
+	    "DOTA_Tooltip_ability_item_example_item_damage"							"DAMAGE:"
+
+	    ///UI
+		
+		"QuestTimer"    "Boss fight will begin in %quest_current_value% seconds"
+		"QuestKill" "Kill The Boss (%quest_current_value%/%quest_target_value%)"
+
+		"addonname"										"Impossible Bosses"
+		"overthrow_game_info_header_objective"			"Objective:"
+		"overthrow_brief_description"					"Get though as many bosses as you can. Defeat them quickly and efficently to recieve a higher team rank"
+		"overthrow_game_info_header_how_to_play"		"How To Play:"
+		"overthrow_game_info_throne"					"Gold can be spent on simple items at the shop. Kharma is earned by defeating bosses and used for upgrading your slayer or buying special items"
+		"overthrow_game_info_coins"						"Steping on an alter will grant perminent bonuses to the slayer. Blue = Offensive Abilities | Green = Health Bonus | Red = Movement Bonus | Purple = Mana Bonus"
+		"overthrow_game_info_items"						"Most Bosses have an elemental alignment causeing them to be weaker or more resistant to certain classes. Make sure you balance your team!"
+		"overthrow_game_info_tips_header"				"Tips:"
+		"overthrow_game_info_tip01"						"Special Items become unlocked as more bosses are killed. Most are class specific"
+		"overthrow_game_info_tip02"						"Each class has a spell that grants invulnerability for a short duration. Use this to avoid death against lethal attacks"
+		"overthrow_game_info_tip03"						"Having a balanced team is crucial to victory against later bosses"
+		"overthrow_game_info_tip04"						"Gold will randomly drop around the areana. Most bosses also drop Gems and Scrolls on death"
+		}
+}

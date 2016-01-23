@@ -1,0 +1,61 @@
+"item_powerup"
+  {
+    "ID"              "1108"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+    "BaseClass"           "item_datadriven"
+    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+    "AbilityTextureName"      "item_bottle_empty"
+
+    "AbilityCooldown"       "80"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "0"
+    "ItemCost"            "5"
+    "ItemInitialCharges"      "1"
+    "ItemDroppable"         "0"
+    "ItemSellable"          "1"
+    "ItemStackable"         "0"
+    "ItemRequiresCharges"     "1"
+    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+    "ItemPermanent"     "0"
+    
+    "MaxUpgradeLevel"       "1"
+    "ItemBaseLevel"         "1"
+
+    "precache"
+    {
+      "particle"  "particles/econ/items/kunkka/divine_anchor/hero_kunkka_dafx_skills/kunkka_spell_x_spot_mark_red_fxset.vpcf"
+    }
+
+    "ItemCastOnPickup"              "1"
+
+    "OnSpellStart"
+    {
+      "SpendCharge" {}
+      "ApplyModifier"
+      {
+        "ModifierName"  "powerup_mod"
+        "Target"     "CASTER"
+      }
+    }
+
+    "Modifiers"
+    {
+      "powerup_mod"
+      {
+        "Passive"      "0"
+        "IsHidden"      "0"
+        "IsDebuff"      "0"
+        "IsPurgable"    "0"
+        "IsBuff"      "0"
+    
+        "EffectName"    "particles/econ/items/kunkka/divine_anchor/hero_kunkka_dafx_skills/kunkka_spell_x_spot_mark_red_fxset.vpcf"
+        "EffectAttachType"  "follow_overhead"
+  
+      }
+    }
+  }
