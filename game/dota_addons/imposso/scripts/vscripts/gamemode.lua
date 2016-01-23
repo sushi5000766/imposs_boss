@@ -53,6 +53,20 @@ require('events')
 --SHOP
 
 --Locations
+bossNames = {
+  "fire",
+  "water",
+  "earth",
+  "lightning",
+  "druid",
+  "holy",
+  "shadow",
+  "ancient",
+  "chaos"
+}
+
+bossLocs = {}
+playerLocs = {}
 
 shopLOC = Vector(-6741, -6337, 129)
 arenaLOC = Vector(-5002, 5120, 129)
@@ -210,6 +224,22 @@ end
 
 
 function GameMode:Setup()
+
+  --Populates boss / player location arrays for spawning
+  for k,v in pairs(bossNames) do
+    local infoTargets = Entities:FindAllByClassname("info_target")
+    local bossSearchString = v .. "_boss_spawn"
+    local playerSearchString = v .. "_player_spawn"
+    for _, entity in pairs(infoTargets) do
+      if string.find(entity:GetName(), bossSearchString) then
+        bossLocs[v] = entity:GetAbsOrigin()
+      end
+
+      if string.find(entity:GetName(), playerSearchString) then
+        playerLocs[v] = entity:GetAbsOrigin()
+      end    
+    end
+  end
 
   if ShopToggle == 0 then
 
