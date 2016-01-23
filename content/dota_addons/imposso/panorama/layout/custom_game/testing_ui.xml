@@ -1,13 +1,46 @@
 <root>
   <styles>
+    <include src="s2r://panorama/styles/dotastyles.vcss_c" />
     <include src="file://{resources}/styles/custom_game/testing_ui.css" />
   </styles>
   <scripts>
     <include src="file://{resources}/scripts/custom_game/testing_ui.js" />
   </scripts>
-  <Panel class='OpenTestingUI'>
-    <Button id="Button" onactivate="OpenTestingUI()">
-      <Label id="Label" text="TEST CONSOLE" />
+  <Panel class='TestingUI' hittest="false">
+    <Panel id="TestingUIWindow" hittest="true">
+      <Button class="TestingButton" onactivate="SpawnFireBoss()">
+        <Label id="Label" text="Spawn Fire Boss" />
+      </Button>
+      <Button class="TestingButton" onactivate="SpawnWaterBoss()">
+        <Label id="Label" text="Spawn Water Boss" />
+      </Button>
+      <Button class="TestingButton" onactivate="SpawnEarthBoss()">
+        <Label id="Label" text="Spawn Earth Boss" />
+      </Button>
+      <Button class="TestingButton" onactivate="SpawnLightningBoss()">
+        <Label id="Label" text="Spawn Lightning Boss" />
+      </Button>
+      <Button class="TestingButton" onactivate="SpawnDruidBoss()">
+        <Label id="Label" text="Spawn Druid Boss" />
+      </Button>
+      <Button class="TestingButton" onactivate="SpawnIceBoss()">
+        <Label id="Label" text="Spawn Ice Boss" />
+      </Button>
+      <Button class="TestingButton" onactivate="SpawnHolyBoss()">
+        <Label id="Label" text="Spawn Holy Boss" />
+      </Button>
+      <Button class="TestingButton" onactivate="SpawnShadowBoss()">
+        <Label id="Label" text="Spawn Shadow Boss" />
+      </Button>
+      <Button class="TestingButton" onactivate="SpawnAncientBoss()">
+        <Label id="Label" text="Spawn Ancient Boss" />
+      </Button>
+      <Button class="TestingButton" onactivate="SpawnChaosBoss()">
+        <Label id="Label" text="Spawn Chaos Boss" />
+      </Button>
+    </Panel>
+    <Button id="TestingUIButton"
+      onactivate="OpenTestingUI()">
     </Button>
   </Panel>
 </root>
