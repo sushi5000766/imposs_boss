@@ -1,29 +1,170 @@
-.OpenTestingUI
+.TestingUI
 {
-    width: 300px;
-    height: 25px;
-    color: white;
-    font-weight: bold;
-    font-family: Goudy Trajan Medium;
-    background-color: #333333;
-    margin-left: 620px;
-    margin-top: 7px;
-    border-radius:5px;
+    width: 400px;
+    height: 900px;
+    background-color: transparent;
+    position: 1500px 0px 0px;
+    overflow: clip;
 }
 
-#Button
+#TestingUIWindow
 {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 90%;
+  position: 0px 45px 0px;
+  background-color: #222;
+  border-radius: 10px;
+  padding: 10px;
+  border: 3px solid rgba(0, 0, 0, 200);
+  flow-children: down;
 }
 
-#Button:hover {
-    background-color:#616161;
+#Header
+{
+  text-align: left;
+  font-size: 22px;
+  color: #00628B;
+  font-family: arial;
+  text-decoration: underline;
+}
+
+#HeaderTwo
+{
+  text-align: left;
+  font-size: 20px;
+  color: #81A594;
+  font-family: arial;
+}
+
+#HeaderThree
+{
+  text-align: left;
+  font-size: 20px;
+  color: #81A594;
+  font-family: arial;
+}
+
+#BodyOne
+{
+  text-align: left;
+  font-size: 18px;
+  color: #E6E6DC;
+}
+
+#BodyTwo
+{
+  text-align: left;
+  font-size: 18px;
+  color: #E6E6DC;
+}
+
+#TestingUIWindow.hidden
+{
+  opacity: 0;
+}
+
+#TestingUIButton
+{
+  width: 45px;
+  height: 45px;
+  position: 300px 0px 0px;
+  background-image: url("file://{images}/custom_game/info.png");
+}
+
+.TestingButton
+{
+  width: 200px;
+  height: 45px;
+  margin: 5px;
+  background-color: #000000;
+}
+
+#SpawnWaterBoss
+{
+  width: 200px;
+  height: 45px;
+  margin: 5px;
+  background-color: #000000;
+}
+
+#SpawnEarthBoss
+{
+  width: 200px;
+  height: 45px;
+  margin: 5px;
+  background-color: #000000;
+}
+
+#SpawnLightningBoss
+{
+  width: 200px;
+  height: 45px;
+  margin: 5px;
+  background-color: #000000;
+}
+
+#SpawnDruidBoss
+{
+  width: 200px;
+  height: 45px;
+  margin: 5px;
+  background-color: #000000;
+}
+
+#SpawnIceBoss
+{
+  width: 200px;
+  height: 45px;
+  margin: 5px;
+  background-color: #000000;
+}
+
+#SpawnHolyBoss
+{
+  width: 200px;
+  height: 45px;
+  margin: 5px;
+  background-color: #000000;
+}
+
+#SpawnShadowBoss
+{
+  width: 200px;
+  height: 45px;
+  margin: 5px;
+  background-color: #000000;
+}
+
+#SpawnAncientBoss
+{
+  width: 200px;
+  height: 45px;
+  margin: 5px;
+  background-color: #000000;
+}
+
+#SpawnChaosBoss
+{
+  width: 200px;
+  height: 45px;
+  margin: 5px;
+  background-color: #000000;
+}
+
+
+
+#TestingUIButton.hidden
+{
+  opacity: 0;
 }
 
 #Label
 {
-	font-size: 25;
-	horizontal-align: center;
-    margin-top: -2px;
+    horizontal-align: center;
+    vertical-align: center;
+    font-size: 20px;
+    color: #FFFFFF;
+    font-family: arial;
 }
+
+

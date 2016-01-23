@@ -1,4 +1,4 @@
-if MassFireRaze = nil then
+if MassFireRaze == nil then
 	MassFireRaze = class({})
 end
 
