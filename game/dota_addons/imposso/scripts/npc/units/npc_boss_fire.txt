@@ -1,4 +1,4 @@
-"npc_boss_one"
+"npc_boss_fire"
     {
         // General
         "BaseClass"         "npc_dota_creature"  // Class of entity of link to.

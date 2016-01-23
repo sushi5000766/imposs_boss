@@ -65,6 +65,7 @@ bossNames = {
   "chaos"
 }
 
+currentBoss = bossNames[1]
 bossLocs = {}
 playerLocs = {}
 
@@ -82,7 +83,7 @@ total_deaths = {}
 late_pick_bool = {}
 
 arena_count = 0
-boss_num = 1
+--boss_num = 1
 
 
 --[[
@@ -281,7 +282,7 @@ function GameMode:Setup()
     local Quest = SpawnEntityFromTableSynchronous( "quest", { name = "QuestName", title = "#QuestTimer" } )
     local play_count = PlayerResource:GetPlayerCountForTeam(2)
 
-    local end_end = 80
+    local end_end = 8
 
     Quest.EndTime = end_end
 
@@ -328,9 +329,9 @@ end
 
 function GameMode:ArenaSetup()
 
-  print("boss Spawned")
-
-  local arena_start_dummy = CreateUnitByName("npc_dummy_unit", arenaLOC, false, nil, nil, DOTA_TEAM_NEUTRALS)
+  --Spawns a dummy that stuns all players / boss for 5 seconds upon entry into arena
+  print(bossLocs[currentBoss])
+  local arena_start_dummy = CreateUnitByName("npc_dummy_unit", bossLocs[currentBoss], false, nil, nil, DOTA_TEAM_NEUTRALS)
   arena_start_dummy:AddAbility("arena_start_aura")
   local abPass = arena_start_dummy:GetAbilityByIndex(0)
   local abAura = arena_start_dummy:GetAbilityByIndex(1)
@@ -340,60 +341,24 @@ function GameMode:ArenaSetup()
     UTIL_Remove(arena_start_dummy)
   end)
 
-  if boss_num == 1 then
+  local currentBossName = "npc_boss_" .. currentBoss
+  local hCurrentBoss = CreateUnitByName(currentBossName, bossLocs[currentBoss], true, nil, nil, DOTA_TEAM_NEUTRALS)
 
-    boss = CreateUnitByName("npc_boss_one", bossLOC, true, nil, nil, DOTA_TEAM_NEUTRALS)
+  CustomGameEventManager:Send_ServerToAllClients("remove_boss_ability", { 
+    reference_number = 1
+    })
 
-    for i=0, 10 do 
-      abBoss = boss:GetAbilityByIndex(i)
-      if abBoss ~= nil then
-        abBoss:SetLevel(1)
-      end
+  for i=0, 10 do 
+    abBoss = hCurrentBoss:GetAbilityByIndex(i)
+    if abBoss ~= nil then
+      abBoss:SetLevel(1)
+      CustomGameEventManager:Send_ServerToAllClients("add_boss_ability", { 
+        reference_number = i,
+        ability_name = abBoss:GetAbilityName()
+      })
     end
-
-      CustomGameEventManager:Send_ServerToAllClients("remove_boss_ability", { 
-      reference_number = 1
-      })
-
-      CustomGameEventManager:Send_ServerToAllClients("add_boss_ability", { 
-      reference_number = 1,
-      ability_name = "MassFireRaze"
-      })
-
-      CustomGameEventManager:Send_ServerToAllClients("add_boss_ability", { 
-      reference_number = 2,
-      ability_name = "flame_strike_five"
-      })
-
-      CustomGameEventManager:Send_ServerToAllClients("add_boss_ability", { 
-      reference_number = 3,
-      ability_name = "flame_strike"
-      })
-
-      CustomGameEventManager:Send_ServerToAllClients("add_boss_ability", { 
-      reference_number = 4,
-      ability_name = "fire_storm"
-      })
-
-      CustomGameEventManager:Send_ServerToAllClients("add_boss_ability", { 
-      reference_number = 5,
-      ability_name = "fire_ball"
-      })
-
-      CustomGameEventManager:Send_ServerToAllClients("add_boss_ability", { 
-      reference_number = 6,
-      ability_name = "hell_fire"
-      })
-
-      CustomGameEventManager:Send_ServerToAllClients("add_boss_ability", { 
-      reference_number = 7,
-      ability_name = "LightFollow"
-      })
   end
-  
-
-  GameMode:ArenaStart()
-
+   GameMode:ArenaStart()
 end
 
 function GameMode:ArenaStart()
