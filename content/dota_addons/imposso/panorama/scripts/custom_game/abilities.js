@@ -10,11 +10,13 @@ function PanelFromReferenceNumber(num) {
 }
 
 function AddBossAbility(ev) {
-	var p = $.CreatePanel("Panel", $.GetContextPanel(), "ability-" + ev.reference_number);
-	p.BLoadLayout("file://{resources}/layout/custom_game/ability.xml", false, false);
-	p.SetAttributeInt("reference_number", parseInt(ev.reference_number));
-	p.SetAttributeString("abilityname", ev.ability_name);
-	p.FindChildrenWithClassTraverse("ability-image")[0].abilityname = ev.ability_name;
+	if (ev.ability_name != "boss_auto_attack") {
+		var p = $.CreatePanel("Panel", $.GetContextPanel(), "ability-" + ev.reference_number);
+		p.BLoadLayout("file://{resources}/layout/custom_game/ability.xml", false, false);
+		p.SetAttributeInt("reference_number", parseInt(ev.reference_number));
+		p.SetAttributeString("abilityname", ev.ability_name);
+		p.FindChildrenWithClassTraverse("ability-image")[0].abilityname = ev.ability_name;
+	}
 }
 
 function RemoveBossAbility(ev) {

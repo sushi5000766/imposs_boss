@@ -342,14 +342,14 @@ function GameMode:ArenaSetup()
   end)
 
   local currentBossName = "npc_boss_" .. currentBoss
-  local hCurrentBoss = CreateUnitByName(currentBossName, bossLocs[currentBoss], true, nil, nil, DOTA_TEAM_NEUTRALS)
+  boss = CreateUnitByName(currentBossName, bossLocs[currentBoss], true, nil, nil, DOTA_TEAM_NEUTRALS)
 
   CustomGameEventManager:Send_ServerToAllClients("remove_boss_ability", { 
     reference_number = 1
     })
 
   for i=0, 10 do 
-    abBoss = hCurrentBoss:GetAbilityByIndex(i)
+    abBoss = boss:GetAbilityByIndex(i)
     if abBoss ~= nil then
       abBoss:SetLevel(1)
       CustomGameEventManager:Send_ServerToAllClients("add_boss_ability", { 

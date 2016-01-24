@@ -5874,7 +5874,6 @@
 		      }
 
 		}
-
 //============================================================================================
 // MISCELLANEOUS
 //============================================================================================
@@ -6437,7 +6436,7 @@
 	  { 
 	    "BaseClass"              "ability_datadriven"
 	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"     "holdout_blade_fury"
+	    "AbilityTextureName"     "juggernaut_blade_fury"
 	
 	    "MaxLevel"               "1"
 	
