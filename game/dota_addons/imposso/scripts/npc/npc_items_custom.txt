@@ -719,6 +719,96 @@
 	      }
 	    }
 	  }
+	"item_staff_druid_staff"
+	  {
+	    "ID"              "1113"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_eagle"
+	
+	    "AbilityCooldown"       "2"
+	    "AbilityManaCost"       "15"
+	    "AbilityCastPoint" "0.2"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "0"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    "ItemPermanent"     "1"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirits.vpcf"
+	        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_launch.vpcf"
+	        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
+	        "particle"  "particles/vera_main.vpcf"
+	        "particle"  "particles/vera_child.vpcf"
+	    }
+	
+	    "OnSpellStart"
+	    {
+	        "RunScript"
+	        {
+	            "ScriptFile"  "libraries/player_spells/druid/bear.lua"
+	            "Function"    "bird_form"
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"  "libraries/player_spells/druid/bear.lua"
+	            "Function"    "CastFireSpirits"
+	            "modifier_stack_name"   "modifier_fire_spirit_stack_datadriven"
+	            "sub_ability_name"      "dr_vera"
+	        }
+	
+	        "ApplyModifier"
+	        {
+	            "Target"         "CASTER"
+	            "ModifierName"    "modifier_fire_spirit_stack_datadriven"            
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	
+	        "modifier_fire_spirit_stack_datadriven"
+	        {
+	            "IsBuff"    "1"
+	            "IsPurgable"    "0"
+	            "Duration"  "12"
+	            
+	            "OnDestroy"
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"        "libraries/player_spells/druid/bear.lua"
+	                    "Function"          "RemoveFireSpirits"
+	                    
+	                    "sub_ability_name"  "dr_vera"
+	                }
+	
+	                "RunScript"
+	                {
+	                    "ScriptFile"  "libraries/player_spells/druid/bear.lua"
+	                    "Function"    "bird_revert"
+	                }
+	            }
+	        }
+	    }
+	  }
 	"item_team_revive_item"
 	  {
 	    "ID"              "1101"

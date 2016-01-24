@@ -145,6 +145,8 @@ function GameMode:OnHeroInGame(hero)
 
   player_gem[hero:GetPlayerOwnerID()] = 1
 
+  hero:SetAbilityPoints(0) 
+
   CustomGameEventManager:Send_ServerToAllClients("hide_mana_bar", {})
 
   CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(hero:GetPlayerOwnerID()), "update_resource", {
@@ -161,7 +163,7 @@ function GameMode:OnHeroInGame(hero)
 
   print(hero:GetUnitLabel())
 
-  for i=0, 10 do 
+  for i=0, 13 do 
       abHero = hero:GetAbilityByIndex(i)
       if abHero ~= nil then
         abHero:SetLevel(1)
@@ -282,7 +284,7 @@ function GameMode:Setup()
     local Quest = SpawnEntityFromTableSynchronous( "quest", { name = "QuestName", title = "#QuestTimer" } )
     local play_count = PlayerResource:GetPlayerCountForTeam(2)
 
-    local end_end = 8
+    local end_end = 80
 
     Quest.EndTime = end_end
 

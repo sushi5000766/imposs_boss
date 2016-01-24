@@ -15,7 +15,7 @@
     "Ability9"        "death_ability"
     "Ability10"       "mana_up_ab"
     "Ability11"       "health_up_ab"
-    "Ability12"       ""
+    "Ability12"       "dr_vera"
     "Ability13"       ""
     "Ability14"       ""
     "Ability15"       ""

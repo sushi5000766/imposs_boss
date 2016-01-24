@@ -18,11 +18,9 @@
 	        "Ability3"          "hell_fire"      // Ability 3.
 	        "Ability4"          "align_fire"      // Ability 4.
 	        "Ability5"          "fire_on_death"      // Ability 5.
-	        "Ability6"          "MassFireRaze"      // Ability 6 - Extra.
-	        "Ability7"          "fire_storm"      // Ability 7 - Extra.
-	        "Ability8"          "flame_strike"      // Ability 8 - Extra.
-	        "Ability9"			"flame_strike_five"
-	        "Ability10"			"fire_ball"
+	        "Ability6"          ""      // Ability 6 - Extra.
+	        "Ability7"          ""      // Ability 7 - Extra.
+	        "Ability8"          ""      // Ability 8 - Extra.
 	
 	        // Armor
 	        //----------------------------------------------------------------

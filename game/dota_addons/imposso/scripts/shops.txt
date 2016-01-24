@@ -16,6 +16,7 @@
   "attributes"
   {
     "item"    "item_testing_cheat"
+    "item"    "item_staff_druid_staff"
   }
 
   "weapons_armor"
