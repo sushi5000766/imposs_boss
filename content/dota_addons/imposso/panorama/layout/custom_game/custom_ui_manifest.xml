@@ -52,18 +52,18 @@
 
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_notifications.xml" /> 
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_attachments.xml" />
-    <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/cam_lock.xml" /> 
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/abilities.xml" />
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/manabar.xml" />
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/resource.xml" />
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/testing_ui.xml" />
     <CustomUIElement type="GameInfo"            layoutfile="file://{resources}/layout/custom_game/side_info.xml" />
+    <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/cam_lock.xml" />
     
     <!--<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/containers/container_base.xml" /-->
     <!--<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_progress.xml" /> -->
 
     <!-- From Overthrow.
-
+<CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/cam_lock.xml" />
         <CustomUIElement type="HudTopBar"           layoutfile="file://{resources}/layout/custom_game/multiteam_top_scoreboard.xml" />
         <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/overthrow_item_notification.xml" />
         <CustomUIElement type="GameSetup"           layoutfile="file://{resources}/layout/custom_game/team_select.xml" />

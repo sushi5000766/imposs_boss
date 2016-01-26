@@ -729,7 +729,7 @@
 	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
 	    "AbilityTextureName"      "item_eagle"
 	
-	    "AbilityCooldown"       "2"
+	    "AbilityCooldown"       "90"
 	    "AbilityManaCost"       "15"
 	    "AbilityCastPoint" "0.2"
 	

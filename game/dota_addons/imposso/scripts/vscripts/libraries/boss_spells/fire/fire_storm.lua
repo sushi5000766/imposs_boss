@@ -1,9 +1,9 @@
 function fireStorm( event )
 	local hCaster = event.caster
-	local Ymax = 7104 --Temporary
-	local Ymin = 4544
-	local Xmax = -3072
-	local Xmin = -6976 
+	local Ymax = 7260--Temporary
+	local Ymin = 4704
+	local Xmax = -2998
+	local Xmin = -7070
 	local i = 1
 	for i=1, 15 do
 		local spot = Vector(RandomInt(Xmin, Xmax), RandomInt(Ymin, Ymax), 0)

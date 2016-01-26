@@ -33,6 +33,7 @@ require('libraries/mechanics/boss_ai')
 require('libraries/mechanics/pseudoRNG')
 
 require('libraries/boss_spells/ai/fire_ai')
+require('libraries/boss_spells/ai/earth_ai')
 
 
 -- These internal libraries set up barebones's events and processes.  Feel free to inspect them/change them if you need to.
@@ -65,7 +66,7 @@ bossNames = {
   "chaos"
 }
 
-currentBoss = bossNames[1]
+currentBoss = bossNames[3]
 bossLocs = {}
 playerLocs = {}
 
@@ -79,6 +80,11 @@ heroTable = {}
 player_gem = {}
 player_deaths = {}
 total_deaths = {}
+earth_portals_open = true
+
+debug_drawing = true
+
+
 
 late_pick_bool = {}
 
@@ -284,7 +290,7 @@ function GameMode:Setup()
     local Quest = SpawnEntityFromTableSynchronous( "quest", { name = "QuestName", title = "#QuestTimer" } )
     local play_count = PlayerResource:GetPlayerCountForTeam(2)
 
-    local end_end = 80
+    local end_end = 16
 
     Quest.EndTime = end_end
 
@@ -394,7 +400,7 @@ function GameMode:ArenaStart()
           end
       end
       arena_count = arena_count + 1
-      FindClearSpaceForUnit(hero, arenaLOC, true)
+      FindClearSpaceForUnit(hero, playerLocs[currentBoss], true)
       player_deaths[k] = 0
       PlayerResource:SetCameraTarget(k, hero)
       Timers:CreateTimer(0.1, function()
@@ -416,7 +422,12 @@ function GameMode:ArenaStart()
   GameRules.Quest:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, 0 )
   GameRules.Quest:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, GameRules.Quest.KillLimit )
 
-  fireAI()
+  --stoping other bosses from using old ai
+
+  earthAI()
+  
+  --fireAI()
+  
   
 end
 

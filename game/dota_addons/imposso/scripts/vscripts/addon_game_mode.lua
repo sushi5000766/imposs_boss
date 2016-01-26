@@ -84,6 +84,9 @@ function Precache( context )
   PrecacheModel("models/heroes/viper/viper.vmdl", context)
   PrecacheModel("models/heroes/viper/viper.vmdl", context)
   PrecacheModel("models/items/warlock/golem/hellsworn_golem/hellsworn_golem.vmdl", context)
+  PrecacheModel("models/heroes/earthshaker/belt.vmdl", context)
+  PrecacheModel("models/heroes/earthshaker/bracers.vmdl", context)
+  PrecacheModel("models/heroes/earthshaker/totem.vmdl", context)
 
   -- Sounds can precached here like anything else
   PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts", context)

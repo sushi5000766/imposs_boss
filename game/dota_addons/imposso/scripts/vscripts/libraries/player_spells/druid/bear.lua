@@ -326,4 +326,3 @@ function RemoveFireSpirits( event )
 	ParticleManager:DestroyParticle( pfx, false )
 
 end
-

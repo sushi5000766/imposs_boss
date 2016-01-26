@@ -19,6 +19,8 @@ function shadow_step( event )
 	ParticleManager:SetParticleControl(tele_out_effect, 1, telePos)
 
 	FindClearSpaceForUnit(caster, telePos, true) 
+
+
 	caster:SetForwardVector((target:GetAbsOrigin()-caster:GetAbsOrigin()):Normalized())
 
 

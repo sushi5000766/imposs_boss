@@ -9,16 +9,16 @@ function light_follow(event)
 	projectile_bool = false
 
 	--Declare Points
-	cirONE = Vector(-5733, 5159, 129)
-	cirTWO = Vector(-6409, 5851, 129)
-	cirTHREE = Vector(-5735, 6632, 129)
-	cirFOUR = Vector(-4322, 6575, 129)
-	cirFIVE = Vector(-3591, 5858, 129)
-	cirSIX = Vector(-4328, 5164, 129)
+	cirONE = Vector(-5712, 5270, 257)
+	cirTWO = Vector(-6372, 5974, 257)
+	cirTHREE = Vector(-5724, 6702, 257)
+	cirFOUR = Vector(-4298, 6702, 257)
+	cirFIVE = Vector(-3564, 5978, 257)
+	cirSIX = Vector(-4312, 5280, 257)
 	
-	local eggX = -5475
-	local eggY = 5815
-	local eggZ = 129
+	local eggX = -5634
+	local eggY = 5974
+	local eggZ = 257
 	local eggSpot = Vector(eggX, eggY, eggZ)
 
 	--Create the Egg
@@ -91,7 +91,7 @@ function light_follow(event)
 
       		CustomGameEventManager:Send_ServerToAllClients("start_ability_timer", { 
 							  reference_number = 7,
-							  duration = 20
+							  duration = 25
 							  })
 
       		Timers:CreateTimer(function()
@@ -142,9 +142,14 @@ function light_follow(event)
 		      		FindClearSpaceForUnit(boss, spot_pick, true)
 		      		AddFOWViewer( DOTA_TEAM_GOODGUYS, spot_pick, 50, 0.25, false)
 
+		      		local Ymax = 7260--Temporary
+					local Ymin = 4704
+					local Xmax = -2998
+					local Xmin = -7070
+
 					--if egg is at dest then route new dest
 	      			if re_roll == true then
-	      				randomPOS = Vector(RandomFloat(-6976, -3072),RandomFloat(4544, 7104), 0)
+	      				randomPOS = Vector(RandomFloat(Xmin, Xmax),RandomFloat(Ymin, Ymax), 0)
 	      				re_roll = false
 	      			end
 
