@@ -73,3 +73,79 @@ function AutoAttack( event )
 
 		projectile = ProjectileManager:CreateLinearProjectile(info)
 end
+
+
+function Splash ( event )
+	local caster = event.caster
+	local damage = event.damage
+	local targetUnits = FindUnitsInRadius(
+		caster:GetTeamNumber(),
+		caster:GetAbsOrigin(), 
+		nil,
+		6000,
+		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE, 
+		FIND_ANY_ORDER, 
+		false)
+
+	local targetCount = 0
+
+	for _, unit in pairs(targetUnits) do
+		local unitInfluenced = unit:HasModifier("modifier_ais_influence")
+		if (unitInfluenced == true) and if (targetCount < 3) then
+			local damageTable = {
+				victim = unit,
+				attacker = caster,
+				damage = damage,
+				damage_type = DAMAGE_TYPE_PURE,
+			}
+
+			--ParticleManager:CreateParticle(string particleName, int particleAttach, handle owningEntity)
+			ApplyDamage(damageTable)
+			targetCount = targetCount + 1
+		end
+	end
+end
+
+function TidalWaves ( event )
+	local caster = event.caster
+	local damage = event.damage
+	local ability = event.ability
+
+	local spawnPoints = {
+		infoTarget1:GetAbsOrigin(),
+		infoTarget1:GetAbsOrigin(),
+		infoTarget1:GetAbsOrigin(),
+		infoTarget1:GetAbsOrigin(),
+	}
+
+	local centerOfArena = infoTargetCenter:GetAbsOrigin()
+	local spawnSelect = math.random(1, 4)
+
+	local dist = (centerOfArena - spawnPoints[spawnSelect]):Length2D()
+
+	local info = 
+		{
+			Ability = ability,
+			EffectName = "",
+			vSpawnOrigin = spawnPoints[spawnSelect],
+			fDistance = dist,
+			fStartRadius = 150,
+			fEndRadius = 150,
+			Source = caster,
+			bHasFrontalCone = false,
+			bReplaceExisting = false,
+			iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+			iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+			iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			fExpireTime = GameRules:GetGameTime() + 20.0,
+			bDeleteOnHit = false,
+			vVelocity = caster:GetForwardVector() * 100,
+			bProvidesVision = false,
+			iVisionRadius = 0,
+			iVisionTeamNumber = caster:GetTeamNumber()
+		}
+
+	projectile = ProjectileManager:CreateLinearProjectile(info)
+end

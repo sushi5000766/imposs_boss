@@ -6032,14 +6032,81 @@
 		          "Aura_ApplyToCaster" "0"	
 		        }
 
-		        "modifier_ai_ais_influence"
+		        "modifier_ais_influence"
 		        {
 		        	"Passive"		"0"
 		        	"IsHidden"		"0"		        	
 		        }
 		      }
 
+		}		
+	"ai_splash" //needs animations + sounds + precache + particle effect in lua
+		{
+		    // General  
+		    // ----------------------------------------------------------------------------------------
+		    "BaseClass"       				"ability_datadriven"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		    "AbilityCooldown"				"15"
+		    "AbilityTextureName"      		"tidehunter_anchor_smash"
+
+		    "AbilitySpecial"
+		    {
+		    	"01"
+		    	{
+		    		"var_type"			"FIELD_INTEGER"
+		    		"damage"			"325"
+		    	}
+		    }
+
+		    "OnSpellStart"
+		    {
+		    	"RunScript"
+		    	{
+		    		"ScriptFile"	"libraries/boss_spells/water/ai_the_water_serpent.lua"
+		    		"Function"		"Splash"
+		    		"damage"		"%damage"
+		    	}
+		    }
 		}
+	"ai_tidal_waves" //needs animations + sounds + precache + particle effect in lua + timers + multiple projectiles
+		{
+		    // General  
+		    // ----------------------------------------------------------------------------------------
+		    "BaseClass"       				"ability_datadriven"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		    "AbilityCooldown"				"15"
+		    "AbilityTextureName"      		"tidehunter_gush"
+
+		    "AbilitySpecial"
+		    {
+		    	"01"
+		    	{
+		    		"var_type"			"FIELD_INTEGER"
+		    		"damage"			"100"
+		    	}
+		    }
+
+		    "OnSpellStart"
+		    {
+		    	"RunScript"
+		    	{
+		    		"ScriptFile"	"libraries/boss_spells/water/ai_the_water_serpent.lua"
+		    		"Function"		"TidalWaves"
+		    		"damage"		"%damage"
+		    	}
+		    }
+
+		    "OnProjectileHitUnit"
+		    {
+		    	"DeleteOnHit"	"0"
+		    	"Damage"
+		    	{
+		    		"Target"		"TARGET"
+		    		"Type"			"DAMAGE_TYPE_MAGICAL"
+		    		"Damage"		"%damage"
+		    	}
+		    }
+		}	
 
 //============================================================================================
 // Gaven, The Brute
