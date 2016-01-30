@@ -17,7 +17,7 @@ function fire_boss_autoattack(event)
 	local info = 
 	{
 		Ability = hability,
-		EffectName = "particles/boss_auto.vpcf",
+		EffectName = "particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation_fire_arcana.vpcf",
 		vSpawnOrigin = hCaster:GetAbsOrigin() + Vector(0,0,180),
 		fDistance = dist,
 		fStartRadius = 0,

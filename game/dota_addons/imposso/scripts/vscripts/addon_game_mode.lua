@@ -19,7 +19,7 @@ function Precache( context )
   -- Particles can be precached individually or by folder
   -- It it likely that precaching a single particle system will precache all of its children, but this may not be guaranteed
   PrecacheResource("particle", "particles/econ/generic/generic_aoe_explosion_sphere_1/generic_aoe_explosion_sphere_1.vpcf", context)
-  PrecacheResource("particle", "particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation_desolator.vpcf", context)
+  PrecacheResource("particle", "particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation_fire_arcana.vpcf", context)
   PrecacheResource("particle", "particles/lina_base_attack2.vpcf", context)
   PrecacheResource("particle", "particles/invoker_chaos_meteor_fly2.vpcf", context)
   PrecacheResource("particle", "particles/meteor_shadow.vpcf", context)
@@ -77,6 +77,7 @@ function Precache( context )
 
   PrecacheResource("particle_folder", "particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_totem_buff_fire_egset.vpcf", context)
   PrecacheResource("particle_folder", "particles/test_particle", context)
+  PrecacheResource("particle_folder", "particles/econ/items/shadow_fiend", context)
 
   -- Models can also be precached by folder or individually
   -- PrecacheModel should generally used over PrecacheResource for individual models
@@ -101,6 +102,7 @@ function Precache( context )
   -- Custom units from npc_units_custom.txt can also have all of their abilities and precache{} blocks precached in this way
   PrecacheUnitByNameSync("npc_dota_hero_ancient_apparition", context)
   PrecacheUnitByNameSync("npc_dota_hero_enigma", context)
+  PrecacheUnitByNameSync("npc_boss_fire", context)
 end
 
 -- Create the game mode when we activate

@@ -4,7 +4,7 @@
 	    {
 	        // General
 	        "BaseClass"         "npc_dota_creature"  // Class of entity of link to.
-	        "Model"           "models/items/warlock/golem/hellsworn_golem/hellsworn_golem.vmdl"  // Model.
+	        "Model"             "models/heroes/shadow_fiend/shadow_fiend_arcana.vmdl"  // Model.
 	        "ModelScale"		"1.8"
 	        "SoundSet"          "Creep_Good_Range"          // Name of sound set.
 	        "Level"           "0"
@@ -95,9 +95,18 @@
 	        // Bots
 	        //----------------------------------------------------------------
 	        "AttackDesire"        "0"   // How much bots want to attack them vs other non-hero things
-	
-	    } 
 
+	        "Creature"
+	        {
+	            "AttachWearables"
+	            {
+	                "Wearable1"     { "ItemDef" "6996" }
+	                "Wearable2"     { "ItemDef" "486" }
+	                "Wearable3"     { "ItemDef" "488" }
+	                "Wearable4"     { "ItemDef" "509" }                
+	            }
+	        } 
+	    }
 	 "npc_boss_earth"
 	    {
 	        // General
