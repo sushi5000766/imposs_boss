@@ -6767,10 +6767,6 @@
 		    	}
 		    }
 		}	
-<<<<<<< HEAD
-
-=======
->>>>>>> 951e9ba8754b8a7b59c75eadf0f66390447370a7
 
 //============================================================================================
 // Gaven, The Brute
@@ -6852,6 +6848,7 @@
 			          }
 		      	}
 	      }
+
 
 	      "player_check_aura" // aura that checks if players are in range. else boss is powered up
 		      {
