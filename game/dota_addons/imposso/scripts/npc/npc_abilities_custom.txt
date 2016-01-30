@@ -6540,7 +6540,7 @@
 		    // General  
 		    // ----------------------------------------------------------------------------------------
 		    "BaseClass"       				"ability_datadriven"
-		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		    "FightRecapLevel"       		"1"
 		    "AbilityTextureName"      		"morphling_waveform"
 		
@@ -6554,12 +6554,12 @@
 		        "02"
 		        { 
 		            "var_type"  		"FIELD_INTEGER"
-		            "radius"			"100"
+		            "radius"			"200"
 		        }
 		        "03"
 		        { 
 		            "var_type"  		"FIELD_INTEGER"
-		            "projectile_speed" 	"200"
+		            "projectile_speed" 	"500"
 		        }
 		    }
 		
@@ -6590,18 +6590,11 @@
 
 		    "OnProjectileFinish"
 		      {
-		      	"FireEffect"
-		      	{
-		      		"EffectName"        ""
-		      		"EffectAttachType"  "world_origin"
-		      		"TargetPoint"       "POINT"
-		      	}
-
 		      	"ActOnTargets"
 		      	{
-		      		"TargetPoint"
+		      		"Target"
 		      		{
-		      			"Center"  	"POINT"
+		      			"Center"  	"PROJECTILE"
 		      			"Radius" 	"%radius"
 		      			"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		      			"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"

@@ -69,6 +69,9 @@ function Precache( context )
 
   PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_chen.vsndevts", context)
 
+  PrecacheResource("particle", "particles/units/heroes/hero_tidehunter/tidehunter_gush_upgrade.vpcf", context)
+  PrecacheResource("particle", "particles/water_boss_autoattack.vpcf", context)
+
 
  
 
@@ -103,6 +106,7 @@ function Precache( context )
   PrecacheUnitByNameSync("npc_dota_hero_ancient_apparition", context)
   PrecacheUnitByNameSync("npc_dota_hero_enigma", context)
   PrecacheUnitByNameSync("npc_boss_fire", context)
+  PrecacheUnitByNameSync("npc_boss_water", context)
 end
 
 -- Create the game mode when we activate

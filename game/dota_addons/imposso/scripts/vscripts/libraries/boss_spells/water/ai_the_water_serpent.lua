@@ -27,8 +27,8 @@ function AutoAttack( event )
 				local info = 
 				{
 					Ability = ability,
-					EffectName = "",
-					vSpawnOrigin = caster:GetAbsOrigin() + Vector(0, 0, 200),
+					EffectName = "particles/water_boss_autoattack.vpcf",
+					vSpawnOrigin = caster:GetAbsOrigin(),
 					fDistance = dist,
 					fStartRadius = radius,
 					fEndRadius = radius,
@@ -52,11 +52,11 @@ function AutoAttack( event )
 		local info = 
 		{
 			Ability = ability,
-			EffectName = "",
-			vSpawnOrigin = caster:GetAbsOrigin() + Vector(0, 0, 200),
+			EffectName = "particles/water_boss_autoattack.vpcf",
+			vSpawnOrigin = caster:GetAbsOrigin(),
 			fDistance = dist,
-			fStartRadius = radius,
-			fEndRadius = radius,
+			fStartRadius = 100,
+			fEndRadius = 100,
 			Source = caster,
 			bHasFrontalCone = false,
 			bReplaceExisting = false,
@@ -72,6 +72,7 @@ function AutoAttack( event )
 		}
 
 		projectile = ProjectileManager:CreateLinearProjectile(info)
+	end
 end
 
 
@@ -93,7 +94,7 @@ function Splash ( event )
 
 	for _, unit in pairs(targetUnits) do
 		local unitInfluenced = unit:HasModifier("modifier_ais_influence")
-		if (unitInfluenced == true) and if (targetCount < 3) then
+		if (unitInfluenced == true and targetCount < 3) then
 			local damageTable = {
 				victim = unit,
 				attacker = caster,
