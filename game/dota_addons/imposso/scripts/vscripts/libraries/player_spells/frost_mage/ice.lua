@@ -154,7 +154,7 @@ function ice_field( event )
 			if v:HasModifier("water_align") == true or v:HasModifier("water_align") == true then
 
 				local damageTable = {
-					victim = target,
+					victim = v,
 					attacker = caster,
 					damage = dam,
 					damage_type = DAMAGE_TYPE_MAGICAL,
@@ -164,7 +164,7 @@ function ice_field( event )
 
 			else
 				local damageTable = {
-					victim = target,
+					victim = v,
 					attacker = caster,
 					damage = damage,
 					damage_type = DAMAGE_TYPE_MAGICAL,

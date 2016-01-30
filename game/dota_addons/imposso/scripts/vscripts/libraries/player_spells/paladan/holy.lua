@@ -40,7 +40,7 @@ function strike_apply( event )
 	local caster = event.caster
 	local target = event.target
 	local ability = event.ability
-	ability:ApplyDataDrivenModifier(caster, caster, "strike_safe", {duration = 2})
+	--ability:ApplyDataDrivenModifier(caster, caster, "strike_safe", {duration = 2})
 	ability:ApplyDataDrivenModifier(caster, caster, "strike_speed", {duration = 9})
 end
 

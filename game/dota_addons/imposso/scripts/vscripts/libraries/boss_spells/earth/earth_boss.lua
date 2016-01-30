@@ -69,9 +69,13 @@ function earth_orb_stepped( event )
 				}
 				 
 				ApplyDamage(damageTable)
-				ability:ApplyDataDrivenModifier(caster, v, "earth_orb_stun", {duration = 1}) --[[Returns:void
-				No Description Set
-				]]
+
+				if difficulty_mode >=2 then
+					ability:ApplyDataDrivenModifier(caster, v, "earth_orb_stun", {duration = 1})
+					ability:ApplyDataDrivenModifier(caster, boss, "earth_protection", {duration = 3})
+				else
+					ability:ApplyDataDrivenModifier(caster, boss, "earth_protection", {duration = 1})
+				end
 			end
 		end
 
@@ -129,7 +133,9 @@ function earth_player_check( event )
 	end
 
 	if count == 0 then
-		caster:SetMana(caster:GetMana() + 85) 
+		if boss:HasModifier("ult_casting") == false then
+			caster:SetMana(caster:GetMana() + 85) 
+		end
 
 		if caster:HasModifier(mod_name) == false then
 
@@ -250,8 +256,8 @@ function earth_shock( event )
 
 
 		if player_count > 0 then
-			local picked = shock_table[RandomInt(1, player_count)]
-			local picked_pos = picked:GetAbsOrigin() 
+			local picked_earthshock = shock_table[RandomInt(1, player_count)]
+			local picked_pos = picked_earthshock:GetAbsOrigin() 
 
 			local count = 2
 
@@ -260,7 +266,7 @@ function earth_shock( event )
 			local shock_center = caster:GetAbsOrigin() + 250 * forward:Normalized()
 
 			if debug_drawing == true then
-				DebugDrawCircle(shock_center, Vector(255,255,255), 1, 500, true, 2)
+				DebugDrawCircle(picked_pos, Vector(255,255,255), 1, 500, true, 2)
 			end
 
 
@@ -306,15 +312,9 @@ function earth_charge( event )
 
 	local picked_unit = nil
 
-	local charge_table = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), nil, 4000.0, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)	
+	local charge_table = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), nil, 4000.0, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_FARTHEST, false)	
 	if charge_table ~= nil then
-		for k ,unit in pairs(charge_table) do
-			dist = (caster:GetAbsOrigin() - unit:GetAbsOrigin()):Length2D()		
-			if dist > counter then
-				counter = dist
-				picked_unit = unit
-			end			
-		end
+		picked_unit = charge_table[1]
 
 		if picked_unit:IsAlive() == true then
 			local order = 
@@ -337,10 +337,7 @@ function slam_boss_cast( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-
-	local forward = boss:GetForwardVector() * 250	
-
-	local slam_center = boss:GetAbsOrigin() + 250 * forward:Normalized()
+	local slam_center = keys.target_points[1]
 
 	local earth_slam_effect = ParticleManager:CreateParticle("particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_echoslam_start_fallback_low_egset.vpcf", PATTACH_ABSORIGIN, caster)
 	ParticleManager:SetParticleControl(earth_slam_effect, 0, slam_center)
@@ -372,7 +369,10 @@ function slam_boss_cast( keys )
 						}
 						 
 						ApplyDamage(damageTable)
-						ability:ApplyDataDrivenModifier(caster, unit, "earth_orb_stun_two", {duration = 1})
+
+						if difficulty_mode >=2 then
+							ability:ApplyDataDrivenModifier(caster, unit, "earth_orb_stun_two", {duration = 1})
+						end
 					end
 				end
 				v:ForceKill(false)
@@ -650,7 +650,14 @@ function earth_enrage( event )
 	local caster = event.caster
 	local ability = event.ability
 
+	local stun_ab = caster:FindAbilityByName("earth_boss_armor")
+
 	local center = bossLocs[currentBoss]
+
+	CustomGameEventManager:Send_ServerToAllClients("start_ability_timer", { 
+	  reference_number = 10,
+	  duration = 20
+	  })
 
 	caster:SetMana(0)
 
@@ -675,6 +682,40 @@ function earth_enrage( event )
 
 	Timers:CreateTimer(1, function()
 
+		local slam_group = FindUnitsInRadius(DOTA_TEAM_NEUTRALS, caster:GetAbsOrigin(), nil, 3000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+		if slam_group ~= nil then
+			for k,v in pairs(slam_group) do
+				if v:GetUnitLabel() == "earth_orb" then
+
+					local earth_orb_effect_slam = ParticleManager:CreateParticle("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, boss)
+					ParticleManager:SetParticleControl(earth_orb_effect_slam, 0, v:GetAbsOrigin())
+
+					if debug_drawing == true then
+						DebugDrawCircle(v:GetAbsOrigin(), Vector(255,0,0), 1, 250, true, 1)
+					end
+
+					local slam_orb_group = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, v:GetAbsOrigin(), nil, 250, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+					if slam_orb_group ~= nil then
+						for _,unit in pairs(slam_orb_group) do
+							local damageTable = {
+								victim = unit,
+								attacker = caster,
+								damage = 450,
+								damage_type = DAMAGE_TYPE_MAGICAL,
+							}
+							 
+							ApplyDamage(damageTable)
+
+							if difficulty_mode >=2 then
+								stun_ab:ApplyDataDrivenModifier(caster, unit, "earth_orb_stun_two", {duration = 1})
+							end
+						end
+					end
+					v:ForceKill(false)
+				end
+			end
+		end	
+
 		local enrage_group = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, center, nil, 4000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 		if enrage_group ~= nil then
 			for k,v in pairs(enrage_group) do				
@@ -687,8 +728,59 @@ function earth_enrage( event )
 	end)
 end
 
-function earth_resume( event )
+function earth_mana_check( event )
 
-	earthAI()
+	local caster = event.caster
+	local mod_name = "earth_diff_attack_damage"
+	local ability = boss:FindAbilityByName("earth_boss_armor")
+
+	if caster:GetMana() == caster:GetMaxMana() and boss:HasModifier("casting_mod") == false and boss:HasModifier("ult_casting") == false and boss:HasModifier("earth_charge_mod") == false and boss:HasModifier("pummel_channel") == false then
+
+		local newOrder = {
+	 		UnitIndex = boss:entindex(), 
+	 		OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+	 		AbilityIndex = boss:GetAbilityByIndex(9):GetEntityIndex(), 
+	 		Queue = 0
+	 	}
+		 
+		ExecuteOrderFromTable(newOrder)
+
+	end
+
+	if difficulty_mode >=3 then
+		if (boss:GetHealth() <= boss:GetMaxHealth() * 0.8) and (boss:GetHealth() > boss:GetMaxHealth() * 0.6) then
+			if caster:HasModifier(mod_name) == false then
+
+				ability:ApplyDataDrivenModifier(caster, caster, mod_name, nil) 
+
+				caster:SetModifierStackCount( mod_name, ability, 1)
+
+			end
+
+		elseif (boss:GetHealth() <= boss:GetMaxHealth() * 0.6) and (boss:GetHealth() > boss:GetMaxHealth() * 0.4) then
+
+			caster:SetModifierStackCount( mod_name, ability, 2)
+
+		elseif (boss:GetHealth() <= boss:GetMaxHealth() * 0.4) and (boss:GetHealth() > boss:GetMaxHealth() * 0.2) then
+
+			caster:SetModifierStackCount( mod_name, ability, 3)
+
+		elseif (boss:GetHealth() <= boss:GetMaxHealth() * 0.2) and boss:GetHealth() > 0 then
+
+			caster:SetModifierStackCount( mod_name, ability, 4)
+
+		end
+	end
+
+end
+
+function earth_boss_diff( event )
+	local caster = event.caster
+	local ability = event.ability
+
+	if difficulty_mode >=2 then
+		ability:ApplyDataDrivenModifier(caster, caster, "earth_diff_attack_speed", nil)
+	end
+
 end
 		

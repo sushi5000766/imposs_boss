@@ -3,9 +3,9 @@ function earthAI()
 	if run_bool == true then
 		print("ai started")
 						
-		--[[Timers:CreateTimer(25, function()	
+		Timers:CreateTimer(25, function()	
 			if run_bool == true then					
-				local shock = boss:GetAbilityByIndex(1)
+				local shock = boss:GetAbilityByIndex(0)
 				shock:SetLevel(1) 	
 				CustomGameEventManager:Send_ServerToAllClients("start_ability_timer", { 
 				  reference_number = 1,
@@ -99,81 +99,7 @@ function earthAI()
 			else
 				return 1
 			end
-		end)					
-			
-		Timers:CreateTimer(15, function()	
-			if run_bool == true then					
-				local slam = boss:GetAbilityByIndex(5)
-				slam:SetLevel(1) 	
-				CustomGameEventManager:Send_ServerToAllClients("start_ability_timer", { 
-				  reference_number = 5,
-				  duration = 2
-				  })
-
-				Timers:CreateTimer(2, function()
-
-					local forward = boss:GetForwardVector() * 250	
-
-					local shock_center = boss:GetAbsOrigin() + 250 * forward:Normalized()
-			
-					local newOrder = {
-						UnitIndex = boss:entindex(), 
-						OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-						Position = shock_center,
-						AbilityIndex = slam:entindex(), --Optional.  Only used when casting abilities
-					}
-
-					ExecuteOrderFromTable(newOrder)
-					print("cast slam")	
-				end)
-				
-				return RandomFloat(10, 40)
-			else
-				return 1
-			end
-		end)
-
-		Timers:CreateTimer(10, function()	
-			if run_bool == true then					
-				local barrage = boss:GetAbilityByIndex(7)
-				barrage:SetLevel(1) 	
-				CustomGameEventManager:Send_ServerToAllClients("start_ability_timer", { 
-				  reference_number = 7,
-				  duration = 2
-				  })
-			
-				boss:CastAbilityNoTarget(barrage, 0)
-				print("cast barrage")	
-				
-				return RandomFloat(15, 20)
-			else
-				return 1
-			end
-		end)
-
-		Timers:CreateTimer(10, function()	
-			if run_bool == true then					
-				local siesmic = boss:GetAbilityByIndex(8)
-				siesmic:SetLevel(1) 
-
-				if siesmic:IsCooldownReady() == true then	
-					CustomGameEventManager:Send_ServerToAllClients("start_ability_timer", { 
-					  reference_number = 8,
-					  duration = 2
-					  })
-
-					Timers:CreateTimer(2, function()
-				
-						boss:CastAbilityNoTarget(siesmic, 0)
-						print("cast siesmic")
-					end)	
-				end
-				
-				return 1
-			else
-				return 1
-			end
-		end)
+		end)			
 
 		Timers:CreateTimer(function()
 			if run_bool == true then
@@ -196,7 +122,7 @@ function earthAI()
 					return 1
 				end
 			end
-		end)]]--	
+		end)
 		
 	end
 end

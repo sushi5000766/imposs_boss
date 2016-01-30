@@ -136,6 +136,14 @@ function earth_top_portal(trigger)
 	local unit = trigger.activator
 	local num = unit:GetPlayerOwnerID()
 	local ability = boss:FindAbilityByName("earth_boss_armor")
+	local damage = 0
+
+	if difficulty_mode >=2 then
+		damage = 75
+	else
+		damage = 25
+	end
+
 
 	if unit:HasModifier('modifier_knockback') == false and earth_portals_open == true and unit:IsHero() == true then
 
@@ -178,9 +186,9 @@ function earth_top_portal(trigger)
 		--Damage and portal stacks
 
 		if unit:HasModifier("portal_stack") == false then
-			stack_damage = 25
+			stack_damage = damage
 		else
-			stack_damage = 25 * unit:GetModifierStackCount("portal_stack", ability)
+			stack_damage = damage * unit:GetModifierStackCount("portal_stack", ability)
 		end
 
 		local damageTable = {
@@ -213,6 +221,14 @@ function earth_right_portal(trigger)
 	local unit = trigger.activator
 	local num = unit:GetPlayerOwnerID()
 	local ability = boss:FindAbilityByName("earth_boss_armor")
+
+	local damage = 0
+
+	if difficulty_mode >=2 then
+		damage = 75
+	else
+		damage = 25
+	end
 
 	if unit:HasModifier('modifier_knockback') == false and earth_portals_open == true and unit:IsHero() == true then
 
@@ -257,9 +273,9 @@ function earth_right_portal(trigger)
 		--Damage and portal stacks
 
 		if unit:HasModifier("portal_stack") == false then
-			stack_damage = 25
+			stack_damage = damage
 		else
-			stack_damage = 25 * unit:GetModifierStackCount("portal_stack", ability)
+			stack_damage = damage * unit:GetModifierStackCount("portal_stack", ability)
 		end
 
 		local damageTable = {
@@ -292,6 +308,14 @@ function earth_bot_portal(trigger)
 	local unit = trigger.activator
 	local num = unit:GetPlayerOwnerID()
 	local ability = boss:FindAbilityByName("earth_boss_armor")
+
+	local damage = 0
+
+	if difficulty_mode >=2 then
+		damage = 75
+	else
+		damage = 25
+	end
 
 	if unit:HasModifier('modifier_knockback') == false and earth_portals_open == true and unit:IsHero() == true then
 
@@ -334,9 +358,9 @@ function earth_bot_portal(trigger)
 		--Damage and portal stacks
 
 		if unit:HasModifier("portal_stack") == false then
-			stack_damage = 25
+			stack_damage = damage
 		else
-			stack_damage = 25 * unit:GetModifierStackCount("portal_stack", ability)
+			stack_damage = damage * unit:GetModifierStackCount("portal_stack", ability)
 		end
 
 		local damageTable = {
@@ -369,6 +393,14 @@ function earth_left_portal(trigger)
 	local unit = trigger.activator
 	local num = unit:GetPlayerOwnerID()
 	local ability = boss:FindAbilityByName("earth_boss_armor")
+
+	local damage = 0
+
+	if difficulty_mode >=2 then
+		damage = 75
+	else
+		damage = 25
+	end
 
 	if unit:HasModifier('modifier_knockback') == false and earth_portals_open == true and unit:IsHero() == true then
 
@@ -411,9 +443,9 @@ function earth_left_portal(trigger)
 		--Damage and portal stacks
 
 		if unit:HasModifier("portal_stack") == false then
-			stack_damage = 0
+			stack_damage = damage
 		else
-			stack_damage = 25 * unit:GetModifierStackCount("portal_stack", ability)
+			stack_damage = damage * unit:GetModifierStackCount("portal_stack", ability)
 		end
 
 		local damageTable = {
@@ -440,4 +472,11 @@ function earth_left_portal(trigger)
 			
 		end
 	end
+end
+
+function arena_cuttoff( trigger )
+	local unit = trigger.activator
+	local num = unit:GetPlayerOwnerID()
+
+	unit:InterruptMotionControllers(true)
 end

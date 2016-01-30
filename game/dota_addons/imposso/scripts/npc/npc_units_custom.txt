@@ -1,6 +1,6 @@
 "DOTAUnits"
 {
-	"npc_boss_fire"
+	 "npc_boss_fire"
 	    {
 	        // General
 	        "BaseClass"         "npc_dota_creature"  // Class of entity of link to.
@@ -13,14 +13,16 @@
 	        // Abilities
 	        //----------------------------------------------------------------
 	
-	        "Ability1"          "boss_auto_attack"     // Ability 1.
-	        "Ability2"          "LightFollow"      // Ability 2.
-	        "Ability3"          "hell_fire"      // Ability 3.
-	        "Ability4"          "align_fire"      // Ability 4.
-	        "Ability5"          "fire_on_death"      // Ability 5.
-	        "Ability6"          ""      // Ability 6 - Extra.
-	        "Ability7"          ""      // Ability 7 - Extra.
-	        "Ability8"          ""      // Ability 8 - Extra.
+	        "Ability1"          "fire_raze"     // Ability 1.
+	        "Ability2"          "flame_strike_five"      // Ability 2.
+	        "Ability3"          "flame_strike"      // Ability 3.
+	        "Ability4"          "fire_ball"      // Ability 4.
+	        "Ability5"          "hell_fire"      // Ability 5.
+	        "Ability6"          "fire_storm"      // Ability 6 - Extra.
+	        "Ability7"          "flame_turbine"      // Ability 7 - Extra.
+	        "Ability8"          "light_follow"      // Ability 8 - Extra.
+
+
 	
 	        // Armor
 	        //----------------------------------------------------------------
@@ -170,7 +172,7 @@
 	        "StatusHealth"        "28000"     // Base health.
 	        "StatusHealthRegen"     "0"     // Health regeneration rate.
 	        "StatusMana"        "700"     // Base mana.
-	        "StatusManaRegen"     "10"     // Mana regeneration rate.
+	        "StatusManaRegen"     "5"     // Mana regeneration rate.
 
 	        "HealthBarOffset"           "400"
 
@@ -684,7 +686,7 @@
 	        //----------------------------------------------------------------
 	
 	        "Ability1"          "dummy_unit"     // Ability 1.
-	        "Ability2"          "egg_immolation"      // Ability 2.
+	        "Ability2"          "egg_kill_aura"      // Ability 2.
 	        "Ability3"          ""      // Ability 3.
 	        "Ability4"          ""      // Ability 4.
 	        "Ability5"          ""      // Ability 5.

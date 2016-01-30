@@ -84,26 +84,32 @@ function fury_p( event )
 
 	local p_dam = Pdamage * reduce
 
-	if target:HasModifier("shadow_align") == true then
-
-		local damageTable = {
-			victim = target,
-			attacker = caster,
-			damage = p_dam,
-			damage_type = DAMAGE_TYPE_MAGICAL,
-			}				 
-		ApplyDamage(damageTable)
-		print(p_dam)
+	if caster:IsChanneling() == false then 
+		target:RemoveModifierByName("modifier_dk_drain")
 
 	else
-		local damageTable = {
-			victim = target,
-			attacker = caster,
-			damage = Pdamage,
-			damage_type = DAMAGE_TYPE_MAGICAL,
-			}				 
-		ApplyDamage(damageTable)
-		print(Pdamage)
+
+		if target:HasModifier("shadow_align") == true then
+
+			local damageTable = {
+				victim = target,
+				attacker = caster,
+				damage = p_dam,
+				damage_type = DAMAGE_TYPE_MAGICAL,
+				}				 
+			ApplyDamage(damageTable)
+			print(p_dam)
+
+		else
+			local damageTable = {
+				victim = target,
+				attacker = caster,
+				damage = Pdamage,
+				damage_type = DAMAGE_TYPE_MAGICAL,
+				}				 
+			ApplyDamage(damageTable)
+			print(Pdamage)
+		end
 	end
 end
 

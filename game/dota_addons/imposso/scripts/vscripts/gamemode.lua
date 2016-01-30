@@ -23,11 +23,6 @@ require('libraries/animations')
 -- This library can be used for performing "Frankenstein" attachments on units
 require('libraries/attachments')
 
-require('libraries/boss_spells/fire/boss_auto')
-require('libraries/boss_spells/fire/ligh_follows')
-require('libraries/boss_spells/fire/fire_raze')
-require('libraries/boss_spells/fire/fire_storm')
-
 -- These libraries will contain game mechanics: Difficulty, Alignment, Boss States, Energy, PseudoRNG
 require('libraries/mechanics/boss_ai')
 require('libraries/mechanics/pseudoRNG')
@@ -81,6 +76,17 @@ player_gem = {}
 player_deaths = {}
 total_deaths = {}
 earth_portals_open = true
+
+--Difficulty set
+
+difficulty_mode = 3
+--[[
+1. very easy
+2. easy
+3. moderate
+4. normal
+5. hard
+]]
 
 debug_drawing = true
 
@@ -356,16 +362,7 @@ function GameMode:ArenaSetup()
     reference_number = 1
     })
 
-  for i=0, 10 do 
-    abBoss = boss:GetAbilityByIndex(i)
-    if abBoss ~= nil then
-      abBoss:SetLevel(1)
-      CustomGameEventManager:Send_ServerToAllClients("add_boss_ability", { 
-        reference_number = i,
-        ability_name = abBoss:GetAbilityName()
-      })
-    end
-  end
+  
    GameMode:ArenaStart()
 end
 
@@ -422,11 +419,8 @@ function GameMode:ArenaStart()
   GameRules.Quest:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, 0 )
   GameRules.Quest:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, GameRules.Quest.KillLimit )
 
-  --stoping other bosses from using old ai
-
-  earthAI()
   
-  --fireAI()
+  earth_AI()
   
   
 end

@@ -66,12 +66,27 @@ function meteor( event )
 	local reduction = ability:GetLevelSpecialValueFor( "reduction" , ability:GetLevel() - 1  )
 	local reduce = reduction / 100
 
+	local count = 4
+
 	local dam = damage * reduce
 
 	local meteor_fm_effect = ParticleManager:CreateParticle("particles/fm_meteor.vpcf", PATTACH_ABSORIGIN, target)
 	ParticleManager:SetParticleControl(meteor_fm_effect, 0, target:GetAbsOrigin() + Vector(0,0,1500))
 	ParticleManager:SetParticleControl(meteor_fm_effect, 1, target:GetAbsOrigin())
 	ParticleManager:SetParticleControl(meteor_fm_effect, 2, Vector(1.5,0,0))
+
+	Timers:CreateTimer(function()
+
+		ParticleManager:SetParticleControl(meteor_fm_effect, 1, target:GetAbsOrigin())
+		count = count - 0.2
+
+		if count > 0 then
+			return 0.2
+		else
+			return
+		end
+
+	end)
 
 	Timers:CreateTimer(1.5, function()
 
