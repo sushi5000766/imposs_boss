@@ -113,10 +113,20 @@ function TidalWaves ( event )
 	local caster = event.caster
 	local damage = event.damage
 	local ability = event.ability
-	local spawnWest = bossLocs["water"] + Vector(-500, 0, 0)
-	local spawnNorth = bossLocs["water"] + Vector(0, 500, 0)
-	local spawnEast = bossLocs["water"] + Vector(500, 0, 0)
-	local spawnSouth = bossLocs["water"] + Vector(0, -500, 0)
+	local spawnWest = bossLocs["water"] + Vector(-2000, 0, 0)
+	local spawnNorth = bossLocs["water"] + Vector(0, 2000, 0)
+	local spawnEast = bossLocs["water"] + Vector(2000, 0, 0)
+	local spawnSouth = bossLocs["water"] + Vector(0, -2000, 0)
+	print(" BOSS LOCATION")
+	print(bossLocs["water"])
+	print("WEST")
+	print(spawnWest)
+	print("EAST")
+	print(spawnEast)
+	print("NORTH")
+	print(spawnNorth)
+	print("SOUTH")
+	print(spawnSouth)
 
 	local spawnPoints = {
 		spawnWest,
@@ -131,29 +141,39 @@ function TidalWaves ( event )
 	waveCount = 0
 
 	Timers:CreateTimer( function()
-		)
+		local spawnLocation = spawnPoints[spawnSelect]
+		print(spawnLocation)
+		MinimapEvent( DOTA_TEAM_GOODGUYS, caster, spawnLocation.x, spawnLocation.y, DOTA_MINIMAP_EVENT_HINT_LOCATION, 5 )
 
-	local info = 
-		{
-			Ability = ability,
-			EffectName = "particles/water_boss_autoattack.vpcf",
-			vSpawnOrigin = spawnPoints[spawnSelect],
-			fDistance = dist,
-			fStartRadius = 150,
-			fEndRadius = 150,
-			Source = caster,
-			bHasFrontalCone = false,
-			bReplaceExisting = false,
-			iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-			iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
-			iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-			fExpireTime = GameRules:GetGameTime() + 20.0,
-			bDeleteOnHit = false,
-			vVelocity = caster:GetForwardVector() * 100,
-			bProvidesVision = false,
-			iVisionRadius = 0,
-			iVisionTeamNumber = caster:GetTeamNumber()
-		}
+		local info = 
+			{
+				Ability = ability,
+				EffectName = "particles/water_boss_autoattack.vpcf",
+				vSpawnOrigin = spawnLocation,
+				fDistance = dist,
+				fStartRadius = 150,
+				fEndRadius = 150,
+				Source = caster,
+				bHasFrontalCone = false,
+				bReplaceExisting = false,
+				iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+				iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+				iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+				fExpireTime = GameRules:GetGameTime() + 20.0,
+				bDeleteOnHit = false,
+				vVelocity = dist:Normalized() * 200,
+				bProvidesVision = false,
+				iVisionRadius = 0,
+				iVisionTeamNumber = caster:GetTeamNumber()
+			}
 
-	projectile = ProjectileManager:CreateLinearProjectile(info)
+		ProjectileManager:CreateLinearProjectile(info)
+
+		waveCount = waveCount + 1
+
+		if waveCount < 24 then
+			return 0.1
+		end
+	end
+	)
 end
