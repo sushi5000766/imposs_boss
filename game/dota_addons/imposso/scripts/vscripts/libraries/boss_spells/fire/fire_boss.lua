@@ -422,6 +422,10 @@ function light_follow(event)
 	local hability = event.ability
 	hCaster:SetMana(0)
 
+	EmitGlobalSound("Imposs.boss_fire_ult") --[[Returns:void
+	Play named sound for all players
+	]]
+
 	projectile_bool = false
 
 	--Declare Points
@@ -808,4 +812,8 @@ function enrage( event )
 		 
 		ExecuteOrderFromTable(newOrder)	
 	end
+end
+
+function fire_start_sound()
+	EmitGlobalSound("Imposs.boss_fire_start")
 end

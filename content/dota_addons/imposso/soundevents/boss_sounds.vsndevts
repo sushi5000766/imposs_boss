@@ -1,0 +1,284 @@
+"Imposs.boss_fire_ult"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"          "sos_reference_stack"
+                "reference_stack"           "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/fire_boss_ult.vsnd"
+                        }
+                    }
+                    "volume_min"
+                    {
+                        "value"     "2.000000"
+                    }
+                    "volume_max"
+                    {
+                        "value"     "2.000000"
+                    }
+                    "pitch_min"
+                    {
+                        "value"     "1.000000"
+                    }
+                    "pitch_max"
+                    {
+                        "value"     "0.051000"
+                    }
+                    "chan_type"
+                    {
+                        "value"     "6"
+                    }
+                    "memory_type"
+                    {
+                        "value"     "0"
+                    }
+                    "soundlevel_min"
+                    {
+                        "value"     "100.000000"
+                    }
+                    "soundlevel_max"
+                    {
+                        "value"     "100.000000"
+                    }
+                }
+            }
+        }
+    }
+}
+
+"Imposs.boss_fire_start"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"          "sos_reference_stack"
+                "reference_stack"           "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/fire_boss_start.vsnd"
+                        }
+                    }
+                    "volume_min"
+                    {
+                        "value"     "2.000000"
+                    }
+                    "volume_max"
+                    {
+                        "value"     "2.000000"
+                    }
+                    "pitch_min"
+                    {
+                        "value"     "1.000000"
+                    }
+                    "pitch_max"
+                    {
+                        "value"     "0.051000"
+                    }
+                    "chan_type"
+                    {
+                        "value"     "6"
+                    }
+                    "memory_type"
+                    {
+                        "value"     "0"
+                    }
+                    "soundlevel_min"
+                    {
+                        "value"     "100.000000"
+                    }
+                    "soundlevel_max"
+                    {
+                        "value"     "100.000000"
+                    }
+                }
+            }
+        }
+    }
+}
+
+"Imposs.boss_earth_start"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"          "sos_reference_stack"
+                "reference_stack"           "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/earth_boss_start.vsnd"
+                        }
+                    }
+                    "volume_min"
+                    {
+                        "value"     "2.000000"
+                    }
+                    "volume_max"
+                    {
+                        "value"     "2.000000"
+                    }
+                    "pitch_min"
+                    {
+                        "value"     "1.000000"
+                    }
+                    "pitch_max"
+                    {
+                        "value"     "0.051000"
+                    }
+                    "chan_type"
+                    {
+                        "value"     "6"
+                    }
+                    "memory_type"
+                    {
+                        "value"     "0"
+                    }
+                    "soundlevel_min"
+                    {
+                        "value"     "100.000000"
+                    }
+                    "soundlevel_max"
+                    {
+                        "value"     "100.000000"
+                    }
+                }
+            }
+        }
+    }
+}
+
+"Imposs.boss_earth_ult"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"          "sos_reference_stack"
+                "reference_stack"           "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/earth_boss_ult.vsnd"
+                        }
+                    }
+                    "volume_min"
+                    {
+                        "value"     "2.000000"
+                    }
+                    "volume_max"
+                    {
+                        "value"     "2.000000"
+                    }
+                    "pitch_min"
+                    {
+                        "value"     "1.000000"
+                    }
+                    "pitch_max"
+                    {
+                        "value"     "0.051000"
+                    }
+                    "chan_type"
+                    {
+                        "value"     "6"
+                    }
+                    "memory_type"
+                    {
+                        "value"     "0"
+                    }
+                    "soundlevel_min"
+                    {
+                        "value"     "100.000000"
+                    }
+                    "soundlevel_max"
+                    {
+                        "value"     "100.000000"
+                    }
+                }
+            }
+        }
+    }
+}
+
+"Imposs.boss_earth_yell"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"          "sos_reference_stack"
+                "reference_stack"           "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/earth_boss_yell.vsnd"
+                        }
+                    }
+                    "volume_min"
+                    {
+                        "value"     "10.000000"
+                    }
+                    "volume_max"
+                    {
+                        "value"     "10.000000"
+                    }
+                    "pitch_min"
+                    {
+                        "value"     "1.000000"
+                    }
+                    "pitch_max"
+                    {
+                        "value"     "0.051000"
+                    }
+                    "chan_type"
+                    {
+                        "value"     "6"
+                    }
+                    "memory_type"
+                    {
+                        "value"     "0"
+                    }
+                    "soundlevel_min"
+                    {
+                        "value"     "100.000000"
+                    }
+                    "soundlevel_max"
+                    {
+                        "value"     "100.000000"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -6106,6 +6106,15 @@
 		        "Passive" "1"
 		        "IsPurgable"  "0"
 		        "IsHidden"  "0"
+
+		        "OnCreated"
+		        {
+		        	"RunScript"
+				      {
+				        "ScriptFile"  "libraries/boss_spells/fire/fire_boss.lua"
+				        "Function"    "fire_start_sound"
+				      }
+		        }
 		      }
 
 		      "boss_line_attack"
@@ -6150,6 +6159,8 @@
 		         {
 		           "MODIFIER_STATE_NO_UNIT_COLLISION"    "MODIFIER_STATE_VALUE_ENABLED"
 		         }
+
+
 		    }
 
 		    "fire_dot"
@@ -6610,31 +6621,7 @@
 		      			}
 		      		}
 		      	}
-		      }
-
-		    "OnProjectileHitUnit"
-			{
-				"ActOnTargets"
-				{
-					"Target"
-					{
-						"Center"  	"TARGET"
-						"Radius" 	"%radius"
-						"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-						"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-					}
-				
-					"Action"    
-					{
-						"Damage"
-						{
-							"Target"		"TARGET"
-							"Type"			"DAMAGE_TYPE_MAGICAL"
-							"Damage"		"100"
-						}
-					}
-				}
-			}  
+		      }  
 		}
 	"ai_burst" //needs animations + sounds + precache
 		{

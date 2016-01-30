@@ -237,6 +237,10 @@ end
 function imtimidate_purge( event )
 	local target = event.target
 
+	EmitGlobalSound("Imposs.earth_boss_yell") --[[Returns:void
+	Play named sound for all players
+	]]
+
 	target:Purge( true, false, false, false, false )
 end
 
@@ -650,6 +654,10 @@ function earth_enrage( event )
 	local caster = event.caster
 	local ability = event.ability
 
+	EmitGlobalSound("Imposs.earth_boss_ult") --[[Returns:void
+	Play named sound for all players
+	]]
+
 	local stun_ab = caster:FindAbilityByName("earth_boss_armor")
 
 	local center = bossLocs[currentBoss]
@@ -777,6 +785,10 @@ end
 function earth_boss_diff( event )
 	local caster = event.caster
 	local ability = event.ability
+
+	EmitGlobalSound("Imposs.earth_boss_start") --[[Returns:void
+	Play named sound for all players
+	]]
 
 	if difficulty_mode >=2 then
 		ability:ApplyDataDrivenModifier(caster, caster, "earth_diff_attack_speed", nil)
