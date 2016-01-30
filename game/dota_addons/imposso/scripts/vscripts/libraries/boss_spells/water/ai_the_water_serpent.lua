@@ -113,23 +113,30 @@ function TidalWaves ( event )
 	local caster = event.caster
 	local damage = event.damage
 	local ability = event.ability
+	local spawnWest = bossLocs["water"] + Vector(-500, 0, 0)
+	local spawnNorth = bossLocs["water"] + Vector(0, 500, 0)
+	local spawnEast = bossLocs["water"] + Vector(500, 0, 0)
+	local spawnSouth = bossLocs["water"] + Vector(0, -500, 0)
 
 	local spawnPoints = {
-		infoTarget1:GetAbsOrigin(),
-		infoTarget1:GetAbsOrigin(),
-		infoTarget1:GetAbsOrigin(),
-		infoTarget1:GetAbsOrigin(),
+		spawnWest,
+		spawnNorth,
+		spawnEast,
+		spawnSouth
 	}
-
-	local centerOfArena = infoTargetCenter:GetAbsOrigin()
 	local spawnSelect = math.random(1, 4)
 
-	local dist = (centerOfArena - spawnPoints[spawnSelect]):Length2D()
+	local dist = (bossLocs["water"] - spawnPoints[spawnSelect]):Length2D()
+
+	waveCount = 0
+
+	Timers:CreateTimer( function()
+		)
 
 	local info = 
 		{
 			Ability = ability,
-			EffectName = "",
+			EffectName = "particles/water_boss_autoattack.vpcf",
 			vSpawnOrigin = spawnPoints[spawnSelect],
 			fDistance = dist,
 			fStartRadius = 150,
