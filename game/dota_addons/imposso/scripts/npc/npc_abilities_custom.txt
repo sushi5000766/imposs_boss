@@ -6610,7 +6610,31 @@
 		      			}
 		      		}
 		      	}
-		      }  
+		      }
+
+		    "OnProjectileHitUnit"
+			{
+				"ActOnTargets"
+				{
+					"Target"
+					{
+						"Center"  	"TARGET"
+						"Radius" 	"%radius"
+						"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+						"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					}
+				
+					"Action"    
+					{
+						"Damage"
+						{
+							"Target"		"TARGET"
+							"Type"			"DAMAGE_TYPE_MAGICAL"
+							"Damage"		"100"
+						}
+					}
+				}
+			}  
 		}
 	"ai_burst" //needs animations + sounds + precache
 		{
