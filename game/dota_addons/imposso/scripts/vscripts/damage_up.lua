@@ -185,10 +185,10 @@ function earth_top_portal(trigger)
 
 		--Damage and portal stacks
 
-		if unit:HasModifier("portal_stack") == false then
+		if unit:HasModifier("modifier_earth_portal_stack") == false then
 			stack_damage = damage
 		else
-			stack_damage = damage * unit:GetModifierStackCount("portal_stack", ability)
+			stack_damage = damage * unit:GetModifierStackCount("modifier_earth_portal_stack", ability)
 		end
 
 		local damageTable = {
@@ -200,18 +200,18 @@ function earth_top_portal(trigger)
 		 
 		ApplyDamage(damageTable)
 
-		if unit:HasModifier("portal_stack") == false then
+		if unit:HasModifier("modifier_earth_portal_stack") == false then
 
-			ability:ApplyDataDrivenModifier(boss, unit, "portal_stack", nil) 
+			ability:ApplyDataDrivenModifier(boss, unit, "modifier_earth_portal_stack", nil) 
 
-			unit:SetModifierStackCount( "portal_stack", ability, 1)
+			unit:SetModifierStackCount( "modifier_earth_portal_stack", ability, 1)
 
-		elseif unit:HasModifier("portal_stack") == true then
-			local stack_count = unit:GetModifierStackCount("portal_stack", ability)
+		elseif unit:HasModifier("modifier_earth_portal_stack") == true then
+			local stack_count = unit:GetModifierStackCount("modifier_earth_portal_stack", ability)
 				
 			local stack_count = stack_count + 1
 
-			unit:SetModifierStackCount( "portal_stack", ability, stack_count)
+			unit:SetModifierStackCount( "modifier_earth_portal_stack", ability, stack_count)
 			
 		end
 	end
@@ -272,10 +272,10 @@ function earth_right_portal(trigger)
 
 		--Damage and portal stacks
 
-		if unit:HasModifier("portal_stack") == false then
+		if unit:HasModifier("modifier_earth_portal_stack") == false then
 			stack_damage = damage
 		else
-			stack_damage = damage * unit:GetModifierStackCount("portal_stack", ability)
+			stack_damage = damage * unit:GetModifierStackCount("modifier_earth_portal_stack", ability)
 		end
 
 		local damageTable = {
@@ -287,18 +287,18 @@ function earth_right_portal(trigger)
 		 
 		ApplyDamage(damageTable)
 
-		if unit:HasModifier("portal_stack") == false then
+		if unit:HasModifier("modifier_earth_portal_stack") == false then
 
-			ability:ApplyDataDrivenModifier(boss, unit, "portal_stack", nil) 
+			ability:ApplyDataDrivenModifier(boss, unit, "modifier_earth_portal_stack", nil) 
 
-			unit:SetModifierStackCount( "portal_stack", ability, 1)
+			unit:SetModifierStackCount( "modifier_earth_portal_stack", ability, 1)
 
-		elseif unit:HasModifier("portal_stack") == true then
-			local stack_count = unit:GetModifierStackCount("portal_stack", ability)
+		elseif unit:HasModifier("modifier_earth_portal_stack") == true then
+			local stack_count = unit:GetModifierStackCount("modifier_earth_portal_stack", ability)
 				
 			local stack_count = stack_count + 1
 
-			unit:SetModifierStackCount( "portal_stack", ability, stack_count)
+			unit:SetModifierStackCount( "modifier_earth_portal_stack", ability, stack_count)
 			
 		end
 	end
@@ -357,10 +357,10 @@ function earth_bot_portal(trigger)
 
 		--Damage and portal stacks
 
-		if unit:HasModifier("portal_stack") == false then
+		if unit:HasModifier("modifier_earth_portal_stack") == false then
 			stack_damage = damage
 		else
-			stack_damage = damage * unit:GetModifierStackCount("portal_stack", ability)
+			stack_damage = damage * unit:GetModifierStackCount("modifier_earth_portal_stack", ability)
 		end
 
 		local damageTable = {
@@ -372,18 +372,18 @@ function earth_bot_portal(trigger)
 		 
 		ApplyDamage(damageTable)
 
-		if unit:HasModifier("portal_stack") == false then
+		if unit:HasModifier("modifier_earth_portal_stack") == false then
 
-			ability:ApplyDataDrivenModifier(boss, unit, "portal_stack", nil) 
+			ability:ApplyDataDrivenModifier(boss, unit, "modifier_earth_portal_stack", nil) 
 
-			unit:SetModifierStackCount( "portal_stack", ability, 1)
+			unit:SetModifierStackCount( "modifier_earth_portal_stack", ability, 1)
 
-		elseif unit:HasModifier("portal_stack") == true then
-			local stack_count = unit:GetModifierStackCount("portal_stack", ability)
+		elseif unit:HasModifier("modifier_earth_portal_stack") == true then
+			local stack_count = unit:GetModifierStackCount("modifier_earth_portal_stack", ability)
 				
 			local stack_count = stack_count + 1
 
-			unit:SetModifierStackCount( "portal_stack", ability, stack_count)
+			unit:SetModifierStackCount( "modifier_earth_portal_stack", ability, stack_count)
 			
 		end
 	end
@@ -442,10 +442,10 @@ function earth_left_portal(trigger)
 
 		--Damage and portal stacks
 
-		if unit:HasModifier("portal_stack") == false then
+		if unit:HasModifier("modifier_earth_portal_stack") == false then
 			stack_damage = damage
 		else
-			stack_damage = damage * unit:GetModifierStackCount("portal_stack", ability)
+			stack_damage = damage * unit:GetModifierStackCount("modifier_earth_portal_stack", ability)
 		end
 
 		local damageTable = {
@@ -457,18 +457,18 @@ function earth_left_portal(trigger)
 		 
 		ApplyDamage(damageTable)
 
-		if unit:HasModifier("portal_stack") == false then
+		if unit:HasModifier("modifier_earth_portal_stack") == false then
 
-			ability:ApplyDataDrivenModifier(boss, unit, "portal_stack", nil) 
+			ability:ApplyDataDrivenModifier(boss, unit, "modifier_earth_portal_stack", nil) 
 
-			unit:SetModifierStackCount( "portal_stack", ability, 1)
+			unit:SetModifierStackCount( "modifier_earth_portal_stack", ability, 1)
 
-		elseif unit:HasModifier("portal_stack") == true then
-			local stack_count = unit:GetModifierStackCount("portal_stack", ability)
+		elseif unit:HasModifier("modifier_earth_portal_stack") == true then
+			local stack_count = unit:GetModifierStackCount("modifier_earth_portal_stack", ability)
 				
 			local stack_count = stack_count + 1
 
-			unit:SetModifierStackCount( "portal_stack", ability, stack_count)
+			unit:SetModifierStackCount( "modifier_earth_portal_stack", ability, stack_count)
 			
 		end
 	end

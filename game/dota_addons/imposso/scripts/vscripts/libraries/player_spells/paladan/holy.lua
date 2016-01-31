@@ -20,8 +20,8 @@ function blessing_check( event )
 	Timers:CreateTimer(function()
 		buff_time = buff_time - 0.1
 		if target:GetHealth() == 1 then
-			target:RemoveModifierByName("blessing_mod")
-			ability:ApplyDataDrivenModifier(caster, target, "protection_mod", {duration = 3})
+			target:RemoveModifierByName("modifier_pl_blessing")
+			ability:ApplyDataDrivenModifier(caster, target, "modifier_pl_protection", {duration = 3})
 			buff_time = 0
 		end
 
@@ -41,7 +41,7 @@ function strike_apply( event )
 	local target = event.target
 	local ability = event.ability
 	--ability:ApplyDataDrivenModifier(caster, caster, "strike_safe", {duration = 2})
-	ability:ApplyDataDrivenModifier(caster, caster, "strike_speed", {duration = 9})
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_pl_strike_onhit", {duration = 9})
 end
 
 function paly_mana( event )

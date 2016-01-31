@@ -11,7 +11,7 @@ function earth_orb_spawn( event )
 	local earthYmin = 3360
 	local earthYmax = 7141
 
-	local chance = RandomInt(1, 10)	
+	local chance = RandomInt(1, 8)	
 
 	if chance == 1 then
 
@@ -39,7 +39,7 @@ function earth_orb_stepped( event )
 	local caster = event.caster
 	local ability = event.ability
 
-	local mod_name = "earth_damage_stack"
+	local mod_name = "modifier_earth_boss_damage_stack"
 
 	if caster:HasModifier(mod_name) == true then
 
@@ -71,7 +71,7 @@ function earth_orb_stepped( event )
 				ApplyDamage(damageTable)
 
 				if difficulty_mode >=2 then
-					ability:ApplyDataDrivenModifier(caster, v, "earth_orb_stun", {duration = 1})
+					ability:ApplyDataDrivenModifier(caster, v, "modifier_earth_orb_stun", {duration = 1})
 					ability:ApplyDataDrivenModifier(caster, boss, "earth_protection", {duration = 3})
 				else
 					ability:ApplyDataDrivenModifier(caster, boss, "earth_protection", {duration = 1})
@@ -107,7 +107,7 @@ end
 function earth_player_check( event )
 	local caster = event.caster
 	local ability = event.ability
-	local mod_name = "earth_damage_stack"
+	local mod_name = "modifier_earth_boss_damage_stack"
 
 	local siesmic_ab = caster:FindAbilityByName("earth_boss_siesmic")
 
@@ -126,14 +126,14 @@ function earth_player_check( event )
 	local player_group = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), nil, 600, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	if player_group ~= nil then
 		for k,v in pairs(player_group) do
-			if v:HasModifier("player_check_effect") == true then --checks for melee range aura on player
+			if v:HasModifier("modifier_earth_player_check_effect") == true then --checks for melee range aura on player
 				count = count + 1
 			end
 		end
 	end
 
 	if count == 0 then
-		if boss:HasModifier("ult_casting") == false then
+		if boss:HasModifier("modifier_earth_ult_casting") == false then
 			caster:SetMana(caster:GetMana() + 85) 
 		end
 
@@ -237,7 +237,7 @@ end
 function imtimidate_purge( event )
 	local target = event.target
 
-	EmitGlobalSound("Imposs.earth_boss_yell") --[[Returns:void
+	EmitGlobalSound("Imposs.boss_earth_yell") --[[Returns:void
 	Play named sound for all players
 	]]
 
@@ -290,7 +290,7 @@ function earth_shock( event )
 						}
 						 
 						ApplyDamage(damageTable)
-						ability:ApplyDataDrivenModifier(caster, v, "earthshock_slow", {duration = 2}) --[[Returns:void
+						ability:ApplyDataDrivenModifier(caster, v, "modifier_earth_earthshock_slow", {duration = 2}) --[[Returns:void
 						No Description Set
 						]]
 					end
@@ -331,7 +331,7 @@ function earth_charge( event )
 			ExecuteOrderFromTable(order)
 		else
 			target:Stop()
-			caster:RemoveModifierByName("earth_charge_mod")
+			caster:RemoveModifierByName("modifier_earth_charge")
 		end
 
 	end
@@ -375,7 +375,7 @@ function slam_boss_cast( keys )
 						ApplyDamage(damageTable)
 
 						if difficulty_mode >=2 then
-							ability:ApplyDataDrivenModifier(caster, unit, "earth_orb_stun_two", {duration = 1})
+							ability:ApplyDataDrivenModifier(caster, unit, "modifier_earth_orb_stun_two", {duration = 1})
 						end
 					end
 				end
@@ -410,7 +410,7 @@ function earth_quake( event )
 		local qauke_group = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, quake_center, nil, 500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 		if qauke_group ~= nil then
 			for k,v in pairs(qauke_group) do
-				ability:ApplyDataDrivenModifier(caster, v, "earthquake_debuff", {duration = 1})
+				ability:ApplyDataDrivenModifier(caster, v, "modifier_earth_earthquake_debuff", {duration = 1})
 			end
 		end
 		count = count - 1
@@ -618,7 +618,7 @@ end
 function siesmic_hit( event )
 	local unit = event.target
 
-	if unit:HasModifier("player_check_effect") == true then
+	if unit:HasModifier("modifier_earth_player_check_effect") == true then
 		local damageTable = {
 			victim = unit,
 			attacker = boss,
@@ -654,9 +654,7 @@ function earth_enrage( event )
 	local caster = event.caster
 	local ability = event.ability
 
-	EmitGlobalSound("Imposs.earth_boss_ult") --[[Returns:void
-	Play named sound for all players
-	]]
+	
 
 	local stun_ab = caster:FindAbilityByName("earth_boss_armor")
 
@@ -688,6 +686,8 @@ function earth_enrage( event )
 		end
 	end)
 
+
+
 	Timers:CreateTimer(1, function()
 
 		local slam_group = FindUnitsInRadius(DOTA_TEAM_NEUTRALS, caster:GetAbsOrigin(), nil, 3000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
@@ -715,7 +715,7 @@ function earth_enrage( event )
 							ApplyDamage(damageTable)
 
 							if difficulty_mode >=2 then
-								stun_ab:ApplyDataDrivenModifier(caster, unit, "earth_orb_stun_two", {duration = 1})
+								stun_ab:ApplyDataDrivenModifier(caster, unit, "modifier_earth_orb_stun", {duration = 1})
 							end
 						end
 					end
@@ -727,7 +727,7 @@ function earth_enrage( event )
 		local enrage_group = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, center, nil, 4000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 		if enrage_group ~= nil then
 			for k,v in pairs(enrage_group) do				
-				ability:ApplyDataDrivenModifier(caster, v, "earth_enrage_slow", {duration = 18}) 
+				ability:ApplyDataDrivenModifier(caster, v, "modifier_earth_enrage_slow", {duration = 18}) 
 			end
 		end
 
@@ -739,10 +739,10 @@ end
 function earth_mana_check( event )
 
 	local caster = event.caster
-	local mod_name = "earth_diff_attack_damage"
+	local mod_name = "modifier_earth_diff_attack_damage"
 	local ability = boss:FindAbilityByName("earth_boss_armor")
 
-	if caster:GetMana() == caster:GetMaxMana() and boss:HasModifier("casting_mod") == false and boss:HasModifier("ult_casting") == false and boss:HasModifier("earth_charge_mod") == false and boss:HasModifier("pummel_channel") == false then
+	if caster:GetMana() == caster:GetMaxMana() and boss:HasModifier("modifier_earth_casting") == false and boss:HasModifier("modifier_earth_ult_casting") == false and boss:HasModifier("modifier_earth_charge") == false and boss:HasModifier("modifier_earth_pummel_animation") == false then
 
 		local newOrder = {
 	 		UnitIndex = boss:entindex(), 
@@ -750,6 +750,8 @@ function earth_mana_check( event )
 	 		AbilityIndex = boss:GetAbilityByIndex(9):GetEntityIndex(), 
 	 		Queue = 0
 	 	}
+
+	 	EmitGlobalSound("Imposs.boss_earth_ult")
 		 
 		ExecuteOrderFromTable(newOrder)
 
@@ -786,12 +788,12 @@ function earth_boss_diff( event )
 	local caster = event.caster
 	local ability = event.ability
 
-	EmitGlobalSound("Imposs.earth_boss_start") --[[Returns:void
+	EmitGlobalSound("Imposs.boss_earth_start") --[[Returns:void
 	Play named sound for all players
 	]]
 
 	if difficulty_mode >=2 then
-		ability:ApplyDataDrivenModifier(caster, caster, "earth_diff_attack_speed", nil)
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_earth_diff_attack_speed", nil)
 	end
 
 end

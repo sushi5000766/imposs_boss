@@ -421,6 +421,7 @@ function light_follow(event)
 	local hCaster = event.caster
 	local hability = event.ability
 	hCaster:SetMana(0)
+	hCaster:SetBaseManaRegen(0)
 
 	EmitGlobalSound("Imposs.boss_fire_ult") --[[Returns:void
 	Play named sound for all players
@@ -451,7 +452,6 @@ function light_follow(event)
 
 	--Create the Egg
 	egg_unit = CreateUnitByName("npc_mini_boss_egg", eggSpot, false, nil, nil, DOTA_TEAM_GOODGUYS)
-	mod_ab:ApplyDataDrivenModifier(hCaster, egg_unit, "fire_dot", nil) 
 	local egg_aura = egg_unit:GetAbilityByIndex(1)
 	local abEgg = egg_unit:GetAbilityByIndex(0)
 	abEgg:SetLevel(1) 
@@ -718,9 +718,21 @@ function light_damage()
 			end
 		end
 		UTIL_Remove(egg_unit)
-      	run_bool = true
-      	fireAI()
-	end
+		if difficulty_mode == 1 then
+			if hCaster:GetHealth() <= (hCaster:GetMaxHealth() * 0.2) then
+				hCaster:SetBaseManaRegen(20)
+			end
+		elseif difficulty_mode > 1 then
+			if hCaster:GetHealth() <= (hCaster:GetMaxHealth() * 0.7) then 
+				if difficulty_mode == 2 then
+					hCaster:SetBaseManaRegen(25)
+				elseif difficulty_mode > 2 then
+					hCaster:SetBaseManaRegen(30)
+				end
+			end
+		else
+			hCaster:SetBaseManaRegen(10)
+		end
 end
 
 function turbine( event )

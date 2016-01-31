@@ -29,7 +29,7 @@ function bearform( event )
 
 		caster:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK) 
 
-		ability:ApplyDataDrivenModifier(caster, caster, "mod_attack_range", nil) --[[Returns:void
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_dr_attack_range", nil) --[[Returns:void
 		No Description Set
 		]]
 
@@ -53,7 +53,7 @@ function bearform( event )
 
 		caster:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)
 
-		caster:RemoveModifierByName("mod_attack_range")
+		caster:RemoveModifierByName("modifier_dr_attack_range")
 
 		local hero = event.caster
 
@@ -171,7 +171,7 @@ function bird_form( event )
 
 		caster:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)
 
-		caster:RemoveModifierByName("mod_attack_range")
+		caster:RemoveModifierByName("modifier_dr_attack_range")
 
 		for i=0, 2 do
 			caster:SwapAbilities(ability.active[i]:GetAbilityName(), ability.backup[i]:GetAbilityName(), false, true)
@@ -196,7 +196,7 @@ function bird_revert( event )
 
 		caster:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK) 
 
-		ability:ApplyDataDrivenModifier(caster, caster, "mod_attack_range", nil) --[[Returns:void
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_dr_attack_range", nil) --[[Returns:void
 		No Description Set
 		]]
 
@@ -227,7 +227,7 @@ function bird_revert( event )
 
 		caster:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)
 
-		caster:RemoveModifierByName("mod_attack_range")
+		caster:RemoveModifierByName("modifier_dr_attack_range")
 
 		local hero = event.caster
 

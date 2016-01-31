@@ -61,7 +61,7 @@ bossNames = {
   "chaos"
 }
 
-currentBoss = bossNames[2]
+currentBoss = bossNames[3]
 bossLocs = {}
 playerLocs = {}
 

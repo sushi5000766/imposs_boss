@@ -90,7 +90,7 @@ function meteor( event )
 
 	Timers:CreateTimer(1.5, function()
 
-		if target:HasModifier("modifier_meteor_debuff") == true then
+		if target:HasModifier("modifier_fm_meteor_debuff") == true then
 
 			local damageTable = {
 				victim = target,
@@ -100,7 +100,7 @@ function meteor( event )
 				}				 
 			ApplyDamage(damageTable)
 
-		elseif target:HasModifier("fire_align") == true and target:HasModifier("modifier_meteor_debuff") == false then
+		elseif target:HasModifier("fire_align") == true and target:HasModifier("modifier_fm_meteor_debuff") == false then
 			local damageTable = {
 				victim = target,
 				attacker = caster,

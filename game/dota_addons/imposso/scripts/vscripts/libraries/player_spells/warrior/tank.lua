@@ -59,7 +59,7 @@ function war_slide( keys )
 		ability.leap_traveled = ability.leap_traveled + ability.leap_speed
 	else		
 		caster:InterruptMotionControllers(true)
-		caster:RemoveModifierByName("war_slide_mod")
+		caster:RemoveModifierByName("modifier_or_slide_effect")
 	end
 	
 end

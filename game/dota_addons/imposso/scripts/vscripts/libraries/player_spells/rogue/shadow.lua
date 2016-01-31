@@ -24,7 +24,7 @@ function shadow_step( event )
 	caster:SetForwardVector((target:GetAbsOrigin()-caster:GetAbsOrigin()):Normalized())
 
 
-	ability:ApplyDataDrivenModifier(caster, caster, "closein_buff", {duration = 10})
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_ro_closein_buff", {duration = 10})
 	
 end
 

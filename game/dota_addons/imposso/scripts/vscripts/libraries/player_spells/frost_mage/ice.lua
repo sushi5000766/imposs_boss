@@ -33,7 +33,7 @@ function ice_slide( keys )
 		ability.leap_traveled = ability.leap_traveled + ability.leap_speed		
 	else
 		caster:InterruptMotionControllers(true)
-		caster:RemoveModifierByName("slide_mod")
+		caster:RemoveModifierByName("modifier_fr_slide")
 		local slide_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_explode.vpcf", PATTACH_ABSORIGIN, caster)
 		ParticleManager:SetParticleControl(slide_effect, 3, caster:GetAbsOrigin())
 		Timers:CreateTimer(0.2, function()
@@ -114,7 +114,7 @@ function ice_shield_absorb( event )
 	unit.AphoticShieldRemaining = unit.AphoticShieldRemaining-damage
 	if unit.AphoticShieldRemaining <= 0 then
 		unit.AphoticShieldRemaining = nil
-		unit:RemoveModifierByName("modifier_ice_shield")
+		unit:RemoveModifierByName("modifier_fr_ice_shield")
 	end
 
 	if unit.AphoticShieldRemaining then
@@ -160,7 +160,7 @@ function ice_field( event )
 					damage_type = DAMAGE_TYPE_MAGICAL,
 					}				 
 				ApplyDamage(damageTable)
-				ability:ApplyDataDrivenModifier(caster, v, "field_mod", {duration = 4}) 
+				ability:ApplyDataDrivenModifier(caster, v, "modifier_fr_field_debuff", {duration = 4}) 
 
 			else
 				local damageTable = {
@@ -172,7 +172,7 @@ function ice_field( event )
 				ApplyDamage(damageTable)
 			end
 
-			ability:ApplyDataDrivenModifier(caster, v, "field_mod", {duration = 4}) 		
+			ability:ApplyDataDrivenModifier(caster, v, "modifier_fr_field_debuff", {duration = 4}) 		
 			
 		end
 	end

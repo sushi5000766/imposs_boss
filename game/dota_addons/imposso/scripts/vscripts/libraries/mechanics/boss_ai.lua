@@ -34,7 +34,7 @@ function fire_AI()
 		local result = choiceRNG:Choose()
 		local ability = "ability_" .. result
 
-		if boss:HasModifier("ult_during") == false then
+		if boss:HasModifier("modifier_fire_ult_during") == false then
 
 			CustomGameEventManager:Send_ServerToAllClients("start_ability_timer", { 
 				  reference_number = result - 1,
@@ -97,7 +97,7 @@ function earth_AI()
 		local result = choiceRNG_earth:Choose()
 		local ability = "ability_" .. result
 
-		if boss:HasModifier("casting_mod") == false and boss:HasModifier("ult_casting") == false and boss:HasModifier("earth_charge_mod") == false and boss:HasModifier("pummel_channel") == false then
+		if boss:HasModifier("modifier_earth_casting") == false and boss:HasModifier("modifier_earth_ult_casting") == false and boss:HasModifier("modifier_earth_charge") == false and boss:HasModifier("modifier_earth_pummel_animation") == false then
 
 			CustomGameEventManager:Send_ServerToAllClients("start_ability_timer", { 
 				  reference_number = result,
