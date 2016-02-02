@@ -6547,6 +6547,20 @@
 	    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
 	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
 
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"damage"			"2000"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_FLOAT"
+	    		"speed"			"1.5"
+	    	}
+	    }
+
 	    "OnSpellStart"
     	{
     		"RunScript"
@@ -6572,7 +6586,7 @@
 	{	
 	    "BaseClass"              "ability_datadriven"
 	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"     "gyrocopter_rocket_barrage"
+	    "AbilityTextureName"     "greevil_blade_fury"
 
 	    "MaxLevel"               "1"
 
@@ -6934,7 +6948,7 @@
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
-	    "AbilityTextureName"      "windrunner_powershot"
+	    "AbilityTextureName"      "granite_golem_hp_aura"
 
 	    "MaxLevel"               "1"
 	    "RequiredLevel"          "0"
@@ -6951,12 +6965,7 @@
 	        "01"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "chance" "7"
-	        }
-	        "02"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "multiply" "40"
+	            "armor" "75"
 	        }
 	    }
 
@@ -7106,6 +7115,7 @@
 	      {
 	      	"IsHidden"  "0"
 	      	"IsPurgable"	"0"
+	      	"TextureName"      "spectre_spectral_dagger"
 	      }
 
 	      "earth_protection" // boss becomes invulerable when orb is stepped on. duration depends on dificulty
@@ -7216,7 +7226,7 @@
 	    // ----------------------------------------------------------------------------------------
 	    "BaseClass"              "ability_datadriven"
 	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	    "AbilityTextureName"     "earthshaker_echo_slam"
+	    "AbilityTextureName"     "earthshaker_aftershock"
 	    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
@@ -7247,27 +7257,17 @@
 	        "01"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "damage" "230 250 270 290 310"
+	            "damage" "400"
 	        }
 	        "02"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "AS" "20"
+	            "slow" "30"
 	        }
 	        "03"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "MS" "10"
-	        }
-	        "04"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "Duration" "20"
-	        }
-	        "05"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "reduction" "40"
+	            "radius" "350"
 	        }
 	    }
 	
@@ -7339,27 +7339,22 @@
 	        "01"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "damage" "230 250 270 290 310"
+	            "damage" "100"
 	        }
 	        "02"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "AS" "20"
+	            "end" "1400"
 	        }
 	        "03"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "MS" "10"
+	            "radius" "250"
 	        }
 	        "04"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "Duration" "20"
-	        }
-	        "05"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "reduction" "40"
+	            "end_rad" "400"
 	        }
 	    }
 	
@@ -7393,7 +7388,7 @@
 	      "modifier_earth_pummel_animation"
 	      {
 	        "Passive"      "0"
-	        "IsHidden"      "0"
+	        "IsHidden"      "1"
 	        "IsDebuff"      "1"
 	
 	        "ThinkInterval"  "0.5"
@@ -7410,7 +7405,7 @@
 	      }
 	      "modifier_earth_pummel_channel"
 	      {
-	      	  "IsHidden" "0"
+	      	  "IsHidden" "1"
 	          "Duration" "0.5"
 	          "OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_1"
 
@@ -7429,7 +7424,7 @@
 	    // ----------------------------------------------------------------------------------------
 	    "BaseClass"              "ability_datadriven"
 	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"     "earthshaker_enchant_totem"
+	    "AbilityTextureName"     "terrorblade_reflection_alt1"
 	    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
@@ -7461,27 +7456,7 @@
 	        "01"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "damage" "230 250 270 290 310"
-	        }
-	        "02"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "AS" "20"
-	        }
-	        "03"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "MS" "10"
-	        }
-	        "04"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "Duration" "20"
-	        }
-	        "05"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "reduction" "40"
+	            "stun" "5"
 	        }
 	    }
 	
@@ -7556,7 +7531,7 @@
 	    // ----------------------------------------------------------------------------------------
 	    "BaseClass"              "ability_datadriven"
 	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	    "AbilityTextureName"     "mirana_starfall"
+	    "AbilityTextureName"     "centaur_stampede"
 	    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_BASIC"
 	    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
@@ -7587,7 +7562,7 @@
 	        "01"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "damage" "330 360 390 420 450"
+	            "damage" "1000"
 	        }
 	    }
 	
@@ -7675,7 +7650,7 @@
 	    // ----------------------------------------------------------------------------------------
 	    "BaseClass"              "ability_datadriven"
 	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_POINT"
-	    "AbilityTextureName"     "mirana_starfall"
+	    "AbilityTextureName"     "earthshaker_echo_slam"
 	    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_BASIC"
 	    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
@@ -7707,7 +7682,12 @@
 	        "01"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "damage" "330 360 390 420 450"
+	            "radius" "500"
+	        }
+	        "02"
+	        { 
+	            "var_type"  "FIELD_INTEGER"
+	            "damage" "450"
 	        }
 	    }
 	
@@ -7780,7 +7760,7 @@
 	    // ----------------------------------------------------------------------------------------
 	    "BaseClass"              "ability_datadriven"
 	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	    "AbilityTextureName"     "earthshaker_echo_slam"
+	    "AbilityTextureName"     "earthshaker_aftershock_egset"
 	    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
@@ -7811,27 +7791,12 @@
 	        "01"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "damage" "230 250 270 290 310"
+	            "slow" "30"
 	        }
 	        "02"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "AS" "20"
-	        }
-	        "03"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "MS" "10"
-	        }
-	        "04"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "Duration" "20"
-	        }
-	        "05"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "reduction" "40"
+	            "radius" "500"
 	        }
 	    }
 	
@@ -7874,7 +7839,7 @@
 	    // ----------------------------------------------------------------------------------------
 	    "BaseClass"              "ability_datadriven"
 	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-	    "AbilityTextureName"     "elder_titan_echo_stomp"
+	    "AbilityTextureName"     "lion_impale"
 	    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
@@ -7908,27 +7873,12 @@
 	        "01"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "damage" "230 250 270 290 310"
+	            "damage" "2000"
 	        }
 	        "02"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "AS" "20"
-	        }
-	        "03"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "MS" "10"
-	        }
-	        "04"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "Duration" "20"
-	        }
-	        "05"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "reduction" "40"
+	            "radius" "1600"
 	        }
 	    }
 	
@@ -8007,7 +7957,7 @@
 	    // ----------------------------------------------------------------------------------------
 	    "BaseClass"              "ability_datadriven"
 	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	    "AbilityTextureName"     "earthshaker_echo_slam"
+	    "AbilityTextureName"     "magnataur_shockwave"
 	    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
@@ -8038,27 +7988,7 @@
 	        "01"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "damage" "230 250 270 290 310"
-	        }
-	        "02"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "AS" "20"
-	        }
-	        "03"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "MS" "10"
-	        }
-	        "04"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "Duration" "20"
-	        }
-	        "05"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "reduction" "40"
+	            "damage" "1500"
 	        }
 	    }
 	
@@ -8088,7 +8018,7 @@
 	    // ----------------------------------------------------------------------------------------
 	    "BaseClass"              "ability_datadriven"
 	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	    "AbilityTextureName"     "earthshaker_echo_slam"
+	    "AbilityTextureName"     "earthshaker_enchant_totem"
 	    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
@@ -8119,27 +8049,17 @@
 	        "01"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "damage" "230 250 270 290 310"
+	            "MS" "70"
 	        }
 	        "02"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "AS" "20"
+	            "AS" "75"
 	        }
 	        "03"
 	        { 
 	            "var_type"  "FIELD_INTEGER"
-	            "MS" "10"
-	        }
-	        "04"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "Duration" "20"
-	        }
-	        "05"
-	        { 
-	            "var_type"  "FIELD_INTEGER"
-	            "reduction" "40"
+	            "slow" "50"
 	        }
 	    }
 	
