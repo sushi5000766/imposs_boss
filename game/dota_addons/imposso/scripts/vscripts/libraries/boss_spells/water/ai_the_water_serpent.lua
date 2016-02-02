@@ -161,7 +161,7 @@ function TidalWaves ( event )
 				iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 				fExpireTime = GameRules:GetGameTime() + 20.0,
 				bDeleteOnHit = false,
-				vVelocity = dist:Normalized() * 200,
+				vVelocity = spawnPoints[spawnSelect]:Normalized() * 200,
 				bProvidesVision = false,
 				iVisionRadius = 0,
 				iVisionTeamNumber = caster:GetTeamNumber()
@@ -177,3 +177,79 @@ function TidalWaves ( event )
 	end
 	)
 end
+
+
+function UnderTheSea ( event )
+	local caster = event.caster
+	local ability = event.ability
+	local modifier = event.modifier
+	local target = event.target
+	local speed = event.speed
+	local radius = event.radius
+	local forwardVec = (target:GetAbsOrigin() - caster:GetAbsOrigin()):Normalized()
+	local dist = (target:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D()
+	local travelTime = dist / speed
+
+	chargeCount = 0
+
+
+	caster:ApplyDataDrivenModifier(caster, caster, modifier, {})
+
+	local projectileTable =
+		{
+			EffectName = "",
+			Ability = ability,
+			vSpawnOrigin = caster:GetAbsOrigin(),
+			vVelocity = speed * forwardVec,
+			fDistance = 99999,
+			fStartRadius = radius,
+			fEndRadius = radius,
+			Source = caster,
+			bHasFrontalCone = false,
+			bReplaceExisting = true,
+			bProvidesVision = true,
+			iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+			iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+			iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			iVisionRadius = 0,
+			iVisionTeamNumber = caster:GetTeamNumber()
+		}
+
+	local projectile = ProjectileManager:CreateLinearProjectile( projectileTable )
+
+	Timers:CreateTimer(travelTime, function()
+		local targetUnits = FindUnitsInRadius(
+			caster:GetTeamNumber(),
+			target:GetAbsOrigin(), 
+			nil,
+			300,
+			DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			DOTA_UNIT_TARGET_FLAG_NONE, 
+			FIND_ANY_ORDER, 
+			false)
+
+		for _, unit in pairs(targetUnits) do
+			local damageTable = {
+				victim = unit,
+				attacker = caster,
+				damage = damage,
+				damage_type = DAMAGE_TYPE_MAGICAL,
+			}
+				--ParticleManager:CreateParticle(string particleName, int particleAttach, handle owningEntity)
+				ApplyDamage(damageTable)
+			end
+		end
+
+		ProjectileManager:DestroyLinearProjectile( projectile )
+		chargeCount = chargeCount + 1
+
+		if (chargeCount < 3) then
+			return
+		end
+	end)
+end
+
+
+
+			
