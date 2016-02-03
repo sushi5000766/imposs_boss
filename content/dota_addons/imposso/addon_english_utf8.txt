@@ -45,6 +45,36 @@
 		"DOTA_Tooltip_ability_item_team_revive_item"                                      "Fallen Remedy"
 		"DOTA_Tooltip_ability_item_team_revive_item_Description"                          "Instantly resurrect a fallen comrade with 40% health and 0% mana"
 
+		"DOTA_Tooltip_ability_item_powerup"                                               "Random Powerup"
+		"DOTA_Tooltip_ability_item_powerup_Description"                                   "Gives a random powerup to the slayer at the begining of the next boss fight"
+
+		"DOTA_Tooltip_ability_item_powerup_beserk"                                        "Fury"
+		"DOTA_Tooltip_ability_item_powerup_beserk_Description"                            "Grants attack speed and movespeed to the caster"
+		"DOTA_Tooltip_ability_item_powerup_beserk_attackspeed"                            "%ATTACKSPEED:"
+		"DOTA_Tooltip_ability_item_powerup_beserk_movespeed"                              "%MOVESPEED:"
+		"DOTA_Tooltip_ability_item_powerup_beserk_Duration"                               "DURATION:"
+
+		"DOTA_Tooltip_ability_item_powerup_regen"                                          "Regeneration"
+		"DOTA_Tooltip_ability_item_powerup_regen_Description"                              "Grants health and mana regen to the caster. Lasts until death or purge"
+		"DOTA_Tooltip_ability_item_powerup_regen_health"                                   "HEALTH:"
+		"DOTA_Tooltip_ability_item_powerup_regen_mana"                                     "MANA:"
+
+		"DOTA_Tooltip_ability_item_powerup_spell"                                         "Inner Power"
+		"DOTA_Tooltip_ability_item_powerup_spell_Description"                             "Greats increased max mana and outgoing damage to the caster"
+		"DOTA_Tooltip_ability_item_powerup_spell_mana"                                    "MANA BONUS:"
+		"DOTA_Tooltip_ability_item_powerup_spell_spelldam"                                "%DAMAGE INCREASE:"
+		"DOTA_Tooltip_ability_item_powerup_spell_Duration"                                "DURATION:"
+
+		"DOTA_Tooltip_ability_item_powerup_tank"                                          "Divine Protection"
+		"DOTA_Tooltip_ability_item_powerup_tank_Description"                              "Grants damage reduction to the caster"
+		"DOTA_Tooltip_ability_item_powerup_tank_reduc"                                    "%REDUCTION:"
+
+		"DOTA_Tooltip_ability_item_testing_cheat"                                         "Testing Cheat"
+		"DOTA_Tooltip_ability_item_testing_cheat_Description"                             "testing item"
+
+		"DOTA_Tooltip_ability_item_token_everliving"                                      "Token of the Everliving"
+		"DOTA_Tooltip_ability_item_token_everliving_Description"                          "If you survive the next boss fight with no deaths or lives lost, you will be rewarded an additional 22 gold. This item is then consumed"
+
 		///shop
 
 		"DOTA_Tooltip_ability_show_help"                                             "Shop Area"

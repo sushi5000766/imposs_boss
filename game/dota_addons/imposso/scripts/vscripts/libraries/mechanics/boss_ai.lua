@@ -88,7 +88,7 @@ function earth_AI()
   	end
 
 
-	local choiceRNG_earth = ChoicePseudoRNG.create( {0.14, 0.17, 0.04, 0.18, 0.2, 0.15, 0.04} )
+	local choiceRNG_earth = ChoicePseudoRNG.create( {0.14, 0.12, 0.04, 0.18, 0.25, 0.15, 0.04} )
 
 	Timers:CreateTimer(10, function()	
 

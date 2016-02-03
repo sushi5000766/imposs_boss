@@ -66,7 +66,7 @@ function no_revive( event )
 	local ability = event.ability
 
 	local caster_hp = caster:GetMaxHealth() * 40 / 100
-	local caster_mana = caster:GetMaxMana() * 15 / 100
+	local caster_mana = 0
 
 	local respawnPosition = caster:GetAbsOrigin()	
 

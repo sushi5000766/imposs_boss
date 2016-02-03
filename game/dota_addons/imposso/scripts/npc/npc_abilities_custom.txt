@@ -1984,6 +1984,71 @@
 	      }
 	    }
 	  }
+	"fm_counter_spell"
+	{
+	    // General  
+	    // ----------------------------------------------------------------------------------------
+	    "BaseClass"              "ability_datadriven"
+	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	    "AbilityTextureName"     "silencer_last_word"
+	    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+	    "AbilityUnitDamageType"  "DAMAGE_TYPE_MAGICAL"
+	
+	    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+	    "MaxLevel"               "1"
+	    "RequiredLevel"          "0"
+	    "LevelsBetweenUpgrades"  "0"
+	
+	    "AbilityCastPoint"       "0.0"
+	    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
+	    "AnimationPlaybackRate"  "1"
+	    "AnimationIgnoresModelScale" "1"
+	
+	    "precache"
+	    {       
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
+	    }
+	
+	    // Stats
+	    //----------------------------------------------------------------------------------------
+	    "AbilityDamage"           "0"
+	    "AbilityManaCost"         "35"
+	    "AbilityCooldown"         "33.0"
+	    "AbilityCastRange"        "500"
+	    "AbilityCastRangeBuffer"  "700"
+	    "AbilityChannelTime"      "0.0"
+	
+	    "OnSpellStart"
+	    {
+	      "ApplyModifier"
+	      {
+	        "ModifierName"  "spell_countered"
+	        "Target"     "TARGET"
+	        "Duration"    "2"
+	      }
+	
+	      "FireSound"
+	      {
+	        "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
+	        "Target"        "TARGET"
+	      }
+	    }
+	
+	    "Modifiers"
+	    {
+	      "spell_countered"
+	      {
+	        "Passive"      "0"
+	        "IsHidden"      "0"
+	        "IsDebuff"      "1"
+	    
+	        "EffectName"    "particles/generic_gameplay/generic_silence.vpcf"
+	        "EffectAttachType"  "follow_overhead"
+	      }
+	    }
+	} 
 //============================================================================================
 // ICE MAGE: 		0/7 COMPLETE
 //============================================================================================
@@ -6599,6 +6664,15 @@
 	    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
 	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
 
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_FLOAT"
+	    		"speed"			"1.5"
+	    	}
+	    }
+
 	    "precache"
 	    {
 	    	"particle"  "particles/units/heroes/hero_batrider/batrider_flamebreak_explosion.vpcf"
@@ -8362,322 +8436,6 @@
 	    }
 	  }
 	
-	"example_ability"
-	  {
-	    "ID"              "1852"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-	    "BaseClass"           "ability_datadriven"
-	    "AbilityTextureName"      "holdout_blade_fury"
-	
-	    // Stats
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCastRange"        "1000"
-	    "AbilityCastPoint"        "0.0"
-	    "AbilityCooldown"       "10.0"
-	    "AbilityChannelTime"      "2.0 1.8 1.6 1.5"
-	    "AbilityUnitDamageType"     "DAMAGE_TYPE_PURE"
-	    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-	    "AbilityDamage"         "5000 600 800 1000"
-	    
-	    "precache"
-	    {
-	      "particle"          "particles/econ/generic/generic_aoe_explosion_sphere_1/generic_aoe_explosion_sphere_1.vpcf"
-	      "soundfile"         "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
-	    }
-	
-	    // Item Info
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"       "300"
-	    "SideShop"            "1"
-	    
-	    "OnSpellStart"
-	    {
-	      "ApplyModifier"
-	      {
-	        "Target"    "CASTER"
-	        "ModifierName"  "modifier_channel_start"
-	      }
-	      "FireSound"
-	      {
-	        "EffectName"    "Hero_Gyrocopter.CallDown.Fire"
-	        "Target"      "CASTER"
-	      }
-	    }
-	    
-	    "OnChannelSucceeded"
-	    {
-	      "RemoveModifier"
-	      {
-	        "Target"        "CASTER"
-	        "ModifierName"      "modifier_channel_start"
-	      }
-	      "AttachEffect"
-	      {
-	        "EffectName"      "particles/econ/generic/generic_aoe_explosion_sphere_1/generic_aoe_explosion_sphere_1.vpcf"
-	        "EffectAttachType"    "follow_origin"
-	        "EffectRadius"      "%radius"
-	        "EffectDurationScale" "1"
-	        "EffectLifeDurationScale" "1"
-	        "EffectColorA"      "255 0 0"
-	        "EffectColorB"      "255 0 0"
-	        "Target"      "CASTER"
-	      }
-	      
-	      "Damage"
-	      {
-	        "Type"          "DAMAGE_TYPE_PURE"
-	        "Damage"        "%damage"
-	        "Target"
-	        {
-	          "Center"      "CASTER"
-	          "Radius"      "%radius"
-	          "Teams"       "DOTA_UNIT_TARGET_TEAM_ENEMY"
-	          "Types"       "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-	        }
-	      }
-	      
-	      "Knockback"
-	      {
-	        "Center"  "CASTER"
-	        "Target"
-	        {
-	          "Center"  "CASTER"
-	          "Radius"  "%radius"
-	          "Teams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
-	        }
-	        "Duration"  "%duration"
-	        "Distance"  "%distance"
-	        "Height"  "%height"
-	      }
-	      
-	      "FireSound"
-	      {
-	        "EffectName"    "Hero_Gyrocopter.CallDown.Damage"
-	        "Target"      "CASTER"
-	      }
-	    }
-	    
-	    "OnChannelFinish"
-	    {
-	      "RemoveModifier"
-	      {
-	        "Target"        "CASTER"
-	        "ModifierName"      "modifier_channel_start"
-	      }
-	    }
-	    
-	    "OnChannelInterrupted"
-	    {
-	      "RemoveModifier"
-	      {
-	        "Target"    "CASTER"
-	        "ModifierName"  "modifier_channel_start"
-	      }
-	    }
-	    
-	    "Modifiers"
-	    {
-	      "modifier_channel_start"
-	      {
-	        "OnCreated"
-	        {
-	          "AttachEffect"
-	          {
-	            "IsHidden" "1"
-	            "EffectName"    "particles/test_particle/channel_field_2.vpcf"//"gyro_calldown_marker_c"//"gyrocopter_call_down"
-	            "EffectAttachType"  "follow_origin"
-	            "Target"      "CASTER"
-	            
-	            "EffectRadius"      "%radius"
-	            "EffectColorA"      "255 0 0"
-	            "EffectColorB"      "255 0 0"
-	          
-	            "ControlPoints"
-	            {
-	              "00"    "50 100 5"
-	            }
-	          }
-	        }
-	      }
-	    }
-	    
-	    // Special  
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilitySpecial"
-	    {
-	      "01"
-	      {
-	        "var_type"        "FIELD_FLOAT"
-	        "duration"        "0.5"
-	      }
-	      
-	      "02"
-	      {
-	        "var_type"        "FIELD_INTEGER"
-	        "damage"        "400 600 800 1000"
-	      }
-	      
-	      "03"
-	      {
-	        "var_type"        "FIELD_INTEGER"
-	        "radius"        "550 550 600 650"
-	      }
-	      
-	      "04"
-	      {
-	        "var_type"        "FIELD_INTEGER"
-	        "distance"        "400 500 600 700"
-	      }
-	      
-	      "05"
-	      {
-	        "var_type"        "FIELD_INTEGER"
-	        "height"        "100 200 300 400"
-	      }
-	    }
-	  }
-	
-	
-	
-	"fire_storm_test"
-		{
-		    // General        
-		    "BaseClass"                "ability_datadriven"
-		    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		    "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
-		    // Time         
-		    "AbilityCooldown"                "0.0"
-		    // Cost        
-		    "AbilityManaCost"                "0"
-		    // Special        
-		    "OnSpellStart"
-		    {
-		        "SpawnUnit"
-		        {
-		            "UnitName"    "npc_stom_test"
-		            "UnitCount"    "1"
-		            "SpawnRadius"    "50"
-		            "Target"        "CASTER"
-		
-		            "OnSpawn"
-		            {
-		                "ApplyModifier"
-		                {
-		                    "ModifierName"    "leap_mod"
-		                    "Target"        "TARGET"
-		                }
-		            }
-		        }
-		    }
-		    "Modifiers"
-		    {
-		        "leap_mod"
-		        {
-		            "Passive"            "0"
-		            "IsHidden"            "1"
-		            "IsDebuff"            "0"
-		
-		
-		            "ThinkInterval" "0.03" 
-		            "OnIntervalThink"
-		            {
-		                "Rotate"
-		                {
-		                    "Target"       "TARGET"
-		                    "PitchYawRoll"  "10 10 0"
-		                }
-		            }
-		    
-		    
-		            "OnCreated"
-		            {
-		
-		                "RunScript"
-		                {
-		                    "ScriptFile"    "libraries/boss_spells/fire/fire_storm.lua"
-		                    "Function"      "Leap"
-		                }
-		
-		                "ApplyMotionController"
-		                // For this: gfycat.com/BraveHideousGiantschnauzer -> check: bit.ly/1KWulqA
-		                {
-		                    "Target"        "TARGET"
-		                    "ScriptFile"    "libraries/boss_spells/fire/fire_storm.lua"
-		                    "HorizontalControlFunction" "LeapHorizonal"
-		                    "VerticalControlFunction"   "LeapVertical"         
-		                }
-		            }
-		        }
-		    }
-		}
-	
-	
-	
-	"fm_counter_spell"
-	{
-	    // General  
-	    // ----------------------------------------------------------------------------------------
-	    "BaseClass"              "ability_datadriven"
-	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-	    "AbilityTextureName"     "silencer_last_word"
-	    "AbilityUnitTargetTeam"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
-	    "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-	    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
-	    "AbilityUnitDamageType"  "DAMAGE_TYPE_MAGICAL"
-	
-	    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "1"
-	    "RequiredLevel"          "0"
-	    "LevelsBetweenUpgrades"  "0"
-	
-	    "AbilityCastPoint"       "0.0"
-	    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
-	    "AnimationPlaybackRate"  "1"
-	    "AnimationIgnoresModelScale" "1"
-	
-	    "precache"
-	    {       
-	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
-	    }
-	
-	    // Stats
-	    //----------------------------------------------------------------------------------------
-	    "AbilityDamage"           "0"
-	    "AbilityManaCost"         "35"
-	    "AbilityCooldown"         "33.0"
-	    "AbilityCastRange"        "500"
-	    "AbilityCastRangeBuffer"  "700"
-	    "AbilityChannelTime"      "0.0"
-	
-	    "OnSpellStart"
-	    {
-	      "ApplyModifier"
-	      {
-	        "ModifierName"  "spell_countered"
-	        "Target"     "TARGET"
-	        "Duration"    "2"
-	      }
-	
-	      "FireSound"
-	      {
-	        "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
-	        "Target"        "TARGET"
-	      }
-	    }
-	
-	    "Modifiers"
-	    {
-	      "spell_countered"
-	      {
-	        "Passive"      "0"
-	        "IsHidden"      "0"
-	        "IsDebuff"      "1"
-	    
-	        "EffectName"    "particles/generic_gameplay/generic_silence.vpcf"
-	        "EffectAttachType"  "follow_overhead"
-	      }
-	    }
-	}
 
 	"grave_unit"
 	  {
