@@ -7,7 +7,7 @@ function AutoAttack( event )
 		caster:GetAbsOrigin(), 
 		nil,
 		6000,
-		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_NONE, 
 		FIND_ANY_ORDER, 
@@ -84,7 +84,7 @@ function Splash ( event )
 		caster:GetAbsOrigin(), 
 		nil,
 		6000,
-		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_NONE, 
 		FIND_ANY_ORDER, 
@@ -223,7 +223,7 @@ function UnderTheSea ( event )
 			target:GetAbsOrigin(), 
 			nil,
 			300,
-			DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+			DOTA_UNIT_TARGET_TEAM_ENEMY,
 			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			DOTA_UNIT_TARGET_FLAG_NONE, 
 			FIND_ANY_ORDER, 
@@ -246,6 +246,76 @@ function UnderTheSea ( event )
 
 		if (chargeCount < 3) then
 			return
+		end
+	end)
+end
+
+function Submerge ( event )
+	local caster = event.caster
+	local ability = event.ability
+	local modifier = event.modifier
+	local radius = event.radius
+	local damage = event.damage
+
+	caster:ApplyDataDrivenModifier(caster, caster, modifier, {duration = 3})
+
+	local targetUnits = FindUnitsInRadius(
+			caster:GetTeamNumber(),
+			target:GetAbsOrigin(), 
+			nil,
+			6000,
+			DOTA_UNIT_TARGET_TEAM_ENEMY,
+			DOTA_UNIT_TARGET_HERO,
+			DOTA_UNIT_TARGET_FLAG_NONE, 
+			FIND_ANY_ORDER, 
+			false)
+
+	for _, unit in pairs(targetUnits) do
+		submergeLocation = unit:GetAbsOrigin()
+		break
+	end
+		
+	local bubbles = ParticleManager:CreateParticle("", PATTACH_WORLDORIGIN, caster)
+	ParticleManager:SetParticleControl(bubbles, 0, submergeLocation)
+	ParticleManager:SetParticleControl(bubbles, 1, submergeLocation)
+
+	Timers:CreateTimer(3, function()
+		ParticleManager:DestroyParticle(bubbles, false)
+		FindClearSpaceForUnit(caster, submergeLocation, false)		
+
+		local damagedUnits = FindUnitsInRadius(
+			caster:GetTeamNumber(),
+			target:GetAbsOrigin(), 
+			nil,
+			1000,
+			DOTA_UNIT_TARGET_TEAM_ENEMY,
+			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			DOTA_UNIT_TARGET_FLAG_NONE, 
+			FIND_ANY_ORDER, 
+			false)
+		for _, unit in pairs(damagedUnits) do
+			local distance = (unit:GetAbsOrigin() - submergeLocation):Length2D()
+			if (distance <= 100) then
+				unit:ForceKill(true)
+			else if (distance <= 500) then
+				local damageTable = {
+					victim = unit,
+					attacker = caster,
+					damage = 500,
+					damage_type = DAMAGE_TYPE_MAGICAL,
+				}
+				--ParticleManager:CreateParticle(string particleName, int particleAttach, handle owningEntity)
+				ApplyDamage(damageTable)
+			else
+				local damageTable = {
+					victim = unit,
+					attacker = caster,
+					damage = 250,
+					damage_type = DAMAGE_TYPE_MAGICAL,
+				}
+				--ParticleManager:CreateParticle(string particleName, int particleAttach, handle owningEntity)
+				ApplyDamage(damageTable)
+			end
 		end
 	end)
 end

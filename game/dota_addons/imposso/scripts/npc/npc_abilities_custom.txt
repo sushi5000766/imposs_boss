@@ -7009,7 +7009,59 @@
 		    		}
 		    	}
 		    }
-		}	
+		}
+	"ai_submerge" //needs animations + sounds + precache + particle effect in lua + timers + multiple projectiles
+		{
+		    // General  
+		    // ----------------------------------------------------------------------------------------
+		    "BaseClass"       				"ability_datadriven"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		    "AbilityCooldown"				"15"
+		    "AbilityTextureName"      		"tidehunter_gush"
+
+		    "AbilitySpecial"
+		    {
+		    	"01"
+		    	{
+		    		"var_type"			"FIELD_INTEGER"
+		    		"damage"			"1000"
+		    	}
+
+		    	"02"
+		    	{
+		    		"var_type"			"FIELD_INTEGER"
+		    		"radius"			"200"
+		    	}
+		    }
+
+		    "OnSpellStart"
+		    {
+		    	"RunScript"
+		    	{
+		    		"ScriptFile"	"libraries/boss_spells/water/ai_the_water_serpent.lua"
+		    		"Function"		"Submerge"
+		    		"damage"		"%damage"
+		    		"radius"		"%radius"
+		    		"modifier"		"modifier_submerge"
+		    	}
+		    }
+
+		    "Modifiers"
+		    {
+		    	"modifier_submerge"
+		    	{
+		    		"Passive"			"0"
+		    		"IsHidden"			"0"
+		    		"IsDebuff"			"0"
+		    
+		    		"States"
+		    		{
+		    			"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_ENABLED"
+		    			"MODIFIER_STATE_OUT_OF_GAME"	"MODIFIER_STATE_VALUE_ENABLED"
+		    		}
+		    	}
+		    }
+		}
 
 //============================================================================================
 // Gaven, The Brute
