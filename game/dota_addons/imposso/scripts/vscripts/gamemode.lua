@@ -488,34 +488,4 @@ function GameMode:OnEntityKilled( event )
         end
    end
 
-   --player wipe check
-    
-    if killedUnit and string.find(killedUnit:GetUnitLabel(), "hero") then
-      Timers:CreateTimer(1, function()
-        local death_count = 0
-        for k, v in pairs( heroTable ) do
-          if v:IsAlive() == false and late_pick_bool[k] == false then
-            death_count = death_count + 1
-          end
-        end
-        print(death_count)
-          print(arena_count)
-        if death_count == arena_count then
-          Timers:CreateTimer(10, function()
-            local death_count = 0
-            for k, v in pairs( heroTable ) do
-              if v:IsAlive() == false and late_pick_bool[k] == false then
-                death_count = death_count + 1
-              end
-            end
-            print(death_count)
-            print(arena_count)
-            if death_count == arena_count then
-              GameRules:MakeTeamLose(2)
-            end
-          end)
-        end
-      end)
-    end
-
 end
