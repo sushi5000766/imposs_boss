@@ -105,17 +105,31 @@ function sacrifice( event )
 	local abRevive = dummy:GetAbilityByIndex(1)
 	abDummy:SetLevel(1)
 
+	local death_ab = caster:FindAbilityByName("death_ability_test")
+
 	local arenaGraves =  Entities:FindAllByName("npc_dota_creature")
 	if arenaGraves ~= nil then
 		for k, v in pairs( arenaGraves ) do
 			if v:GetUnitLabel() == "grave" then
-				abRevive:ApplyDataDrivenModifier(dummy, v, "grave_buff", {duration = 3})
+				local player_num = v:GetPlayerOwnerID()
+				local player_hero = heroTable[player_num]
+
+				player_hero:SetHealth(player_hero:GetMaxHealth())
+				player_hero:SetMana(0)
+
+				death_ab:ApplyDataDrivenModifier(caster, v, "modifier_revive_buff", nil)	
 			end
 		end
 	end
 
 	UTIL_Remove(dummy) 
-	caster:ForceKill(false)
+	local damageTable = {
+		victim = caster,
+		attacker = caster,
+		damage = 50000,
+		damage_type = DAMAGE_TYPE_PURE,
+		}				 
+	ApplyDamage(damageTable)
 end
 
 function ex_disable( event )

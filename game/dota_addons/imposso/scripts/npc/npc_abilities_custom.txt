@@ -3398,7 +3398,7 @@
 	  }
 	
 	
-	  "pl_blessing"
+	"pl_blessing"
 	  {
 	    // General  
 	    // ----------------------------------------------------------------------------------------
@@ -4194,10 +4194,8 @@
 	        "Target"            "TARGET"
 	      }
 	    }    
-	  }   
-	
-	
-	  "pr_full_heal"
+	  }   	
+	"pr_full_heal"
 	  {
 	    // General  
 	    // ----------------------------------------------------------------------------------------
@@ -4350,7 +4348,7 @@
 	
 	    "AbilityCooldown"       "20"
 	
-	    "AbilityManaCost"       "65"
+	    "AbilityManaCost"       "0"
 	
 	    "MaxLevel"               "5"
 	    "RequiredLevel"          "0"
@@ -7010,6 +7008,7 @@
 		    	}
 		    }
 		}
+		
 	"ai_submerge" //needs animations + sounds + precache + particle effect in lua + timers + multiple projectiles
 		{
 		    // General  
@@ -7061,7 +7060,7 @@
 		    		}
 		    	}
 		    }
-		}
+		}	
 
 //============================================================================================
 // Gaven, The Brute
@@ -8464,6 +8463,99 @@
 	      }
 	    }
 	  }
+
+	"death_ability_test"
+	  {
+	    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "BaseClass"           "ability_datadriven"
+	    "AbilityTextureName"            "rubick_empty1"
+	    "MaxLevel"                      "1"
+	    
+	    "Modifiers"
+	    {
+	      "modifier_death_buff"
+	      {
+	          "Passive"                        "1"
+	          "IsHidden"                        "1"   
+
+	          "Properties"
+	          {
+	          	"MODIFIER_PROPERTY_MIN_HEALTH" "1" 
+	          }
+
+	          "OnTakeDamage"
+	          {
+	          	"RunScript"
+	            {
+	              "ScriptFile"    "libraries/item_spells/revive.lua"
+	              "Function"      "revive_test"
+	            }
+	          }
+	      }
+
+	      "modifier_death_phase"
+	      {
+	      	"Passive"                        "0"
+	        "IsHidden"                        "1"
+
+	        "Properties"
+	        {
+	        	"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "-1000"
+	        }
+
+	        "States"
+	        {
+	        	"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_OUT_OF_GAME"	"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+	        	"MODIFIER_STATE_BLIND"			"MODIFIER_STATE_VALUE_ENABLED"
+	        }
+
+	        "OnDestroy"
+	        {
+	        	"ApplyModifier"
+	        	{
+	        		"ModifierName"	"modifier_after_revive"
+	        		"Target" 		"CASTER"
+	        		"Duration"		"3"
+	        	}
+	        }
+	      }
+
+	      "modifier_after_revive"
+	      {
+	          "Passive"                        "0"
+	          "IsHidden"                        "0"
+	          "Duration"            "3"    
+	
+	          "StatusEffectName"     "particles/status_fx/status_effect_life_stealer_rage.vpcf"
+	          "StatusEffectPriority" "10"
+	
+	          "Properties"
+		        {
+		        	"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "-100"
+		        }
+	      }
+
+	      "modifier_revive_buff"
+	      {
+	      	"Passive"                        "0"
+	        "IsHidden"                        "1"
+
+	        "OnCreated"
+	        {
+	        	"RunScript"
+	            {
+	              "ScriptFile"    "libraries/item_spells/revive.lua"
+	              "Function"      "grave_revive"
+	            }
+	        }
+	      }
+	    }
+	  }
+
+
 	"dummy_unit"
 	  {
 	    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"

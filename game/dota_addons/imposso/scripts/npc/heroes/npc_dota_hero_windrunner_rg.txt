@@ -11,7 +11,7 @@
     "Ability5"        "rg_unstable"
     "Ability6"        "rg_sprint"
     "Ability7"        "rg_crit_attack"
-    "Ability8"        "death_ability"
+    "Ability8"        "death_ability_test"
     "Ability9"        "mana_up_ab"
     "Ability10"       "health_up_ab"
     "Ability11"       ""

@@ -710,11 +710,11 @@
 	
 	        "OnDeath"
 	        {
-	          "RunScript"
-	          {
-	            "ScriptFile"    "libraries/item_spells/revive.lua"
-	            "Function"      "Reincarnation"
-	          }
+	          //"RunScript"
+	          //{
+	           // "ScriptFile"    "libraries/item_spells/revive.lua"
+	           // "Function"      "Reincarnation"
+	         // }
 	        }
 	      }
 	    }
@@ -844,7 +844,7 @@
 	      "RunScript"
 	      {
 	        "ScriptFile"  "libraries/item_spells/revive.lua"
-	        "Function"    "grave_apply"
+	        "Function"    "team_revive"
 	      }
 	    }
 	  }

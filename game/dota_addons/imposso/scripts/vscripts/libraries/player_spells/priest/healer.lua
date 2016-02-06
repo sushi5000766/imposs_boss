@@ -20,20 +20,16 @@ function nuke( event )
 	local add = damage + amp
 	local dam = damage * reduce
 
+	local death_ab = caster:FindAbilityByName("death_ability_test")
+
 	if target:GetTeamNumber() == 2 then
 
-		local dummy = CreateUnitByName("npc_dummy_unit", (caster:GetAbsOrigin() + Vector(1000,0,0)), false, nil, caster:GetPlayerOwner(), caster:GetTeamNumber())
-		dummy:AddAbility("revive_ability")
-		local abDummy = dummy:GetAbilityByIndex(0)
-		local abRevive = dummy:GetAbilityByIndex(1)
-		abDummy:SetLevel(1)
+		local player_num = target:GetPlayerOwnerID()
+		local player_hero = heroTable[player_num] 
+		player_hero:SetHealth(player_hero:GetMaxHealth())
+		player_hero:SetMana(0)
 
-		abRevive:ApplyDataDrivenModifier(dummy, target, "grave_buff", {duration = 3})	
-
-		local healer_glow = ParticleManager:CreateParticle("particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning_end.vpcf", PATTACH_ABSORIGIN, caster)
-		ParticleManager:SetParticleControl(healer_glow, 0, target:GetAbsOrigin())			
-
-		UTIL_Remove(dummy) 
+		death_ab:ApplyDataDrivenModifier(caster, target, "modifier_revive_buff", nil)
 
 	elseif target:GetTeamNumber() == 4 then
 
