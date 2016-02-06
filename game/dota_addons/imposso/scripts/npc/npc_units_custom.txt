@@ -123,8 +123,8 @@
 	        "Ability1"          "ai_auto_attack"     // Ability 1.
 	        "Ability2"          "ai_burst"      // Ability 2.
 	        "Ability3"          "ai_ais_influence"      // Ability 3.
-	        "Ability4"          "ai_splash"      // Ability 4.
-	        "Ability5"          "ai_tidal_waves"      // Ability 5.
+	        "Ability4"          "ai_submerge"      // Ability 4.
+	        "Ability5"          "ai_under_the_sea"      // Ability 5.
 	        "Ability6"          ""      // Ability 6 - Extra.
 	        "Ability7"          ""      // Ability 7 - Extra.
 	        "Ability8"          ""      // Ability 8 - Extra.

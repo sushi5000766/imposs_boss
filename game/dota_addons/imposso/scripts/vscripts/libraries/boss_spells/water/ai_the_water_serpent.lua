@@ -142,6 +142,7 @@ function TidalWaves ( event )
 
 	Timers:CreateTimer( function()
 		local spawnLocation = spawnPoints[spawnSelect]
+		local forwardVec = (bossLocs["water"] - spawnLocation):Normalized()
 		print(spawnLocation)
 		MinimapEvent( DOTA_TEAM_GOODGUYS, caster, spawnLocation.x, spawnLocation.y, DOTA_MINIMAP_EVENT_HINT_LOCATION, 5 )
 
@@ -161,7 +162,7 @@ function TidalWaves ( event )
 				iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 				fExpireTime = GameRules:GetGameTime() + 20.0,
 				bDeleteOnHit = false,
-				vVelocity = spawnPoints[spawnSelect]:Normalized() * 200,
+				vVelocity = forwardVec * 200,
 				bProvidesVision = false,
 				iVisionRadius = 0,
 				iVisionTeamNumber = caster:GetTeamNumber()
@@ -215,7 +216,7 @@ function UnderTheSea ( event )
 			iVisionTeamNumber = caster:GetTeamNumber()
 		}
 
-	local projectile = ProjectileManager:CreateLinearProjectile( projectileTable )
+	local projectile = ProjectileManager:CreateLinearProjectile(projectileTable)
 
 	Timers:CreateTimer(travelTime, function()
 		local targetUnits = FindUnitsInRadius(
@@ -238,10 +239,9 @@ function UnderTheSea ( event )
 			}
 				--ParticleManager:CreateParticle(string particleName, int particleAttach, handle owningEntity)
 				ApplyDamage(damageTable)
-			end
 		end
 
-		ProjectileManager:DestroyLinearProjectile( projectile )
+		ProjectileManager:DestroyLinearProjectile(projectile)
 		chargeCount = chargeCount + 1
 
 		if (chargeCount < 3) then
@@ -297,7 +297,7 @@ function Submerge ( event )
 			local distance = (unit:GetAbsOrigin() - submergeLocation):Length2D()
 			if (distance <= 100) then
 				unit:ForceKill(true)
-			else if (distance <= 500) then
+			elseif (distance <= 500) then
 				local damageTable = {
 					victim = unit,
 					attacker = caster,
