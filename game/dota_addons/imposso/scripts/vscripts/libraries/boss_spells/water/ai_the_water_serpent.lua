@@ -184,69 +184,101 @@ function UnderTheSea ( event )
 	local caster = event.caster
 	local ability = event.ability
 	local modifier = event.modifier
-	local target = event.target
 	local speed = event.speed
 	local radius = event.radius
-	local forwardVec = (target:GetAbsOrigin() - caster:GetAbsOrigin()):Normalized()
-	local dist = (target:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D()
-	local travelTime = dist / speed
 
 	chargeCount = 0
+	ability:ApplyDataDrivenModifier(caster, caster, modifier, {})
 
-
-	caster:ApplyDataDrivenModifier(caster, caster, modifier, {})
-
-	local projectileTable =
-		{
-			EffectName = "",
-			Ability = ability,
-			vSpawnOrigin = caster:GetAbsOrigin(),
-			vVelocity = speed * forwardVec,
-			fDistance = 99999,
-			fStartRadius = radius,
-			fEndRadius = radius,
-			Source = caster,
-			bHasFrontalCone = false,
-			bReplaceExisting = true,
-			bProvidesVision = true,
-			iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-			iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
-			iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-			iVisionRadius = 0,
-			iVisionTeamNumber = caster:GetTeamNumber()
-		}
-
-	local projectile = ProjectileManager:CreateLinearProjectile(projectileTable)
-
-	Timers:CreateTimer(travelTime, function()
-		local targetUnits = FindUnitsInRadius(
+	Timers:CreateTimer(function()
+		print("charge start")
+		chargeCount = chargeCount + 1
+		local possibleTargets =	FindUnitsInRadius(
 			caster:GetTeamNumber(),
-			target:GetAbsOrigin(), 
+			caster:GetAbsOrigin(), 
 			nil,
-			300,
+			6000,
 			DOTA_UNIT_TARGET_TEAM_ENEMY,
 			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			DOTA_UNIT_TARGET_FLAG_NONE, 
 			FIND_ANY_ORDER, 
 			false)
 
-		for _, unit in pairs(targetUnits) do
-			local damageTable = {
-				victim = unit,
-				attacker = caster,
-				damage = damage,
-				damage_type = DAMAGE_TYPE_MAGICAL,
-			}
-				--ParticleManager:CreateParticle(string particleName, int particleAttach, handle owningEntity)
-				ApplyDamage(damageTable)
+		for k, unit in pairs(possibleTargets) do
+			dist = (unit:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D()
+			if (dist > 300 and dist < 1000) then
+				target = unit
+				table.remove(possibleTargets, k)
+				break
+			end
 		end
 
-		ProjectileManager:DestroyLinearProjectile(projectile)
-		chargeCount = chargeCount + 1
+		if (target == nil) then
+			for k, unit in pairs(possibleTargets) do
+				target = unit
+				table.remove(possibleTargets, k)
+				break
+			end
+		end
+
+		local forwardVec = (target:GetAbsOrigin() - caster:GetAbsOrigin()):Normalized()
+		local travelTime = dist / speed
+
+		local projectileTable =
+			{
+				EffectName = "particles/water_boss_autoattack.vpcf",
+				Ability = ability,
+				vSpawnOrigin = caster:GetAbsOrigin(),
+				vVelocity = speed * forwardVec,
+				fDistance = 99999,
+				fStartRadius = radius,
+				fEndRadius = radius,
+				Source = caster,
+				bHasFrontalCone = false,
+				bReplaceExisting = true,
+				bProvidesVision = true,
+				iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+				iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+				iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+				iVisionRadius = 0,
+				iVisionTeamNumber = caster:GetTeamNumber()
+			}
+
+		local projectile = ProjectileManager:CreateLinearProjectile(projectileTable)
+
+		Timers:CreateTimer(travelTime, function()
+			local targetUnits = FindUnitsInRadius(
+				caster:GetTeamNumber(),
+				target:GetAbsOrigin(), 
+				nil,
+				300,
+				DOTA_UNIT_TARGET_TEAM_ENEMY,
+				DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+				DOTA_UNIT_TARGET_FLAG_NONE, 
+				FIND_ANY_ORDER, 
+				false)
+
+			for _, unit in pairs(targetUnits) do
+				local damageTable = {
+					victim = unit,
+					attacker = caster,
+					damage = damage,
+					damage_type = DAMAGE_TYPE_MAGICAL,
+				}
+					--ParticleManager:CreateParticle(string particleName, int particleAttach, handle owningEntity)
+					ApplyDamage(damageTable)
+			end
+
+			ProjectileManager:DestroyLinearProjectile(projectile)
+			ability:ApplyDataDrivenModifier(caster, caster, "modifier_phased", {duration = 0.3})
+			FindClearSpaceForUnit(caster, target:GetAbsOrigin(), false)
+		end)
 
 		if (chargeCount < 3) then
-			return
+			print("charging again")
+			return 0.1
 		end
+	caster:RemoveModifierByName(modifier)
 	end)
 end
 
@@ -257,7 +289,7 @@ function Submerge ( event )
 	local radius = event.radius
 	local damage = event.damage
 
-	caster:ApplyDataDrivenModifier(caster, caster, modifier, {duration = 3})
+	ability:ApplyDataDrivenModifier(caster, caster, modifier, {duration = 3})
 
 	local targetUnits = FindUnitsInRadius(
 			caster:GetTeamNumber(),

@@ -152,3 +152,52 @@ function earth_AI()
 
 	end)
 end
+
+function water_AI()
+
+	print("ai ran")
+
+	local abilityTable = {}
+	local abilityCount = boss:GetAbilityCount()
+
+	for i = 0, abilityCount do
+		if boss:GetAbilityByIndex(i) ~= nil then
+			abilityTable[i] = boss:GetAbilityByIndex(i)
+			print(abilityTable[i]:GetAbilityName())
+		    abilityTable[i]:SetLevel(1)
+		      	if i > 0 then
+			    	CustomGameEventManager:Send_ServerToAllClients("add_boss_ability", { 
+			      	reference_number = i,
+			      	ability_name = abilityTable[i]:GetAbilityName()
+			    })
+			end
+	    end
+  	end
+
+	local choiceRNG_water = ChoicePseudoRNG.create( {0.14, 0.12, 0.18, 0.25, 0.15, 0.04} )
+
+	Timers:CreateTimer(10, function()	
+
+		print("cast")	
+		
+		local result = choiceRNG_water:Choose()
+		local ability = "ability_" .. result
+
+		CustomGameEventManager:Send_ServerToAllClients("start_ability_timer", { 
+			  reference_number = result,
+			  duration = 2
+			  })
+
+		Timers:CreateTimer(2, function()
+			local newOrder = {
+		 		UnitIndex = boss:entindex(), 
+		 		OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+		 		AbilityIndex = boss:GetAbilityByIndex(result):GetEntityIndex(), 
+		 		Queue = 0
+		 	}
+			 
+			ExecuteOrderFromTable(newOrder)
+		end)
+		return RandomFloat(3, 5)
+	end)
+end

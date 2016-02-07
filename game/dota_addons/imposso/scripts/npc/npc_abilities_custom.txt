@@ -6795,9 +6795,10 @@
 		    // General  
 		    // ----------------------------------------------------------------------------------------
 		    "BaseClass"       				"ability_datadriven"
-		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		    "AbilityCooldown"				"15"
 		    "AbilityTextureName"      		"morphling_adaptive_strike"
+		    "AbilityCastPoint"				"0"
 			
 		    "AbilitySpecial"
 		    {
@@ -6876,9 +6877,10 @@
 		    // General  
 		    // ----------------------------------------------------------------------------------------
 		    "BaseClass"       				"ability_datadriven"
-		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		    "AbilityCooldown"				"15"
 		    "AbilityTextureName"      		"tidehunter_anchor_smash"
+		    "AbilityCastPoint"				"0"
 
 		    "AbilitySpecial"
 		    {
@@ -6943,7 +6945,7 @@
 		    // General  
 		    // ----------------------------------------------------------------------------------------
 		    "BaseClass"       				"ability_datadriven"
-		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		    "AbilityCooldown"				"15"
 		    "AbilityTextureName"      		"tidehunter_gush"
 
@@ -7007,14 +7009,13 @@
 		    		}
 		    	}
 		    }
-		}
-		
+		}		
 	"ai_submerge" //needs animations + sounds + precache + particle effect in lua + timers + multiple projectiles
 		{
 		    // General  
 		    // ----------------------------------------------------------------------------------------
 		    "BaseClass"       				"ability_datadriven"
-		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		    "AbilityCooldown"				"15"
 		    "AbilityTextureName"      		"tidehunter_gush"
 

@@ -419,8 +419,8 @@ function GameMode:ArenaStart()
   GameRules.Quest:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, 0 )
   GameRules.Quest:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, GameRules.Quest.KillLimit )
 
-  
-  earth_AI()
+
+  water_AI()
   
   
 end

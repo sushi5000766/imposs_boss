@@ -1,4 +1,4 @@
-function earthAI()
+function waterAI()
 	run_bool = true
 	if run_bool == true then
 		print("ai started")
