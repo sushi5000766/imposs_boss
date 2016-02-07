@@ -187,22 +187,23 @@ function UnderTheSea ( event )
 	local speed = event.speed
 	local radius = event.radius
 
+	local possibleTargets =	FindUnitsInRadius(
+		caster:GetTeamNumber(),
+		caster:GetAbsOrigin(), 
+		nil,
+		6000,
+		DOTA_UNIT_TARGET_TEAM_ENEMY,
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE, 
+		FIND_ANY_ORDER, 
+		false)
+
 	chargeCount = 0
 	ability:ApplyDataDrivenModifier(caster, caster, modifier, {})
 
 	Timers:CreateTimer(function()
 		print("charge start")
 		chargeCount = chargeCount + 1
-		local possibleTargets =	FindUnitsInRadius(
-			caster:GetTeamNumber(),
-			caster:GetAbsOrigin(), 
-			nil,
-			6000,
-			DOTA_UNIT_TARGET_TEAM_ENEMY,
-			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-			DOTA_UNIT_TARGET_FLAG_NONE, 
-			FIND_ANY_ORDER, 
-			false)
 
 		for k, unit in pairs(possibleTargets) do
 			dist = (unit:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D()
@@ -216,6 +217,9 @@ function UnderTheSea ( event )
 		if (target == nil) then
 			for k, unit in pairs(possibleTargets) do
 				target = unit
+				print("CHARGING")
+				print(k)
+				print(unit:GetUnitName())
 				table.remove(possibleTargets, k)
 				break
 			end
@@ -226,7 +230,7 @@ function UnderTheSea ( event )
 
 		local projectileTable =
 			{
-				EffectName = "particles/water_boss_autoattack.vpcf",
+				EffectName = "particles/units/heroes/hero_morphling/morphling_waveform.vpcf",
 				Ability = ability,
 				vSpawnOrigin = caster:GetAbsOrigin(),
 				vVelocity = speed * forwardVec,
@@ -247,11 +251,13 @@ function UnderTheSea ( event )
 		local projectile = ProjectileManager:CreateLinearProjectile(projectileTable)
 
 		Timers:CreateTimer(travelTime, function()
+			print("START TRAVELTIME TIMER")
+			print(travelTime)
 			local targetUnits = FindUnitsInRadius(
 				caster:GetTeamNumber(),
 				target:GetAbsOrigin(), 
 				nil,
-				300,
+				150,
 				DOTA_UNIT_TARGET_TEAM_ENEMY,
 				DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 				DOTA_UNIT_TARGET_FLAG_NONE, 
@@ -270,13 +276,18 @@ function UnderTheSea ( event )
 			end
 
 			ProjectileManager:DestroyLinearProjectile(projectile)
+			local bubbles = ParticleManager:CreateParticle("particles/units/heroes/hero_tidehunter/tidehunter_anchor.vpcf", PATTACH_WORLDORIGIN, caster)
+			ParticleManager:SetParticleControl(bubbles, 0, target:GetAbsOrigin())
+			ParticleManager:SetParticleControl(bubbles, 1, target:GetAbsOrigin())
 			ability:ApplyDataDrivenModifier(caster, caster, "modifier_phased", {duration = 0.3})
+			print("TELEPORT")
 			FindClearSpaceForUnit(caster, target:GetAbsOrigin(), false)
 		end)
 
 		if (chargeCount < 3) then
 			print("charging again")
-			return 0.1
+			print(travelTime + 0.1)
+			return travelTime + 0.1
 		end
 	caster:RemoveModifierByName(modifier)
 	end)

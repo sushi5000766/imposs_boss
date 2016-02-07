@@ -62,6 +62,8 @@ function Precache( context )
   PrecacheResource("particle", "particles/units/heroes/hero_winter_wyvern/wyvern_splinter_blast_explosion_flare.vpcf", context)
   PrecacheResource("particle", "particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_loadout.vpcf", context)
   PrecacheResource("particle", "particles/units/heroes/hero_warlock/warlock_base_attack.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_morphling/morphling_waveform.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_tidehunter/tidehunter_anchor.vpcf", context)
 
   PrecacheResource("particle", "particles/generic_hero_status/hero_levelup.vpcf", context)
 
