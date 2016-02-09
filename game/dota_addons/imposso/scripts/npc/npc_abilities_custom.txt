@@ -6286,7 +6286,7 @@
 		            "Function"    "fire_boss_autoattack"
 		          }
 		        }
-		    }
+		      }
 
 		    "modifier_fire_mana_regen"
 		    {
@@ -8306,6 +8306,228 @@
 	    }
 	}
 
+//============================================================================================
+// Zephire, the Thunder Lord
+//============================================================================================
+	"lightning_boss_armor" //contains most modifiers added in lua
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"       "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "AbilityTextureName"      "granite_golem_hp_aura"
+
+	    "MaxLevel"               "1"
+	    "RequiredLevel"          "0"
+	    "LevelsBetweenUpgrades"  "0"
+
+	    "precache"
+	    {     
+	      "soundfile" "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+	      "particle"  "particles/units/heroes/hero_earth_spirit/espirit_rollingboulder_swirl.vpcf"
+	    }
+
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        { 
+	            "var_type"  "FIELD_INTEGER"
+	            "armor" "75"
+	        }
+	    }
+
+	    "OnProjectileFinish"
+	    {
+	      "Damage"
+	      {
+	        "Target"
+	        {
+	          "Center"    "PROJECTILE"
+	          "Radius"   "150"
+	          "Teams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	          "Types"   "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	        }
+	        "Type"      "DAMAGE_TYPE_PHYSICAL"
+	        "Damage"    "100"
+	      }       
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_lightning_start"
+	    	{
+	    		"Passive" "1"
+		        "IsHidden"  "1"
+
+		        "OnCreated"
+		        {
+		        	"ApplyModifier"
+		        	{
+		        		"ModifierName"	"modifier_thunder_form"
+		        		"Target" 		"CASTER"
+		        	}
+
+		        	"RunScript"
+					{
+						"ScriptFile"  "libraries/boss_spells/lightning/lightning_boss.lua"
+						"Function"    "pillar_spawn"
+					}
+		        }
+	    	}
+
+	    	"modifier_thunder_form"
+	    	{
+	    		"Passive"			"0"
+	    		"IsHidden"			"0"
+	    		"IsDebuff"			"0"
+	    	
+	    		"StatusEffectName"     "particles/status_fx/status_effect_electrical.vpcf"
+				"StatusEffectPriority" "10"
+	    	
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "75"
+	    		}
+	    	}
+
+	    	"modifier_lightning_health_check"
+	    	{
+	    		"Passive"			"1"
+	    		"IsHidden"			"1"
+	    		"IsDebuff"			"0"
+	    	
+	    		"OnTakeDamage"
+	    		{
+	    			"RunScript"
+					{
+						"ScriptFile"  "libraries/boss_spells/lightning/lightning_boss.lua"
+						"Function"    "lightning_health_check"
+					}
+	    		}
+	    	}
+
+	    	"modifier_thunder_form_immunity"
+	    	{
+	    		"Passive"			"0"
+	    		"IsHidden"			"1"
+	    		"IsDebuff"			"0"
+	    	
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "-100"
+	    		}
+	    	}
+
+	    	"modifier_lightning_line_attack"
+			{
+				"Passive"      "1"
+				"IsHidden"      "1"
+				"IsDebuff"      "0"
+
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"  "libraries/boss_spells/lightning/lightning_boss.lua"
+						"Function"    "lightning_boss_thunderform_autoattack"
+					}
+				}
+			}
+	    }
+  	}
+
+  	"lightning_pillar_armor" //contains most modifiers added in lua
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"       "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "AbilityTextureName"      "granite_golem_hp_aura"
+
+	    "MaxLevel"               "1"
+	    "RequiredLevel"          "0"
+	    "LevelsBetweenUpgrades"  "0"
+
+	    "precache"
+	    {     
+	      "soundfile" "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+	      "particle"  "particles/units/heroes/hero_earth_spirit/espirit_rollingboulder_swirl.vpcf"
+	    }
+
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        { 
+	            "var_type"  "FIELD_INTEGER"
+	            "armor" "75"
+	        }
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_pillar_start"
+	    	{
+	    		"Passive" "1"
+		        "IsHidden"  "1"
+
+		        "OnCreated"
+		        {
+		        	"ApplyModifier"
+		        	{
+		        		"ModifierName"	"modifier_pillar_armor"
+		        		"Target" 		"CASTER"
+		        	}
+
+		        	"RunScript"
+					{
+						"ScriptFile"  "libraries/boss_spells/lightning/lightning_boss.lua"
+						"Function"    "pillar_start"
+					}
+		        }
+	    	}
+
+	    	"modifier_pillar_armor"
+	    	{
+	    		"Passive"			"0"
+	    		"IsHidden"			"1"
+	    		"IsDebuff"			"0"
+	    	
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "-75"
+	    			"MODIFIER_PROPERTY_MIN_HEALTH"	"1"
+	    		}
+
+	    		"States"
+	    		{
+	    			"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+	    		}
+
+	    		"OnTakeDamage"
+	    		{
+	    			"RunScript"
+					{
+						"ScriptFile"  "libraries/boss_spells/lightning/lightning_boss.lua"
+						"Function"    "pillar_check"
+					}
+	    		}
+	    	}
+
+	    	"modifier_pillar_weakened"
+	    	{
+	    		"Passive"			"0"
+	    		"IsHidden"			"1"
+	    		"IsDebuff"			"0"
+	    	
+	    		"StatusEffectName"     "particles/status_fx/status_effect_dark_seer_illusion.vpcf"
+				"StatusEffectPriority" "10"
+	    	}
+	    }
+  	}
 
 //============================================================================================
 // MISCELLANEOUS

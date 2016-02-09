@@ -74,6 +74,10 @@ function Precache( context )
   PrecacheResource("particle", "particles/units/heroes/hero_tidehunter/tidehunter_gush_upgrade.vpcf", context)
   PrecacheResource("particle", "particles/water_boss_autoattack.vpcf", context)
 
+  PrecacheResource("particle", "particles/lightning_boss_auto.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_disruptor/disruptor_thunder_strike_bolt.vpcf", context)
+  PrecacheModel("models/props_structures/obelisk001.vmdl", context)
+
 
  
 

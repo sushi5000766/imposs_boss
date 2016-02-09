@@ -201,3 +201,15 @@ function water_AI()
 		return RandomFloat(3, 5)
 	end)
 end
+
+function lightning_AI( event )
+
+	print("ai ran")
+
+	for i=0, 9 do 
+	    abBoss = boss:GetAbilityByIndex(i)
+	    if abBoss ~= nil then
+	      abBoss:SetLevel(1)
+	    end
+  	end	
+end

@@ -61,7 +61,7 @@ bossNames = {
   "chaos"
 }
 
-currentBoss = bossNames[3]
+currentBoss = bossNames[4]
 bossLocs = {}
 playerLocs = {}
 
@@ -76,6 +76,7 @@ player_gem = {}
 player_deaths = {}
 total_deaths = {}
 earth_portals_open = true
+lightning_pillar_group = {}
 
 --Difficulty set
 
@@ -420,7 +421,8 @@ function GameMode:ArenaStart()
   GameRules.Quest:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, GameRules.Quest.KillLimit )
 
 
-  water_AI()
+  --water_AI()
+  lightning_AI()
   
   
 end
