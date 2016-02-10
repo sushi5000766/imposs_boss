@@ -6690,12 +6690,12 @@
 //============================================================================================
 // Ai, Serpent of the Sea
 //============================================================================================
-	"ai_auto_attack" //needs animations + sounds + precache
+	"ai_passive" //needs animations + sounds + precache
 		{
 		    // General  
 		    // ----------------------------------------------------------------------------------------
 		    "BaseClass"       				"ability_datadriven"
-		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_AURA"
 		    "FightRecapLevel"       		"1"
 		    "AbilityTextureName"      		"morphling_waveform"
 		
@@ -6739,7 +6739,36 @@
 		          		"projectile_speed"	"%projectile_speed"
 		          	}
 		          }
+
+		          "OnAttackLanded"
+		          // "%attack_damage" is set to the damage value before mitigation
+		          {
+		          	
+		          }
 		
+		        }
+
+		        "modifier_influence_aura"
+		        {
+		          "Passive"      	"1"
+		          "IsHidden"      	"0"
+		          "IsPurgable"		"0"
+		          "IsBuff"			"0"
+		          "IsDebuff"		"0"
+		          "IsStunDebuff"	"0"
+
+		          "Aura"          	"modifier_ai_ais_influence"
+		          "Aura_Radius"   	"400"
+		          "Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		          "Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		          "Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+		          "Aura_ApplyToCaster" "0"	
+		        }
+
+		        "modifier_ais_influence"
+		        {
+		        	"Passive"		"0"
+		        	"IsHidden"		"0"		        	
 		        }
 		      }
 
@@ -6790,7 +6819,7 @@
 		      	}
 		      }    
 		}
-	"ai_burst" //needs animations + sounds + precache
+	"ai_burst" //needs animation
 		{
 		    // General  
 		    // ----------------------------------------------------------------------------------------
@@ -6817,6 +6846,12 @@
 					"Target" 		"CASTER"
 					"Duration"		"5"
 				}
+
+				"FireSound"
+				{
+					"EffectName"	"Hero_Clinkz.Strafe"
+					"Target" 		"CASTER"
+				}
 			}
 
 		    "Modifiers"
@@ -6830,6 +6865,9 @@
 		          "IsDebuff"		"0"
 		          "IsStunDebuff"	"0"
 
+		          "EffectName"			""
+		          "EffectAttachType"	"follow_origin"
+
 		          "Properties"
 		          {
 		          	"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_speed"
@@ -6837,41 +6875,6 @@
 		        }
 		      }
 		}
-	"ai_ais_influence" //needs animations + sounds + precache
-		{
-		    // General  
-		    // ----------------------------------------------------------------------------------------
-		    "BaseClass"       				"ability_datadriven"
-		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
-		    "AbilityTextureName"      		"medusa_mana_shield"
-
-		    "Modifiers"
-		      {
-		        "modifier_influence_aura"
-		        {
-		          "Passive"      	"1"
-		          "IsHidden"      	"0"
-		          "IsPurgable"		"0"
-		          "IsBuff"			"0"
-		          "IsDebuff"		"0"
-		          "IsStunDebuff"	"0"
-
-		          "Aura"          	"modifier_ai_ais_influence"
-		          "Aura_Radius"   	"400"
-		          "Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		          "Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		          "Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
-		          "Aura_ApplyToCaster" "0"	
-		        }
-
-		        "modifier_ais_influence"
-		        {
-		        	"Passive"		"0"
-		        	"IsHidden"		"0"		        	
-		        }
-		      }
-
-		}		
 	"ai_splash" //needs animations + sounds + precache + particle effect in lua
 		{
 		    // General  
@@ -6972,6 +6975,12 @@
 
 		    "OnSpellStart"
 		    {
+		    	"FireSound"
+		    	{
+		    		"EffectName"	"Hero_Morphling.Waveform"
+		    		"Target" 		"CASTER"
+		    	}
+
 		    	"RunScript"
 		    	{
 		    		"ScriptFile"	"libraries/boss_spells/water/ai_the_water_serpent.lua"
@@ -6990,7 +6999,7 @@
 		    	{
 		    		"Target"		"TARGET"
 		    		"Type"			"DAMAGE_TYPE_MAGICAL"
-		    		"Damage"		"99999"
+		    		"Damage"		"%damage"
 		    	}
 		    }
 
@@ -7060,11 +7069,48 @@
 		    		"States"
 		    		{
 		    			"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_ENABLED"
-		    			"MODIFIER_STATE_OUT_OF_GAME"	"MODIFIER_STATE_VALUE_ENABLED"
+		    			"MODIFIER_STATE_DISARMED"		"MODIFIER_STATE_VALUE_ENABLED"
+		    			"MODIFIER_STATE_SILENCED"		"MODIFIER_STATE_VALUE_ENABLED"
+		    			"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+		    			"MODIFIER_STATE_HEXED"			"MODIFIER_STATE_VALUE_ENABLED"
 		    		}
 		    	}
 		    }
 		}	
+	"ai_tornado_call"
+		{
+		    // General  
+		    // ----------------------------------------------------------------------------------------
+		    "BaseClass"       				"ability_datadriven"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		    "AbilityCooldown"				"15"
+		    "AbilityTextureName"      		"invoker_tornado"
+
+		    "OnSpellStart"
+		    {
+		    	"RunScript"
+		    	{
+		    		"ScriptFile"	"libraries/boss_spells/water/ai_the_water_serpent.lua"
+		    		"Function"		"TornadoCall"
+		    	}
+		    }
+		}
+	"tornado_tornado_call"
+		{
+		    // General  
+		    // ----------------------------------------------------------------------------------------
+		    "BaseClass"       				"ability_datadriven"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+		    "OnSpellStart"
+		    {
+		    	"RunScript"
+		    	{
+		    		"ScriptFile"	"libraries/boss_spells/water/ai_the_water_serpent.lua"
+		    		"Function"		"_TornadoCall"
+		    	}
+		    }
+		}
 
 //============================================================================================
 // Gaven, The Brute

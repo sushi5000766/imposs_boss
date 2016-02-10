@@ -75,7 +75,6 @@ function AutoAttack( event )
 	end
 end
 
-
 function Splash ( event )
 	local caster = event.caster
 	local damage = event.damage
@@ -139,11 +138,22 @@ function TidalWaves ( event )
 	local dist = (bossLocs["water"] - spawnPoints[spawnSelect]):Length2D()
 
 	waveCount = 0
-
+	
 	Timers:CreateTimer( function()
 		local spawnLocation = spawnPoints[spawnSelect]
-		local forwardVec = (bossLocs["water"] - spawnLocation):Normalized()
+		print("SPAWN LOCATION ORIGINAL")
 		print(spawnLocation)
+		local forwardVec = (bossLocs["water"] - spawnLocation):Normalized()
+
+		if (spawnSelect == 2 or spawnSelect == 4)
+			spawnLocation.x = spawnLocation.x + math.random(-500, 500)
+		elseif (spawnSelect == 1 or spawnSelect == 3)
+			spawnLocation.y = spawnLocation.y + math.random(-500, 500)
+		end
+
+		print("SPAWN LOCATION RANDOM")
+		print(spawnLocation)
+
 		MinimapEvent( DOTA_TEAM_GOODGUYS, caster, spawnLocation.x, spawnLocation.y, DOTA_MINIMAP_EVENT_HINT_LOCATION, 5 )
 
 		local info = 
@@ -178,7 +188,6 @@ function TidalWaves ( event )
 	end
 	)
 end
-
 
 function UnderTheSea ( event )
 	local caster = event.caster
@@ -268,7 +277,7 @@ function UnderTheSea ( event )
 				local damageTable = {
 					victim = unit,
 					attacker = caster,
-					damage = damage,
+					damage = 99999,
 					damage_type = DAMAGE_TYPE_MAGICAL,
 				}
 					--ParticleManager:CreateParticle(string particleName, int particleAttach, handle owningEntity)
@@ -363,6 +372,28 @@ function Submerge ( event )
 	end)
 end
 
+function TornadoCall ( event )
+	local caster = event.caster
+	local ability = event.ability
+	local modifier = event.modifier
+	local tornadoes = Entities:FindByModel(nil, "")
 
+	for _, unit in pairs(tornadoes) do
+		unit:CastAbilityImmediately("tornado_tornado_call", -1)
+		break
+	end
+end
+
+function _TornadoCall ( event )
+	local caster = event.caster
+	local ability = event.ability
+	local modifier = event.modifier
+	local currentLoc = caster:GetAbsOrigin()
+	local facingDirection = caster:GetForwardVector()
+	local dist = (currentLoc - bossLocs["water"]):Length2D()
+	local targetLoc = 
+
+	caster:MoveToPosition(Vector vDest)
+end
 
 			
