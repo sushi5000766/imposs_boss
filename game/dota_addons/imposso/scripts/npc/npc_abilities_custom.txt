@@ -8428,9 +8428,12 @@
 	    		"Passive"			"0"
 	    		"IsHidden"			"0"
 	    		"IsDebuff"			"0"
+
+	    		"EffectName"    "particles/items2_fx/mjollnir_shield.vpcf"
+	            "EffectAttachType"  "follow_origin"
 	    	
-	    		"StatusEffectName"     "particles/status_fx/status_effect_electrical.vpcf"
-				"StatusEffectPriority" "10"
+	    		"StatusEffectName"     "particles/status_fx/status_effect_mjollnir_shield.vpcf"
+				"StatusEffectPriority" "8"
 	    	
 	    		"Properties"
 	    		{
@@ -8574,6 +8577,189 @@
 	    	}
 	    }
   	}
+
+  	"lightning_call_thunder"
+	{ 
+	    "BaseClass"              "ability_datadriven"
+	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityTextureName"     "techies_suicide"
+	
+	    "MaxLevel"               "1"
+	  
+	    "AbilityCastRange"        "0"
+	    "AbilityCastPoint"        "0.0"
+	
+	    "AbilityManaCost"       "0"
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        { 
+	            "var_type"  "FIELD_INTEGER"
+	            "damage" "50000"
+	        }
+	        "02"
+	        { 
+	            "var_type"  "FIELD_INTEGER"
+	            "radius" "400"
+	        }
+	    }
+	
+	    "precache"
+	     {
+	      "soundfile"   "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts" 
+	      "particle"  "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_base_attack_impact.vpcf"
+	      "particle"   "particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_calldown_explosion.vpcf"
+	     }
+	
+	    "OnSpellStart"
+	    {
+	        "RunScript"
+			{
+				"ScriptFile"  "libraries/boss_spells/lightning/lightning_boss.lua"
+				"Function"    "lightning_thunder_call"
+			}
+	    }
+	}
+
+	"lightning_power_slide"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName"	"mirana_leap"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+
+		"OnSpellStart"
+		{
+			
+			"RunScript"
+			{
+				"ScriptFile"	"libraries/boss_spells/lightning/lightning_boss.lua"
+				"Function"		"lightning_slide_start"
+			}
+
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_lightning_slide"
+				"Target" 		"CASTER"
+			}
+
+
+			"ApplyMotionController"
+			// For this: gfycat.com/BraveHideousGiantschnauzer -> check: bit.ly/1KWulqA
+			{
+			    "Target" 		"CASTER"
+			    "ScriptFile"    "libraries/boss_spells/lightning/lightning_boss.lua"
+			    "HorizontalControlFunction" "lightning_slide_during"         
+			}
+
+			
+		}
+
+		"Modifiers"
+		{
+			"modifier_lightning_slide"
+			{
+				"Passive"			"0"
+	    		"IsHidden"			"1"
+	    		"IsDebuff"			"0"
+
+	    		"StatusEffectName"     "particles/status_fx/status_effect_ghost.vpcf"
+	          	"StatusEffectPriority" "10"
+
+	    		"States"
+	    		{
+	    			"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+	    		}
+
+	    		"ThinkInterval"  "0.2"
+	    		"OnIntervalThink"
+	    		{
+	    			"RunScript"
+					{
+						"ScriptFile"	"libraries/boss_spells/lightning/lightning_boss.lua"
+						"Function"		"lightning_slide_kill_check"
+					}
+
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"115"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+					
+						"Action"    
+						{
+							"Damage"
+	    					{
+	    						"Target"		"TARGET"
+	    						"Type"			"DAMAGE_TYPE_MAGICAL"
+	    						"Damage"		"10000"
+	    					}
+						}
+					}
+	    		}
+			}
+
+			"modifier_lightning_second_slide"
+			{
+				"Passive"			"0"
+	    		"IsHidden"			"0"
+	    		"IsDebuff"			"0"
+
+	    		"OnCreated"
+	    		{
+	    			"DelayedAction"
+	    			{
+	    				"Delay"     "0.1"
+	    				"Action"    
+	    				{
+	    					"RunScript"
+							{
+								"ScriptFile"	"libraries/boss_spells/lightning/lightning_boss.lua"
+								"Function"		"lightning_slide_start_two"
+							}
+
+							"ApplyMotionController"
+							// For this: gfycat.com/BraveHideousGiantschnauzer -> check: bit.ly/1KWulqA
+							{
+							    "Target" 		"CASTER"
+							    "ScriptFile"    "libraries/boss_spells/lightning/lightning_boss.lua"
+							    "HorizontalControlFunction" "lightning_slide_during_two"         
+							}
+	    				}
+	    			}	    			
+	    		}
+			}
+		}
+	}
 
 //============================================================================================
 // MISCELLANEOUS

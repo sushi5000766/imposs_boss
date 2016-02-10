@@ -76,7 +76,13 @@ function Precache( context )
 
   PrecacheResource("particle", "particles/lightning_boss_auto.vpcf", context)
   PrecacheResource("particle", "particles/units/heroes/hero_disruptor/disruptor_thunder_strike_bolt.vpcf", context)
-  PrecacheModel("models/props_structures/obelisk001.vmdl", context)
+  PrecacheResource("particle", "particles/items2_fx/mjollnir_shield.vpcf", context)
+  PrecacheResource("particle", "particles/items_fx/chain_lightning.vpcf", context)
+  PrecacheResource("particle", "particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_castfx_ground2.vpcf", context)
+  PrecacheResource("particle", "particles/lightning_call_thunder_effect.vpcf", context)
+
+  PrecacheResource("particle", "particles/econ/items/zeus/arcana_chariot/zeus_arcana_arc_lightning_impact.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf", context)
 
 
  

@@ -478,5 +478,7 @@ function arena_cuttoff( trigger )
 	local unit = trigger.activator
 	local num = unit:GetPlayerOwnerID()
 
+	print(unit:GetName())
+
 	unit:InterruptMotionControllers(true)
 end

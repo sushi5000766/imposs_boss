@@ -202,14 +202,57 @@ function water_AI()
 	end)
 end
 
-function lightning_AI( event )
+function lightning_AI()
 
 	print("ai ran")
 
-	for i=0, 9 do 
+	local ability_1 = boss:FindAbilityByName("lightning_call_thunder")
+
+	for i=0, 10 do 
 	    abBoss = boss:GetAbilityByIndex(i)
 	    if abBoss ~= nil then
 	      abBoss:SetLevel(1)
+	      CustomGameEventManager:Send_ServerToAllClients("add_boss_ability", { 
+	        reference_number = i,
+	        ability_name = abBoss:GetAbilityName()
+	      })
 	    end
-  	end	
+  	end
+
+
+	local choiceRNG = ChoicePseudoRNG.create( {0.9, 0.1} )
+
+	Timers:CreateTimer(10, function()	
+
+		print("cast")	
+		
+		local result = choiceRNG:Choose()
+		local ability = "ability_" .. result
+
+		if boss:HasModifier("modifier_fire_ult_during") == false then
+
+			CustomGameEventManager:Send_ServerToAllClients("start_ability_timer", { 
+				  reference_number = result - 1,
+				  duration = 2
+				  })
+
+			Timers:CreateTimer(2, function()
+
+				local newOrder = {
+			 		UnitIndex = boss:entindex(), 
+			 		OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+			 		AbilityIndex = boss:GetAbilityByIndex(2):GetEntityIndex(), 
+			 		Queue = 0
+			 	}
+				 
+				ExecuteOrderFromTable(newOrder)
+
+			end)	
+
+
+			
+		end
+		return RandomFloat(10, 15)
+
+	end)
 end
