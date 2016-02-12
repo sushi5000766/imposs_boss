@@ -151,12 +151,12 @@ function lightning_boss_thunderform_autoattack(event)
 	local dist = (hCaster:GetAbsOrigin() - xTarget:GetAbsOrigin()):Length2D()
 
 
-	if debug_drawing == true then
+	--[[if debug_drawing == true then
 		local debug_vel = hCaster:GetForwardVector() * 890
 		local debug_dist = (hCaster:GetAbsOrigin() - xTarget:GetAbsOrigin()):Length2D()
 		local debug_end = hCaster:GetAbsOrigin() + debug_dist * debug_vel:Normalized() 
 		DebugDrawLine(hCaster:GetAbsOrigin(), debug_end, 255, 255, 255, false, 3)
-	end
+	end]]--
 
 
 	local info = 
@@ -326,7 +326,7 @@ function lightning_slide_kill_check( event )
 	local caster = event.caster
 	local ability = event.ability
 
-	local unitTable = FindUnitsInRadius(DOTA_TEAM_NEUTRALS , caster:GetAbsOrigin(), nil, 115, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	local unitTable = FindUnitsInRadius(DOTA_TEAM_NEUTRALS , caster:GetAbsOrigin(), nil, 125, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	if unitTable ~= nil then
 		for k ,unit in pairs(unitTable) do
 			if unit:HasModifier("modifier_pillar_weakened") == true then
@@ -344,4 +344,393 @@ function lightning_slide_kill_check( event )
 			end
 		end
 	end
+end
+
+function lightning_recoil_start( keys )
+	local caster = keys.caster
+	local ability = keys.ability	
+
+	local recoil_table = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), nil, 6000.0, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)	
+
+	local player_count = 0
+
+	
+	if recoil_table ~= nil then
+		for k ,unit in pairs(recoil_table) do
+			player_count = (player_count + 1)
+		end
+
+		
+
+		if player_count > 0 then
+			marked_unit = recoil_table[RandomInt(1, player_count)]
+			print(marked_unit:GetName())
+		end
+
+		ability.mark = marked_unit
+
+		ability:ApplyDataDrivenModifier(caster, marked_unit, "modifier_recoil_mark", nil)	
+
+		Timers:CreateTimer(2, function()
+			ability:ApplyDataDrivenModifier(caster, caster, "modifier_recoil_effect", nil)
+			caster:AddNoDraw()
+
+			local recoil_start_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf", PATTACH_ABSORIGIN, caster)
+			ParticleManager:SetParticleControl(recoil_start_effect, 0, caster:GetAbsOrigin())
+
+			local recoil_start_group = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), nil, 300, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+			if recoil_start_group ~= nil then
+				for k,v in pairs(recoil_start_group) do
+					local damageTable = {
+						victim = v,
+						attacker = caster,
+						damage = 1500,
+						damage_type = DAMAGE_TYPE_MAGICAL,
+					}
+					 
+					ApplyDamage(damageTable)					
+				end
+			end
+		end)
+		
+	end
+
+	-- Ability variables
+	ability.leap_direction = (marked_unit:GetAbsOrigin()-caster:GetAbsOrigin()):Normalized()
+	ability.leap_distance = (caster:GetAbsOrigin() - marked_unit:GetAbsOrigin()):Length2D()
+	ability.leap_speed = 3600 * 1/30
+	ability.leap_traveled = 0
+end
+
+--[[Moves the caster on the horizontal axis until it has traveled the distance]]
+function lightning_recoil_during( keys )
+
+
+	local caster = keys.target
+	local ability = keys.ability
+
+	if ability.leap_traveled < ability.leap_distance then
+		caster:SetAbsOrigin(caster:GetAbsOrigin() + ability.leap_direction * ability.leap_speed)
+		ability.leap_traveled = ability.leap_traveled + ability.leap_speed
+	else
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_recoil_second_slide", nil)
+		caster:InterruptMotionControllers(true)
+	end
+end
+
+function lightning_recoil_start_two( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+
+	-- Clears any current command and disjoints projectiles
+	--caster:Stop()
+
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_recoil_check", nil)
+	ability.mark:RemoveModifierByName("modifier_recoil_mark")
+
+	local damageTable = {
+		victim = ability.mark,
+		attacker = caster,
+		damage = RandomFloat(0, 2200),
+		damage_type = DAMAGE_TYPE_MAGICAL,
+	}
+	 
+	ApplyDamage(damageTable) 
+
+	local recoil_bounce_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf", PATTACH_ABSORIGIN, caster)
+	ParticleManager:SetParticleControl(recoil_bounce_effect, 0, caster:GetAbsOrigin())
+
+	-- Ability variables
+	ability.leap_direction = ability.mark:GetForwardVector()
+	ability.leap_distance = 900
+	ability.leap_speed = 1600 * 1/30
+	ability.leap_traveled = 0
+end
+
+--[[Moves the caster on the horizontal axis until it has traveled the distance]]
+function lightning_recoil_during_two( keys )
+
+
+	local caster = keys.target
+	local ability = keys.ability
+
+	local cur_pos = caster:GetAbsOrigin()
+
+	if ability.leap_traveled < ability.leap_distance and cur_pos.x < -4352 and cur_pos.x > -7164 and cur_pos.y < 3068 and cur_pos.y > -256 then
+		caster:SetAbsOrigin(caster:GetAbsOrigin() + ability.leap_direction * ability.leap_speed)
+		ability.leap_traveled = ability.leap_traveled + ability.leap_speed
+	else
+
+		local recoil_start_group = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), nil, 300, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+		if recoil_start_group ~= nil then
+			for k,v in pairs(recoil_start_group) do
+				local damageTable = {
+					victim = v,
+					attacker = caster,
+					damage = 1500,
+					damage_type = DAMAGE_TYPE_MAGICAL,
+				}
+				 
+				ApplyDamage(damageTable)					
+			end
+		end
+
+		FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), true)
+
+		local recoil_end_effect = ParticleManager:CreateParticle("particles/items_fx/chain_lightning.vpcf", PATTACH_ABSORIGIN, caster)
+		ParticleManager:SetParticleControl(recoil_end_effect, 0, caster:GetAbsOrigin())
+		ParticleManager:SetParticleControl(recoil_end_effect, 1, caster:GetAbsOrigin() + Vector(0,0,1200))
+
+		local recoil_ended_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf", PATTACH_ABSORIGIN, caster)
+		ParticleManager:SetParticleControl(recoil_ended_effect, 0, caster:GetAbsOrigin())
+
+		caster:RemoveModifierByName("modifier_combust_disable") 
+		caster:RemoveModifierByName("modifier_recoil_check")
+		caster:RemoveModifierByName("modifier_recoil_second_slide")
+		caster:RemoveModifierByName("modifier_recoil_effect")
+		caster:RemoveNoDraw()
+		caster:InterruptMotionControllers(true)
+	end
+end
+
+function lightning_recoil_kill_check( event )
+	local caster = event.caster
+	local ability = event.ability
+
+	local combust_group = {}
+	local distance = {}
+	local speed = {}
+
+	local count = 4
+
+	local inXmin = -7164
+	local inXmax = -4352
+	local inYmin = -256
+	local inYmax = 3068
+	
+
+	local unitTable = FindUnitsInRadius(DOTA_TEAM_NEUTRALS , caster:GetAbsOrigin(), nil, 125, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	if unitTable ~= nil then
+		for k ,unit in pairs(unitTable) do
+			if unit:HasModifier("modifier_pillar_weakened") == true then
+				caster:InterruptMotionControllers(true)
+				caster:RemoveModifierByName("modifier_recoil_check")
+				caster:RemoveModifierByName("modifier_recoil_effect")
+				if caster:HasModifier("modifier_recoil_second_slide") == true then
+					caster:RemoveModifierByName("modifier_recoil_second_slide")
+				end
+				local pillar_death_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf", PATTACH_ABSORIGIN, unit)
+				ParticleManager:SetParticleControl(pillar_death_effect, 0, unit:GetAbsOrigin())
+				
+
+				unit:SetOriginalModel("models/props_structures/radiant_tower002_destruction.vmdl")
+				unit:ForceKill(false)
+
+				--start combust
+
+				local combust_table = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), nil, 6000.0, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)	
+
+				local player_count = 0
+
+				
+				if combust_table ~= nil then
+					for k ,unit in pairs(combust_table) do
+						player_count = (player_count + 1)
+					end
+
+					
+
+					if player_count > 0 then
+						combust_mark = combust_table[RandomInt(1, player_count)]
+					end
+				end
+
+				for i=1, 5 do
+					local combust_dummy = CreateUnitByName("npc_combust_dummy", caster:GetAbsOrigin(), false, nil, nil, DOTA_TEAM_NEUTRALS)
+					for i=0, 1 do
+						local dum_ab = combust_dummy:GetAbilityByIndex(i)
+						dum_ab:SetLevel(1)
+					end
+					combust_group[i] = combust_dummy
+					print("combust" .. i)
+				end
+
+				Timers:CreateTimer(function()
+
+					print("movement")
+
+					if combust_group ~= nil then
+						for k ,unit in pairs(combust_group) do
+							local combust_pos = Vector(RandomInt(inXmin, inXmax), RandomInt(inYmin, inYmax), 0)
+
+							local newOrder = {
+						 		UnitIndex = unit:entindex(), 
+						 		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+						 		Position = combust_pos, --Optional.  Only used when targeting the ground
+						 	}
+							 
+							ExecuteOrderFromTable(newOrder)
+						end	
+					end
+					count = count - 0.5
+
+					if count <= 0 then
+
+						print("start movment")
+						local bool = false
+
+						if combust_group ~= nil then
+							for k ,unit in pairs(combust_group) do
+								distance[k] = (unit:GetAbsOrigin() - combust_mark:GetAbsOrigin()):Length2D()
+								print(k .. " distance = " .. distance[k])
+								speed[k] = distance[k] * 1/30
+								print(k .. " speed = " .. speed[k])
+							end
+						end
+
+						Timers:CreateTimer(function()
+
+							if combust_group ~= nil then
+								for k ,unit in pairs(combust_group) do
+									local orb_cur = (unit:GetAbsOrigin() - combust_mark:GetAbsOrigin()):Length2D()
+									speed[k] = orb_cur * 1/5
+									local angle = (combust_mark:GetAbsOrigin()-unit:GetAbsOrigin()):Normalized()
+									if orb_cur > 10 then
+										unit:SetAbsOrigin(unit:GetAbsOrigin() + angle * speed[k])
+										if (unit:GetAbsOrigin() - combust_mark:GetAbsOrigin()):Length2D() < 100 then
+											bool = true
+										end
+
+									end
+
+									
+								end
+
+								if bool == false then
+									return 0.03
+								else
+									for k ,unit in pairs(combust_group) do
+										UTIL_Remove(unit)
+									end
+
+									local damageTable = {
+										victim = combust_mark,
+										attacker = caster,
+										damage = 10000,
+										damage_type = DAMAGE_TYPE_MAGICAL,
+									}
+									 
+									ApplyDamage(damageTable)
+
+									FindClearSpaceForUnit(caster, combust_mark:GetAbsOrigin(), true)
+
+									local combust_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf", PATTACH_ABSORIGIN,caster)
+									ParticleManager:SetParticleControl(combust_effect, 0, caster:GetAbsOrigin())
+
+									caster:RemoveNoDraw()
+									caster:RemoveModifierByName("modifier_combust_disable")
+
+
+								end								
+							end
+						end)
+
+					else
+						return 0.5
+					end
+				end)
+			end
+		end
+	end
+end
+
+function lightning_combust_start( keys )
+	local caster = keys.caster
+	local ability = keys.ability	
+
+	local recoil_table = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), nil, 6000.0, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)	
+
+	local player_count = 0
+
+	
+	if recoil_table ~= nil then
+		for k ,unit in pairs(recoil_table) do
+			player_count = (player_count + 1)
+		end
+
+		
+
+		if player_count > 0 then
+			marked_unit = recoil_table[RandomInt(1, player_count)]
+			print(marked_unit:GetName())
+		end
+
+		ability.mark = marked_unit
+
+		ability:ApplyDataDrivenModifier(caster, marked_unit, "modifier_recoil_mark", nil)	
+
+		Timers:CreateTimer(2, function()
+			ability:ApplyDataDrivenModifier(caster, caster, "modifier_recoil_effect", nil)
+			caster:AddNoDraw()
+
+			local recoil_start_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf", PATTACH_ABSORIGIN, caster)
+			ParticleManager:SetParticleControl(recoil_start_effect, 0, caster:GetAbsOrigin())
+
+			local recoil_start_group = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), nil, 300, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+			if recoil_start_group ~= nil then
+				for k,v in pairs(recoil_start_group) do
+					local damageTable = {
+						victim = v,
+						attacker = caster,
+						damage = 1500,
+						damage_type = DAMAGE_TYPE_MAGICAL,
+					}
+					 
+					ApplyDamage(damageTable)					
+				end
+			end
+		end)
+		
+	end
+
+	-- Ability variables
+	ability.leap_direction = (marked_unit:GetAbsOrigin()-caster:GetAbsOrigin()):Normalized()
+	ability.leap_distance = (caster:GetAbsOrigin() - marked_unit:GetAbsOrigin()):Length2D()
+	ability.leap_speed = 3600 * 1/30
+	ability.leap_traveled = 0
+end
+
+--[[Moves the caster on the horizontal axis until it has traveled the distance]]
+function lightning_recoil_during( keys )
+
+
+	local caster = keys.target
+	local ability = keys.ability
+
+	if ability.leap_traveled < ability.leap_distance then
+		caster:SetAbsOrigin(caster:GetAbsOrigin() + ability.leap_direction * ability.leap_speed)
+		ability.leap_traveled = ability.leap_traveled + ability.leap_speed
+	else
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_recoil_second_slide", nil)
+		caster:InterruptMotionControllers(true)
+	end
+end
+
+function lightning_combust_dummy_burn( event )
+	local caster = event.caster
+
+	local recoil_start_group = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), nil, 300, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	if recoil_start_group ~= nil then
+		for k,v in pairs(recoil_start_group) do
+			local damageTable = {
+				victim = v,
+				attacker = caster,
+				damage = 100,
+				damage_type = DAMAGE_TYPE_MAGICAL,
+			}
+			 
+			ApplyDamage(damageTable)					
+		end
+	end
+
 end

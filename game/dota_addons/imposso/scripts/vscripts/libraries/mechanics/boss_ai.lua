@@ -241,7 +241,7 @@ function lightning_AI()
 				local newOrder = {
 			 		UnitIndex = boss:entindex(), 
 			 		OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-			 		AbilityIndex = boss:GetAbilityByIndex(2):GetEntityIndex(), 
+			 		AbilityIndex = boss:GetAbilityByIndex(3):GetEntityIndex(), 
 			 		Queue = 0
 			 	}
 				 

@@ -2721,7 +2721,7 @@
 	  }
 	
 	
-	  "or_charge"
+	"or_charge"
 	  {
 	    // General  
 	    // ----------------------------------------------------------------------------------------
@@ -8428,9 +8428,6 @@
 	    		"Passive"			"0"
 	    		"IsHidden"			"0"
 	    		"IsDebuff"			"0"
-
-	    		"EffectName"    "particles/items2_fx/mjollnir_shield.vpcf"
-	            "EffectAttachType"  "follow_origin"
 	    	
 	    		"StatusEffectName"     "particles/status_fx/status_effect_mjollnir_shield.vpcf"
 				"StatusEffectPriority" "8"
@@ -8760,6 +8757,239 @@
 			}
 		}
 	}
+
+	"lightning_recoil"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName"	"mirana_leap"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+
+		"OnSpellStart"
+		{
+			
+			"RunScript"
+			{
+				"ScriptFile"	"libraries/boss_spells/lightning/lightning_boss.lua"
+				"Function"		"lightning_recoil_start"
+			}
+
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_lightning_slide"
+				"Target" 		"CASTER"
+			}
+
+			"DelayedAction"
+			{
+				"Delay"     "2"
+				"Action"    
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_combust_disable"
+						"Target" 		"CASTER"
+					}
+
+					"ApplyMotionController"
+					// For this: gfycat.com/BraveHideousGiantschnauzer -> check: bit.ly/1KWulqA
+					{
+					    "Target" 		"CASTER"
+					    "ScriptFile"    "libraries/boss_spells/lightning/lightning_boss.lua"
+					    "HorizontalControlFunction" "lightning_recoil_during"         
+					}
+				}
+			}			
+		}
+
+		"Modifiers"
+		{
+			"modifier_combust_disable"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+	
+			}
+
+			"modifier_recoil_mark"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+		
+				"EffectName"		"particles/items2_fx/mjollnir_shield.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+		
+			}
+
+			"modifier_recoil_effect"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+			
+				"EffectName"		"particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+
+			"modifier_recoil_check"
+			{
+				"Passive"			"0"
+	    		"IsHidden"			"1"
+	    		"IsDebuff"			"0"	    		
+
+	    		"ThinkInterval"  "0.05"
+	    		"OnIntervalThink"
+	    		{
+	    			"RunScript"
+					{
+						"ScriptFile"	"libraries/boss_spells/lightning/lightning_boss.lua"
+						"Function"		"lightning_recoil_kill_check"
+					}
+
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"115"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+					
+						"Action"    
+						{
+							"Damage"
+	    					{
+	    						"Target"		"TARGET"
+	    						"Type"			"DAMAGE_TYPE_MAGICAL"
+	    						"Damage"		"10000"
+	    					}
+						}
+					}
+	    		}
+			}
+
+			"modifier_recoil_second_slide"
+			{
+				"Passive"			"0"
+	    		"IsHidden"			"0"
+	    		"IsDebuff"			"0"
+
+	    		"OnCreated"
+	    		{
+	    			"DelayedAction"
+	    			{
+	    				"Delay"     "0.1"
+	    				"Action"    
+	    				{
+	    					"RunScript"
+							{
+								"ScriptFile"	"libraries/boss_spells/lightning/lightning_boss.lua"
+								"Function"		"lightning_recoil_start_two"
+							}
+
+							"ApplyMotionController"
+							// For this: gfycat.com/BraveHideousGiantschnauzer -> check: bit.ly/1KWulqA
+							{
+							    "Target" 		"CASTER"
+							    "ScriptFile"    "libraries/boss_spells/lightning/lightning_boss.lua"
+							    "HorizontalControlFunction" "lightning_recoil_during_two"         
+							}
+	    				}
+	    			}	    			
+	    		}
+			}
+		}
+	}
+
+	"lightning_combust_dummy" //contains most modifiers added in lua
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"       "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "AbilityTextureName"      "granite_golem_hp_aura"
+
+	    "MaxLevel"               "1"
+	    "RequiredLevel"          "0"
+	    "LevelsBetweenUpgrades"  "0"
+
+	    "precache"
+	    {     
+	      "soundfile" "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+	      "particle"  "particles/units/heroes/hero_earth_spirit/espirit_rollingboulder_swirl.vpcf"
+	    }
+
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        { 
+	            "var_type"  "FIELD_INTEGER"
+	            "armor" "75"
+	        }
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_combust_immolation"
+	    	{
+	    		"Passive"			"1"
+	    		"IsHidden"			"1"
+	    		"IsDebuff"			"0"
+
+	    		"EffectName"		"particles/units/heroes/hero_disruptor/disruptor_thunder_strike_buff.vpcf"
+	    		"EffectAttachType"	"follow_overhead"
+
+	    		"ThinkInterval"  "0.1"
+	    		"OnIntervalThink"
+	    		{
+	    			"RunScript"
+					{
+						"ScriptFile"	"libraries/boss_spells/lightning/lightning_boss.lua"
+						"Function"		"lightning_combust_dummy_burn"
+					}
+	    		}	    		
+	    	}
+	    }
+  	}
 
 //============================================================================================
 // MISCELLANEOUS

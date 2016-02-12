@@ -78,6 +78,7 @@ total_deaths = {}
 earth_portals_open = true
 lightning_pillar_group = {}
 
+
 --Difficulty set
 
 difficulty_mode = 3
