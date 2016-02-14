@@ -6963,7 +6963,7 @@
 		    	"02"
 		    	{
 		    		"var_type"			"FIELD_INTEGER"
-		    		"speed"				"300"
+		    		"speed"				"500"
 		    	}
 
 		    	"03"

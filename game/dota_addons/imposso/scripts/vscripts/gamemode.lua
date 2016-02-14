@@ -61,7 +61,7 @@ bossNames = {
   "chaos"
 }
 
-currentBoss = bossNames[4]
+currentBoss = bossNames[2]
 bossLocs = {}
 playerLocs = {}
 
@@ -422,8 +422,8 @@ function GameMode:ArenaStart()
   GameRules.Quest:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, GameRules.Quest.KillLimit )
 
 
-  --water_AI()
-  lightning_AI()
+  water_AI()
+  --lightning_AI()
   
   
 end

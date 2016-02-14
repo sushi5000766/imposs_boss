@@ -145,9 +145,9 @@ function TidalWaves ( event )
 		print(spawnLocation)
 		local forwardVec = (bossLocs["water"] - spawnLocation):Normalized()
 
-		if (spawnSelect == 2 or spawnSelect == 4)
+		if (spawnSelect == 2 or spawnSelect == 4) then
 			spawnLocation.x = spawnLocation.x + math.random(-500, 500)
-		elseif (spawnSelect == 1 or spawnSelect == 3)
+		elseif (spawnSelect == 1 or spawnSelect == 3) then
 			spawnLocation.y = spawnLocation.y + math.random(-500, 500)
 		end
 
@@ -218,14 +218,20 @@ function UnderTheSea ( event )
 			dist = (unit:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D()
 			if (dist > 300 and dist < 1000) then
 				target = unit
+				targetLoc = target:GetAbsOrigin()
 				table.remove(possibleTargets, k)
 				break
+			else
+				target = unit
+				targetLoc = target:GetAbsOrigin()
+				table.remove(possibleTargets, k)
 			end
 		end
 
 		if (target == nil) then
 			for k, unit in pairs(possibleTargets) do
 				target = unit
+				targetLoc = target:GetAbsOrigin()
 				print("CHARGING")
 				print(k)
 				print(unit:GetUnitName())
@@ -234,7 +240,7 @@ function UnderTheSea ( event )
 			end
 		end
 
-		local forwardVec = (target:GetAbsOrigin() - caster:GetAbsOrigin()):Normalized()
+		local forwardVec = (targetLoc - caster:GetAbsOrigin()):Normalized()
 		local travelTime = dist / speed
 
 		local projectileTable =
@@ -264,7 +270,7 @@ function UnderTheSea ( event )
 			print(travelTime)
 			local targetUnits = FindUnitsInRadius(
 				caster:GetTeamNumber(),
-				target:GetAbsOrigin(), 
+				targetLoc, 
 				nil,
 				150,
 				DOTA_UNIT_TARGET_TEAM_ENEMY,
@@ -286,19 +292,22 @@ function UnderTheSea ( event )
 
 			ProjectileManager:DestroyLinearProjectile(projectile)
 			local bubbles = ParticleManager:CreateParticle("particles/units/heroes/hero_tidehunter/tidehunter_anchor.vpcf", PATTACH_WORLDORIGIN, caster)
-			ParticleManager:SetParticleControl(bubbles, 0, target:GetAbsOrigin())
-			ParticleManager:SetParticleControl(bubbles, 1, target:GetAbsOrigin())
+			ParticleManager:SetParticleControl(bubbles, 0, targetLoc)
+			ParticleManager:SetParticleControl(bubbles, 1, targetLoc)
 			ability:ApplyDataDrivenModifier(caster, caster, "modifier_phased", {duration = 0.3})
 			print("TELEPORT")
-			FindClearSpaceForUnit(caster, target:GetAbsOrigin(), false)
+			FindClearSpaceForUnit(caster, targetLoc, false)
 		end)
 
 		if (chargeCount < 3) then
 			print("charging again")
 			print(travelTime + 0.1)
 			return travelTime + 0.1
+		else
+			Timers:CreateTimer(travelTime, function()
+				caster:RemoveModifierByName(modifier)
+			end)
 		end
-	caster:RemoveModifierByName(modifier)
 	end)
 end
 
@@ -327,12 +336,12 @@ function Submerge ( event )
 		break
 	end
 		
-	local bubbles = ParticleManager:CreateParticle("", PATTACH_WORLDORIGIN, caster)
-	ParticleManager:SetParticleControl(bubbles, 0, submergeLocation)
-	ParticleManager:SetParticleControl(bubbles, 1, submergeLocation)
+	--local bubbles = ParticleManager:CreateParticle("", PATTACH_WORLDORIGIN, caster)
+	--ParticleManager:SetParticleControl(bubbles, 0, submergeLocation)
+	--ParticleManager:SetParticleControl(bubbles, 1, submergeLocation)
 
 	Timers:CreateTimer(3, function()
-		ParticleManager:DestroyParticle(bubbles, false)
+		--ParticleManager:DestroyParticle(bubbles, false)
 		FindClearSpaceForUnit(caster, submergeLocation, false)		
 
 		local damagedUnits = FindUnitsInRadius(
@@ -345,6 +354,7 @@ function Submerge ( event )
 			DOTA_UNIT_TARGET_FLAG_NONE, 
 			FIND_ANY_ORDER, 
 			false)
+
 		for _, unit in pairs(damagedUnits) do
 			local distance = (unit:GetAbsOrigin() - submergeLocation):Length2D()
 			if (distance <= 100) then
@@ -376,8 +386,7 @@ function TornadoCall ( event )
 	local caster = event.caster
 	local ability = event.ability
 	local modifier = event.modifier
-	local tornadoes = Entities:FindByModel(nil, "")
-
+	local tornadoes = Entities:FindByName(nil, "")
 	for _, unit in pairs(tornadoes) do
 		unit:CastAbilityImmediately("tornado_tornado_call", -1)
 		break
@@ -391,9 +400,9 @@ function _TornadoCall ( event )
 	local currentLoc = caster:GetAbsOrigin()
 	local facingDirection = caster:GetForwardVector()
 	local dist = (currentLoc - bossLocs["water"]):Length2D()
-	local targetLoc = 
+	--local targetLoc = 
 
-	caster:MoveToPosition(Vector vDest)
+	--caster:MoveToPosition(Vector vDest)
 end
 
 			
