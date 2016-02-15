@@ -3,7 +3,7 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 1
-	m_flConstantRadius = 240.000000
+	m_flConstantRadius = 126.002000
 	m_bShouldSort = false
 	m_flMaxRecreationTime = -1.000000
 	m_Renderers =
@@ -42,17 +42,6 @@
 			_class = "C_OP_SetControlPointsToParticle"
 			m_nFirstControlPoint = 3
 			m_bSetOrientation = true
-		},
-		{
-			_class = "C_OP_MovementPlaceOnGround"
-			m_nLerpCP = 3
-			m_flTolerance = 96.000000
-			m_flOffset = 6.000000
-			m_bIncludeWater = true
-			m_flMaxTraceLength = 1024.000000
-			m_flTraceOffset = 256.000000
-			m_CollisionGroupName = "DEBRIS"
-			m_nRefCP1 = 3
 		},
 		{
 			_class = "C_OP_LagCompensation"

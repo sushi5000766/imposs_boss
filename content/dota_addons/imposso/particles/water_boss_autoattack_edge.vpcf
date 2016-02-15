@@ -27,17 +27,6 @@
 			m_nOpEndCapState = 0
 		},
 		{
-			_class = "C_OP_MovementPlaceOnGround"
-			m_nLerpCP = 3
-			m_flTolerance = 96.000000
-			m_flOffset = 12.000000
-			m_bIncludeWater = true
-			m_flMaxTraceLength = 1024.000000
-			m_flTraceOffset = 256.000000
-			m_CollisionGroupName = "DEBRIS"
-			m_nRefCP1 = 3
-		},
-		{
 			_class = "C_OP_RemapCPOrientationToYaw"
 			m_nCP = 0
 			m_nFieldOutput = 4

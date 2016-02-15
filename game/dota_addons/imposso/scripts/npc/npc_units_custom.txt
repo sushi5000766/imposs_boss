@@ -215,22 +215,21 @@
 	            }
 	        } 
 	    }
-
 	  "npc_boss_water_tornado"
 	    {
 	        // General
 	        "BaseClass"         "npc_dota_creature"  // Class of entity of link to.
-	        "Model"             ""  // Model.
+	        "Model"             "models/development/invisiblebox.vmdl"  // Model.
 	        "ModelScale"		"1.8"
 	        "SoundSet"          "Creep_Good_Range"          // Name of sound set.
 	        "Level"           	"0"
-	        "UnitLabel"         "Boss"
+	        "UnitLabel"         "Tornado"
 	
 	        // Abilities
 	        //----------------------------------------------------------------
 	
-	        "Ability1"          "tornado_call"     // Ability 1.
-	        "Ability2"          "dummy_unit"      // Ability 2.
+	        "Ability1"          "tornado_tornado_call"     // Ability 1.
+	        "Ability2"          "tornado_dummy"      // Ability 2.
 	        "Ability3"          ""      // Ability 3.
 	        "Ability4"          ""      // Ability 4.
 	        "Ability5"          ""      // Ability 5.
@@ -280,16 +279,16 @@
 	
 	        // Movement
 	        //----------------------------------------------------------------
-	        "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_NONE"     // Type of locomotion - ground, air
+	        "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"     // Type of locomotion - ground, air
 	        "MovementSpeed"       "100"   // Speed
 	        "MovementTurnRate"      "3"   // Turning rate.
 	        "FollowRange"       "250"   // Distance to keep when following
 	
 	        // Status
 	        //----------------------------------------------------------------
-	        "StatusHealth"        "19000"     // Base health.
+	        "StatusHealth"        "1"     // Base health.
 	        "StatusHealthRegen"     "0"     // Health regeneration rate.
-	        "StatusMana"        "900"     // Base mana.
+	        "StatusMana"        "1"     // Base mana.
 	        "StatusManaRegen"     "10"     // Mana regeneration rate.
 	
 	        "HealthBarOffset"           "400"
@@ -311,8 +310,7 @@
 	        // Bots
 	        //----------------------------------------------------------------
 	        "AttackDesire"        "0"   // How much bots want to attack them vs other non-hero things
-	    }
-	       
+	    }	       
 	 "npc_boss_earth"
 	    {
 	        // General
@@ -524,8 +522,6 @@
 	        //----------------------------------------------------------------
 	        "AttackDesire"        "0"   // How much bots want to attack them vs other non-hero things
 	    }
-
-
 	 "npc_boss_lightning"
 	    {
 	        // General
@@ -635,7 +631,6 @@
 		        }
 		    }
 	    }
-
 	 "npc_lightning_boss_pillar"
 	    {
 	        // General
@@ -738,7 +733,6 @@
 	        //----------------------------------------------------------------
 	        "AttackDesire"        "0"   // How much bots want to attack them vs other non-hero things
 	    }
-
 	 "npc_call_thunder_dummy"
 	    {
 	        // General
@@ -829,7 +823,6 @@
 	        //----------------------------------------------------------------
 	        "AttackDesire"        "1.5"   // How much bots want to attack them vs other non-hero things
 	    }
-
 	 "npc_combust_dummy"
 	    {
 	        // General
@@ -1014,8 +1007,6 @@
 	        //----------------------------------------------------------------
 	        "AttackDesire"        "0"   // How much bots want to attack them vs other non-hero things
 	    }
-
-
 	"npc_dk_skel_unit"
 	    {
 	        // General

@@ -360,6 +360,17 @@ function GameMode:ArenaSetup()
   local currentBossName = "npc_boss_" .. currentBoss
   boss = CreateUnitByName(currentBossName, bossLocs[currentBoss], true, nil, nil, DOTA_TEAM_NEUTRALS)
 
+  if (currentBoss == "water") then
+    for i = 1,3 do
+      local currentTornado = "tornado_spawn" .. i
+      local tornadoEntity = Entities:FindByName(nil, currentTornado)
+      local tornadoLocation = tornadoEntity:GetAbsOrigin()
+      local tornadoUnit = CreateUnitByName("npc_boss_water_tornado", tornadoLocation, true, nil, nil, DOTA_TEAM_NEUTRALS)
+      local tornadoPassive = tornadoUnit:GetAbilityByIndex(0)
+      tornadoPassive:SetLevel(1)
+    end
+  end
+
   CustomGameEventManager:Send_ServerToAllClients("remove_boss_ability", { 
     reference_number = 1
     })

@@ -85,7 +85,7 @@ function Precache( context )
   PrecacheResource("particle", "particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf", context)
   PrecacheResource("particle", "particles/units/heroes/hero_disruptor/disruptor_glimpse_start_target.vpcf", context)
   PrecacheResource("particle", "particles/units/heroes/hero_disruptor/disruptor_thunder_strike_buff.vpcf", context)
-
+  PrecacheResource("particle", "particles/neutral_fx/tornado_ambient.vpcf", context)
 
 
  

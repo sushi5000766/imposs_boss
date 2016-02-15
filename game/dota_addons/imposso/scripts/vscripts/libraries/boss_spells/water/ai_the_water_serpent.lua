@@ -386,7 +386,7 @@ function TornadoCall ( event )
 	local caster = event.caster
 	local ability = event.ability
 	local modifier = event.modifier
-	local tornadoes = Entities:FindByName(nil, "")
+	local tornadoes = Entities:FindByName(nil, "npc_boss_water_tornado")
 	for _, unit in pairs(tornadoes) do
 		unit:CastAbilityImmediately("tornado_tornado_call", -1)
 		break
