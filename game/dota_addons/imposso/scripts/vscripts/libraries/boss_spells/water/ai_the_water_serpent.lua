@@ -397,12 +397,13 @@ function _TornadoCall ( event )
 	local caster = event.caster
 	local ability = event.ability
 	local modifier = event.modifier
+	local selectTarget = math.random(1,8)
+	local collisionTargetName = "wallCollision" .. i
+	local collisionTarget = Entities:FindByName(nil, collisionTargetName)
 	local currentLoc = caster:GetAbsOrigin()
-	local facingDirection = caster:GetForwardVector()
-	local dist = (currentLoc - bossLocs["water"]):Length2D()
-	--local targetLoc = 
+	local targetLoc = collisionTarget:GetAbsOrigin()
 
-	--caster:MoveToPosition(Vector vDest)
+	
 end
 
 			

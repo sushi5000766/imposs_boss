@@ -7081,10 +7081,30 @@
 
 		    "OnSpellStart"
 		    {
+		    	"ApplyModifier"
+		    	{
+		    		"ModifierName"	"modifier_tornado_call"
+		    		"Target" 		"CASTER"
+		    	}
+
 		    	"RunScript"
 		    	{
 		    		"ScriptFile"	"libraries/boss_spells/water/ai_the_water_serpent.lua"
 		    		"Function"		"_TornadoCall"
+		    	}
+		    }
+
+		    "Modifiers"
+		    {
+		    	"modifier_tornado_call"
+		    	{
+		    		"Passive"			"0"
+		    		"IsHidden"			"0"
+		    		"IsDebuff"			"0"
+		    		"IsBuff"			"1"
+		    
+		    		"StatusEffectName" 		"particles/status_fx/status_effect_wyvern_cold_embrace.vpcf" 	   
+		    		"StatusEffectPriority"  "10"
 		    	}
 		    }
 		}
