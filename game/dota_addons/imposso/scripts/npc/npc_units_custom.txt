@@ -109,99 +109,69 @@
 	    }
 	 "npc_boss_water"
 	    {
-	        // General
-	        "BaseClass"         "npc_dota_creature"  // Class of entity of link to.
-	        "Model"             "models/heroes/medusa/medusa.vmdl"  // Model.
-	        "ModelScale"		"1.8"
-	        "SoundSet"          "Hero_Medusa"          // Name of sound set.
-	        "Level"           	"0"
-	        "UnitLabel"         "Boss"
+	        "BaseClass"         		"npc_dota_creature"  
+	        "Model"             		"models/heroes/medusa/medusa.vmdl" 
+	        "ModelScale"				"1.8"
+	        "SoundSet"          		"Hero_Medusa"         
+	        "Level"           			"0"
+	        "UnitLabel"         		"Boss"	
 	
-	        // Abilities
-	        //----------------------------------------------------------------
-	
-	        "Ability1"          "ai_passive"     // Ability 1.
-	        "Ability2"          "ai_burst"      // Ability 2.
-	        "Ability3"          "ai_splash"      // Ability 3.
-	        "Ability4"          "ai_ais_influence"      // Ability 4.
-	        "Ability5"          "ai_under_the_sea"      // Ability 5.
-	        "Ability6"          "ai_tidal_waves"      // Ability 6 - Extra.
-	        "Ability7"          "ai_submerge"      // Ability 7 - Extra.
-	        "Ability8"          "ai_tornado_call"      // Ability 8 - Extra.
+	        "Ability1"          		"ai_passive"     
+	        "Ability2"          		"ai_burst"     
+	        "Ability3"          		"ai_splash"     
+	        "Ability4"          		"ai_ais_influence"      
+	        "Ability5"          		"ai_under_the_sea"      
+	        "Ability6"          		"ai_tidal_waves"     
+	        "Ability7"          		"ai_submerge"      
+	        "Ability8"          		"ai_tornado_call"      
+	        "Ability9"					"ai_call_the_sea"
+	        "Ability10"					"ai_water_seal"
+	        "Ability11"					"ai_drown"	
 
+	        "ArmorPhysical"      		"0"  
+	        "MagicalResistance"       	"0" 
+	
+	        "AttackCapabilities"    	"DOTA_UNIT_CAP_RANGED_ATTACK"
+	        "AttackDamageMin"     		"0"    
+	        "AttackDamageMax"     		"0"    
+	        "AttackDamageType"      	"DAMAGE_TYPE_ArmorPhysical"
+	        "AttackRate"        		"0.6"    
+	        "AttackAnimationPoint"    	"0.5"  
+	        "AttackAcquisitionRange"  	"3000"   
+	        "AttackRange"       		"6000"  
+	        "ProjectileModel"    		"" 
+	        "ProjectileSpeed"     		"1300"	
 
+	        "BoundsHullName"      		"DOTA_HULL_SIZE_HERO"     
 	
-	        // Armor
-	        //----------------------------------------------------------------
-	        "ArmorPhysical"       "0"     // Physical protection.
-	        "MagicalResistance"       "0"     // Magical protection.
-	
-	        // Attack
-	        //----------------------------------------------------------------
-	        "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"     // Type of attack - melee, ranged, etc.
-	        "AttackDamageMin"     "0"     // Damage range min.
-	        "AttackDamageMax"     "0"     // Damage range max.
-	        "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
-	        "AttackRate"        "0.6"     // Speed of attack.
-	        "AttackAnimationPoint"    "0.5"   // Normalized time in animation cycle to attack.
-	        "AttackAcquisitionRange"  "3000"   // Range within a target can be acquired.
-	        "AttackRange"       "6000"   // Range within a target can be attacked.
-	        "ProjectileModel"     "" // Particle system model for projectile.
-	        "ProjectileSpeed"     "1300"   // Speed of projectile.
-	
-	        // Attributes
-	        //----------------------------------------------------------------
-	        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
-	        "AttributeBaseStrength"   "0"     // Base strength
-	        "AttributeStrengthGain"   "0"     // Strength bonus per level.
-	        "AttributeBaseIntelligence" "0"     // Base intelligence
-	        "AttributeIntelligenceGain" "0"     // Intelligence bonus per level.
-	        "AttributeBaseAgility"    "0"     // Base agility
-	        "AttributeAgilityGain"    "0"     // Agility bonus per level.
-	
-	        // Bounty
-	        //----------------------------------------------------------------
-	        "BountyXP"          "0"     // Experience earn.
-	        "BountyGoldMin"       "0"     // Gold earned min.
-	        "BountyGoldMax"       "0"     // Gold earned max.
-	
-	        // Bounds
-	        //----------------------------------------------------------------
-	        "BoundsHullName"      "DOTA_HULL_SIZE_HERO"      // Hull type used for navigation/locomotion.
-	
-	        // Movement
-	        //----------------------------------------------------------------
-	        "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_NONE"     // Type of locomotion - ground, air
-	        "MovementSpeed"       "100"   // Speed
-	        "MovementTurnRate"      "3"   // Turning rate.
-	        "FollowRange"       "250"   // Distance to keep when following
-	
-	        // Status
-	        //----------------------------------------------------------------
-	        "StatusHealth"        "19000"     // Base health.
-	        "StatusHealthRegen"     "0"     // Health regeneration rate.
-	        "StatusMana"        "900"     // Base mana.
-	        "StatusManaRegen"     "10"     // Mana regeneration rate.
+	        "MovementCapabilities"    	"DOTA_UNIT_CAP_MOVE_NONE"        
+
+	        "StatusHealth"        		"19000"     
+	        "StatusHealthRegen"     	"0"     
+	        "StatusMana"        		"900"
+	        "StatusManaRegen"     		"10"
 	
 	        "HealthBarOffset"           "400"
 	
-	        "StatusStartingMana"          "0"
+	        "StatusStartingMana"        "0"
+	        "TeamName"          		"DOTA_TEAM_NEUTRALS"
+	        "CombatClassAttack"     	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+	        "CombatClassDefend"     	"DOTA_COMBAT_CLASS_DEFEND_SOFT"
+	        "UnitRelationshipClass"   	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 	
-	        // Team
-	        //----------------------------------------------------------------
-	        "TeamName"          "DOTA_TEAM_NEUTRALS"      // Team name.
-	        "CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_PIERCE"
-	        "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_SOFT"
-	        "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
-	
-	        // Vision
-	        //----------------------------------------------------------------
-	        "VisionDaytimeRange"    "3000"   // Range of vision during day light.
-	        "VisionNighttimeRange"    "3000"   // Range of vision at night time.
-	
-	        // Bots
-	        //----------------------------------------------------------------
-	        "AttackDesire"        "0"   // How much bots want to attack them vs other non-hero things
+	        "VisionDaytimeRange"    	"3000"
+	        "VisionNighttimeRange"    	"3000"
+	        "AttributePrimary"      	"DOTA_ATTRIBUTE_STRENGTH"
+	        "AttributeBaseStrength"   	"0"  
+	        "AttributeStrengthGain"   	"0"    
+	        "AttributeBaseIntelligence" "0"  
+	        "AttributeIntelligenceGain" "0"   
+	        "AttributeBaseAgility"    	"0"   
+	        "AttributeAgilityGain"    	"0"   
+
+	        "BountyXP"          		"0"     
+	        "BountyGoldMin"       		"0"     
+	        "BountyGoldMax"       		"0"    
 
 	        "Creature"
 	        {
@@ -217,100 +187,180 @@
 	    }
 	  "npc_boss_water_tornado"
 	    {
-	        // General
-	        "BaseClass"         "npc_dota_creature"  // Class of entity of link to.
-	        "Model"             "models/development/invisiblebox.vmdl"  // Model.
-	        "ModelScale"		"1.8"
-	        "SoundSet"          "Creep_Good_Range"          // Name of sound set.
-	        "Level"           	"0"
-	        "UnitLabel"         "Tornado"
+	        "BaseClass"         		"npc_dota_creature"
+	        "Model"             		"models/development/invisiblebox.vmdl"
+	        "ModelScale"				"1.8"
+	        "SoundSet"          		""
+	        "Level"           			"0"
+	        "UnitLabel"         		"Tornado"
 	
-	        // Abilities
-	        //----------------------------------------------------------------
+	        "Ability1"          		"ai_tornado_tornado_call"     
+	        "Ability2"          		"tornado_dummy"
 	
-	        "Ability1"          "tornado_tornado_call"     // Ability 1.
-	        "Ability2"          "tornado_dummy"      // Ability 2.
-	        "Ability3"          ""      // Ability 3.
-	        "Ability4"          ""      // Ability 4.
-	        "Ability5"          ""      // Ability 5.
-	        "Ability6"          ""      // Ability 6 - Extra.
-	        "Ability7"          ""      // Ability 7 - Extra.
-	        "Ability8"          ""      // Ability 8 - Extra.
+	        "AttackCapabilities"    	"DOTA_UNIT_CAP_NO_ATTACK"
+	
+	        "MovementCapabilities"    	"DOTA_UNIT_CAP_MOVE_AIR"
+	        "MovementSpeed"       		"100"
+	        "MovementTurnRate"      	"3"
 
+	        "TeamName"          		"DOTA_TEAM_NEUTRALS"
+	    }
+	 "npc_boss_water_myrmidon"
+	    {
+	        "BaseClass"         		"npc_dota_creature"  
+	        "Model"             		"models/heroes/slardar/slardar.vmdl" 
+	        "ModelScale"				"1.8"
+	        "SoundSet"          		"Hero_Slardar"         
+	        "Level"           			"0"
+	        "UnitLabel"         		"Minion"	
+	
+	        "Ability1"          		"ai_minion_crush"     
 
+	        "ArmorPhysical"      		"0"  
+	        "MagicalResistance"       	"0" 
 	
-	        // Armor
-	        //----------------------------------------------------------------
-	        "ArmorPhysical"       "0"     // Physical protection.
-	        "MagicalResistance"       "0"     // Magical protection.
+	        "AttackCapabilities"    	"DOTA_UNIT_CAP_MELEE_ATTACK"
+	        "AttackDamageMin"     		"45"    
+	        "AttackDamageMax"     		"45"    
+	        "AttackDamageType"      	"DAMAGE_TYPE_ArmorPhysical"
+	        "AttackRate"        		"0.6"    
+	        "AttackAnimationPoint"    	"0.5"  
+	        "AttackAcquisitionRange"  	"3000"   
+	        "AttackRange"       		"180"
+
+	        "BoundsHullName"      		"DOTA_HULL_SIZE_HERO"     
 	
-	        // Attack
-	        //----------------------------------------------------------------
-	        "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"     // Type of attack - melee, ranged, etc.
-	        "AttackDamageMin"     "0"     // Damage range min.
-	        "AttackDamageMax"     "0"     // Damage range max.
-	        "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
-	        "AttackRate"        "0.6"     // Speed of attack.
-	        "AttackAnimationPoint"    "0.5"   // Normalized time in animation cycle to attack.
-	        "AttackAcquisitionRange"  "3000"   // Range within a target can be acquired.
-	        "AttackRange"       "6000"   // Range within a target can be attacked.
-	        "ProjectileModel"     "" // Particle system model for projectile.
-	        "ProjectileSpeed"     "1300"   // Speed of projectile.
-	
-	        // Attributes
-	        //----------------------------------------------------------------
-	        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
-	        "AttributeBaseStrength"   "0"     // Base strength
-	        "AttributeStrengthGain"   "0"     // Strength bonus per level.
-	        "AttributeBaseIntelligence" "0"     // Base intelligence
-	        "AttributeIntelligenceGain" "0"     // Intelligence bonus per level.
-	        "AttributeBaseAgility"    "0"     // Base agility
-	        "AttributeAgilityGain"    "0"     // Agility bonus per level.
-	
-	        // Bounty
-	        //----------------------------------------------------------------
-	        "BountyXP"          "0"     // Experience earn.
-	        "BountyGoldMin"       "0"     // Gold earned min.
-	        "BountyGoldMax"       "0"     // Gold earned max.
-	
-	        // Bounds
-	        //----------------------------------------------------------------
-	        "BoundsHullName"      "DOTA_HULL_SIZE_HERO"      // Hull type used for navigation/locomotion.
-	
-	        // Movement
-	        //----------------------------------------------------------------
-	        "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"     // Type of locomotion - ground, air
-	        "MovementSpeed"       "100"   // Speed
-	        "MovementTurnRate"      "3"   // Turning rate.
-	        "FollowRange"       "250"   // Distance to keep when following
-	
-	        // Status
-	        //----------------------------------------------------------------
-	        "StatusHealth"        "1"     // Base health.
-	        "StatusHealthRegen"     "0"     // Health regeneration rate.
-	        "StatusMana"        "1"     // Base mana.
-	        "StatusManaRegen"     "10"     // Mana regeneration rate.
+	        "MovementCapabilities"    	"DOTA_UNIT_CAP_MOVE_GROUND"        
+
+	        "StatusHealth"        		"50"     
+	        "StatusHealthRegen"     	"0"     
+	        "StatusMana"        		"25"
+	        "StatusManaRegen"     		"1"
 	
 	        "HealthBarOffset"           "400"
+
+	        "TeamName"          		"DOTA_TEAM_NEUTRALS"
+	        "CombatClassAttack"     	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+	        "CombatClassDefend"     	"DOTA_COMBAT_CLASS_DEFEND_SOFT"
+	        "UnitRelationshipClass"   	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"  
+
+	        // "Creature"
+	        // {
+	        //     "AttachWearables"
+	        //     {
+	        //         "Wearable1"     { "ItemDef" "8191" }
+	        //         "Wearable2"     { "ItemDef" "8193" }
+	        //         "Wearable3"     { "ItemDef" "8194" }
+	        //         "Wearable4"     { "ItemDef" "8195" }
+	        //         "Wearable5"     { "ItemDef" "8196" }
+	        //     }
+	        // }
+
+	    }
+	 "npc_boss_water_snap_dragon"
+	    {
+	        "BaseClass"         		"npc_dota_creature"  
+	        "Model"             		"models/heroes/tidehunter/tidehunter.vmdl" 
+	        "ModelScale"				"1.8"
+	        "SoundSet"          		"Hero_Tidehunter"         
+	        "Level"           			"0"
+	        "UnitLabel"         		"Minion"	
 	
-	        "StatusStartingMana"          "0"
+	        "Ability1"          		"ai_minion_crush"     
+
+	        "ArmorPhysical"      		"0"  
+	        "MagicalResistance"       	"0" 
 	
-	        // Team
-	        //----------------------------------------------------------------
-	        "TeamName"          "DOTA_TEAM_NEUTRALS"      // Team name.
-	        "CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_PIERCE"
-	        "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_SOFT"
-	        "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+	        "AttackCapabilities"    	"DOTA_UNIT_CAP_MELEE_ATTACK"
+	        "AttackDamageMin"     		"45"    
+	        "AttackDamageMax"     		"45"    
+	        "AttackDamageType"      	"DAMAGE_TYPE_ArmorPhysical"
+	        "AttackRate"        		"0.6"    // Should be faster than Myrmidon (CHANGE)  
+	        "AttackAnimationPoint"    	"0.5"  
+	        "AttackAcquisitionRange"  	"3000"   
+	        "AttackRange"       		"180"
+
+	        "BoundsHullName"      		"DOTA_HULL_SIZE_HERO"     
 	
-	        // Vision
-	        //----------------------------------------------------------------
-	        "VisionDaytimeRange"    "3000"   // Range of vision during day light.
-	        "VisionNighttimeRange"    "3000"   // Range of vision at night time.
+	        "MovementCapabilities"    	"DOTA_UNIT_CAP_MOVE_GROUND"        
+
+	        "StatusHealth"        		"50"     
+	        "StatusHealthRegen"     	"0"     
+	        "StatusMana"        		"25"
+	        "StatusManaRegen"     		"1"
 	
-	        // Bots
-	        //----------------------------------------------------------------
-	        "AttackDesire"        "0"   // How much bots want to attack them vs other non-hero things
-	    }	       
+	        "HealthBarOffset"           "400"
+
+	        "TeamName"          		"DOTA_TEAM_NEUTRALS"
+	        "CombatClassAttack"     	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+	        "CombatClassDefend"     	"DOTA_COMBAT_CLASS_DEFEND_SOFT"
+	        "UnitRelationshipClass"   	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"  
+
+	        // "Creature"
+	        // {
+	        //     "AttachWearables"
+	        //     {
+	        //         "Wearable1"     { "ItemDef" "8191" }
+	        //         "Wearable2"     { "ItemDef" "8193" }
+	        //         "Wearable3"     { "ItemDef" "8194" }
+	        //         "Wearable4"     { "ItemDef" "8195" }
+	        //         "Wearable5"     { "ItemDef" "8196" }
+	        //     }
+	        // }
+	         
+	    }
+	 "npc_boss_water_siren"
+	    {
+	        "BaseClass"         		"npc_dota_creature"  
+	        "Model"             		"models/heroes/naga_siren/naga_siren.vmdl" 
+	        "ModelScale"				"1.8"
+	        "SoundSet"          		"Hero_Naga_Siren"         
+	        "Level"           			"0"
+	        "UnitLabel"         		"Minion"	
+	
+	        "Ability1"          		"ai_minion_splash"     
+
+	        "ArmorPhysical"      		"0"  
+	        "MagicalResistance"       	"0" 
+	
+	        "AttackCapabilities"    	"DOTA_UNIT_CAP_RANGED_ATTACK"
+	        "AttackDamageMin"     		"75"    
+	        "AttackDamageMax"     		"75"    
+	        "AttackDamageType"      	"DAMAGE_TYPE_ArmorPhysical"
+	        "AttackRate"        		"0.6" // Same attack speed as Snap Dragon (CHANGE)    
+	        "AttackAnimationPoint"    	"0.5"  
+	        "AttackAcquisitionRange"  	"3000"   
+	        "AttackRange"       		"700"
+
+	        "BoundsHullName"      		"DOTA_HULL_SIZE_HERO"     
+	
+	        "MovementCapabilities"    	"DOTA_UNIT_CAP_MOVE_GROUND"        
+
+	        "StatusHealth"        		"50"     
+	        "StatusHealthRegen"     	"0"     
+	        "StatusMana"        		"25"
+	        "StatusManaRegen"     		"1"
+	
+	        "HealthBarOffset"           "400"
+
+	        "TeamName"          		"DOTA_TEAM_NEUTRALS"
+	        "CombatClassAttack"     	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+	        "CombatClassDefend"     	"DOTA_COMBAT_CLASS_DEFEND_SOFT"
+	        "UnitRelationshipClass"   	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"  
+
+	        // "Creature"
+	        // {
+	        //     "AttachWearables"
+	        //     {
+	        //         "Wearable1"     { "ItemDef" "8191" }
+	        //         "Wearable2"     { "ItemDef" "8193" }
+	        //         "Wearable3"     { "ItemDef" "8194" }
+	        //         "Wearable4"     { "ItemDef" "8195" }
+	        //         "Wearable5"     { "ItemDef" "8196" }
+	        //     }
+	        // }
+	         
+	    }         	       
 	 "npc_boss_earth"
 	    {
 	        // General

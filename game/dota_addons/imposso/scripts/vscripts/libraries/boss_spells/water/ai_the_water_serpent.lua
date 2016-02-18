@@ -402,8 +402,32 @@ function _TornadoCall ( event )
 	local collisionTarget = Entities:FindByName(nil, collisionTargetName)
 	local currentLoc = caster:GetAbsOrigin()
 	local targetLoc = collisionTarget:GetAbsOrigin()
-
-	
 end
 
-			
+function CallTheSea ( event )
+	local caster = event.caster
+	local ability = event.ability
+	local num = 4  -- Change based on difficulty
+
+	for i = 1, num do
+		local x = math.random(-5000, 5000)
+		local y = math.random(-5000, 5000)
+		local spawnLocation = (x, y, 0)
+		ParticleManager:CreateParticle("", PATTACH_WORLDORIGIN, caster)
+
+		local minionType = math.random(1, 3)
+
+		Timers:CreateTimer(2, function()
+			if (minionType == 1) then
+				local minion = CreateUnitByName("npc_boss_water_myrmidon", spawnLocation, true, caster, caster, DOTA_TEAM_NEUTRALS)
+				ability:ApplyDataDrivenModifier(minion, minion, "modifier_phased", {duration = 0.3})
+			elseif (minionType == 2) then
+				local minion = CreateUnitByName("npc_boss_water_snap_dragon", spawnLocation, true, caster, caster, DOTA_TEAM_NEUTRALS)
+				ability:ApplyDataDrivenModifier(minion, minion, "modifier_phased", {duration = 0.3})
+			else
+				local minion = CreateUnitByName("npc_boss_water_siren", spawnLocation, true, caster, caster, DOTA_TEAM_NEUTRALS)
+				ability:ApplyDataDrivenModifier(minion, minion, "modifier_phased", {duration = 0.3})
+			end
+		end)
+	end
+end

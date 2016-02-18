@@ -7072,7 +7072,7 @@
 		    	}
 		    }
 		}
-	"tornado_tornado_call"
+	"ai_tornado_tornado_call"
 		{
 		    // General  
 		    // ----------------------------------------------------------------------------------------
@@ -7108,6 +7108,63 @@
 		    	}
 		    }
 		}
+	"ai_call_the_sea"
+		{
+		    // General  
+		    // ----------------------------------------------------------------------------------------
+		    "BaseClass"       				"ability_datadriven"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		    "AbilityCooldown"				"15"
+		    "AbilityTextureName"      		"slardar_sprint"
+		    "AbilityCastPoint"				"0"
+
+		    "OnSpellStart"
+		    {
+		    	"RunScript"
+		    	{
+		    		"ScriptFile"	"libraries/boss_spells/water/ai_the_water_serpent.lua"
+		    		"Function"		"CallTheSea"
+		    	}
+		    }
+		}
+	"ai_minion_crush"
+		{
+			// General  
+		    // ----------------------------------------------------------------------------------------
+		    "BaseClass"       				"ability_datadriven"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		    "AbilityCooldown"				"15"
+		    "AbilityTextureName"      		"slardar_slithereen_crush"
+		    "AbilityCastPoint"				"0"
+
+		    "OnSpellStart"
+		    {
+		    	"RunScript"
+		    	{
+		    		"ScriptFile"	"libraries/boss_spells/water/ai_the_water_serpent.lua"
+		    		"Function"		"CallTheSea"
+		    	}
+		    }
+
+		    "Modifiers"
+		    {
+		    	"modifier_minion_crush"
+		    	{
+		    		"Passive"			"0"
+		    		"IsHidden"			"0"
+		    		"IsDebuff"			"0"
+		    		"IsBuff"			"1"
+		    
+		    		"EffectName"		"particle_name"
+		    		"EffectAttachType"	"follow_overhead"
+		    
+		    		
+		    	}
+		    }
+		}
+	"ai_minion_splash"
+	"ai_water_seal"
+	"ai_drown"
 //============================================================================================
 // Gaven, The Brute
 //============================================================================================
