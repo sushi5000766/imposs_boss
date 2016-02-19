@@ -7133,18 +7133,10 @@
 		    // ----------------------------------------------------------------------------------------
 		    "BaseClass"       				"ability_datadriven"
 		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		    "AbilityCooldown"				"15"
-		    "AbilityTextureName"      		"slardar_slithereen_crush"
+		    "AbilityCooldown"				"0"
+		    "AbilityTextureName"      		"slardar_bash"
 		    "AbilityCastPoint"				"0"
-
-		    "OnSpellStart"
-		    {
-		    	"RunScript"
-		    	{
-		    		"ScriptFile"	"libraries/boss_spells/water/ai_the_water_serpent.lua"
-		    		"Function"		"CallTheSea"
-		    	}
-		    }
+		    "AbilityManaCost"				"6"
 
 		    "Modifiers"
 		    {
@@ -7155,15 +7147,196 @@
 		    		"IsDebuff"			"0"
 		    		"IsBuff"			"1"
 		    
-		    		"EffectName"		"particle_name"
-		    		"EffectAttachType"	"follow_overhead"
+		    		// "EffectName"		"particle_name"
+		    		// "EffectAttachType"	"follow_overhead"
 		    
-		    		
+		    		"OnAttackLanded"
+		    		{
+		    			// "FireEffect"
+		    			// {
+		    			// 	"EffectName"        ""
+		    			// 	"EffectAttachType"  "follow_origin"
+		    			// 	"Target"            "TARGET"
+		    			// }
+
+		    			"Damage"
+		    			{
+		    				"Target"		"TARGET"
+		    				"Type"			"DAMAGE_TYPE_MAGICAL"
+		    				"Damage"		"25"
+		    			}
+		    		}
 		    	}
 		    }
 		}
 	"ai_minion_splash"
+		{
+			// General  
+		    // ----------------------------------------------------------------------------------------
+		    "BaseClass"       				"ability_datadriven"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		    "AbilityCooldown"				"0"
+		    "AbilityTextureName"      		"slardar_slithereen_crush"
+		    "AbilityCastPoint"				"0"
+		    "AbilityManaCost"				"6"
+
+		    "Modifiers"
+		    {
+		    	"modifier_minion_crush"
+		    	{
+		    		"Passive"			"0"
+		    		"IsHidden"			"0"
+		    		"IsDebuff"			"0"
+		    		"IsBuff"			"1"
+		    
+		    		// "EffectName"		"particle_name"
+		    		// "EffectAttachType"	"follow_overhead"
+		    
+		    		"OnAttackLanded"
+		    		{
+		    			// "FireEffect"
+		    			// {
+		    			// 	"EffectName"        ""
+		    			// 	"EffectAttachType"  "follow_origin"
+		    			// 	"Target"            "TARGET"
+		    			// }
+
+		    			"Damage"
+		    			{
+		    				"Target"		"TARGET"
+		    				"Type"			"DAMAGE_TYPE_MAGICAL"
+		    				"Damage"		"25"
+		    			}
+		    		}
+		    	}
+		    }
+		}
 	"ai_water_seal"
+		{
+			// General  
+		    // ----------------------------------------------------------------------------------------
+		    "BaseClass"       				"ability_datadriven"
+		    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		    "AbilityCooldown"				"15"
+		    "AbilityTextureName"      		"kun_torrent"
+		    "AbilityCastPoint"				"0"
+		    "AbilityChannelTime"			"2.5"
+
+		    "OnSpellStart"
+		    {
+		    	// "FireSound"
+		    	// {
+		    	// 	"EffectName"	"
+		    	// 	"Target" 		"TARGET"
+		    	// }
+
+
+		    	"ApplyModifier"
+		    	{
+		    		"ModifierName"	"modifier_water_seal_channel"
+		    		"Target" 		"CASTER"
+		    	}
+
+		    	"ApplyModifier"
+		    	{
+		    		"ModifierName"	"modifier_water_seal_animation_mechanic"
+		    		"Target" 		"CASTER"
+		    	}
+		    }
+
+		    "OnChannelSucceeded"
+		    {
+		        "RunScript"
+		        {
+		          	"ScriptFile"  	"libraries/boss_spells/water/ai_the_water_serpent.lua"
+		          	"Function"    	"WaterSeal"
+		        }
+
+		        // "FireEffect"
+		        // {
+		        // 	"EffectName"        ""
+		        // 	"EffectAttachType"  "follow_origin"
+		        // 	"Target"            "TARGET"
+		        // }
+		    }
+
+		    "OnChannelFinish"
+		    {
+		    	"RemoveModifier"
+		    	{
+		    		"ModifierName"	"modifier_water_seal_channel"
+		    		"Target" 		"CASTER"
+		    	}
+
+		    	"RemoveModifier"
+		    	{
+		    		"ModifierName"	"modifier_water_seal_animation_mechanic"
+		    		"Target" 		"CASTER"
+		    	}
+		    }
+
+		    "Modifiers" 
+		    { 
+		        "modifier_water_seal_channel"
+		        {
+		        	"IsHidden"		"0"
+		        	"Passive"		"0"
+		        	"IsBuff"		"1"
+
+		        	"States"
+		        	{
+		        		"MODIFIER_STATE_ATTACK_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
+		        		"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
+		        		"MODIFIER_STATE_DISARMED"			"MODIFIER_STATE_VALUE_ENABLED"
+		        		"MODIFIER_STATE_SILENCED"			"MODIFIER_STATE_VALUE_ENABLED"
+		        		"MODIFIER_STATE_STUNNED"			"MODIFIER_STATE_VALUE_ENABLED"
+		        		"MODIFIER_STATE_HEXED"				"MODIFIER_STATE_VALUE_ENABLED"
+		        	}
+
+			          "Aura"          		"modifier_water_seal_buff"
+			          "Aura_Radius"   		"9999"
+			          "Aura_Teams"    		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+			          "Aura_Types"    		"DOTA_UNIT_TARGET_BASIC"
+			          "Aura_Flags"    		"DOTA_UNIT_TARGET_FLAG_NONE"
+			          "Aura_ApplyToCaster" 	"0"	
+		        }
+
+		        "modifier_water_seal_buff"
+		        {
+		        	"Passive"		"0"
+		        	"IsHidden"		"0"
+		        	"IsBuff"		"1"
+
+		        	"Properties"
+		        	{
+		        		"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"			"2"
+		        		"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"20" // Not sure what this value actually translates to
+		        	}		        	
+		        }
+
+		        "modifier_water_seal_animation_mechanic"
+		        {
+			        "IsHidden" "1"
+
+			        "ThinkInterval" "0.4"
+			        "OnIntervalThink"
+			        {
+			            "ApplyModifier"
+			            {
+			                "ModifierName"  "modifier_water_seal_channel_animation"
+			                "Target"        "CASTER"
+			            }
+			        }
+		        }
+
+		        "modifier_water_seal_channel_animation"
+		        {
+		          	"IsHidden"				"1"
+		          	"Duration" 				"0.3"
+		          	"OverrideAnimation"     "ACT_DOTA_ABILITY_2"
+		        }
+		    }
+		}
 	"ai_drown"
 //============================================================================================
 // Gaven, The Brute

@@ -1,6 +1,6 @@
 "DOTAUnits"
 {
-	 "npc_boss_fire"
+	"npc_boss_fire"
 	    {
 	        // General
 	        "BaseClass"         "npc_dota_creature"  // Class of entity of link to.
@@ -107,7 +107,7 @@
 	            }
 	        } 
 	    }
-	 "npc_boss_water"
+	"npc_boss_water"
 	    {
 	        "BaseClass"         		"npc_dota_creature"  
 	        "Model"             		"models/heroes/medusa/medusa.vmdl" 
@@ -185,7 +185,7 @@
 	            }
 	        } 
 	    }
-	  "npc_boss_water_tornado"
+	"npc_boss_water_tornado"
 	    {
 	        "BaseClass"         		"npc_dota_creature"
 	        "Model"             		"models/development/invisiblebox.vmdl"
@@ -204,8 +204,10 @@
 	        "MovementTurnRate"      	"3"
 
 	        "TeamName"          		"DOTA_TEAM_NEUTRALS"
+
+	        "vscripts"					"minion_ai.lua"
 	    }
-	 "npc_boss_water_myrmidon"
+	"npc_boss_water_myrmidon"
 	    {
 	        "BaseClass"         		"npc_dota_creature"  
 	        "Model"             		"models/heroes/slardar/slardar.vmdl" 
@@ -242,7 +244,9 @@
 	        "TeamName"          		"DOTA_TEAM_NEUTRALS"
 	        "CombatClassAttack"     	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 	        "CombatClassDefend"     	"DOTA_COMBAT_CLASS_DEFEND_SOFT"
-	        "UnitRelationshipClass"   	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"  
+	        "UnitRelationshipClass"   	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+
+	        "vscripts"					"minion_ai.lua"  
 
 	        // "Creature"
 	        // {
@@ -257,7 +261,7 @@
 	        // }
 
 	    }
-	 "npc_boss_water_snap_dragon"
+	"npc_boss_water_snap_dragon"
 	    {
 	        "BaseClass"         		"npc_dota_creature"  
 	        "Model"             		"models/heroes/tidehunter/tidehunter.vmdl" 
@@ -294,7 +298,9 @@
 	        "TeamName"          		"DOTA_TEAM_NEUTRALS"
 	        "CombatClassAttack"     	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 	        "CombatClassDefend"     	"DOTA_COMBAT_CLASS_DEFEND_SOFT"
-	        "UnitRelationshipClass"   	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"  
+	        "UnitRelationshipClass"   	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+
+	        "vscripts"					"minion_ai.lua"  
 
 	        // "Creature"
 	        // {
@@ -306,10 +312,9 @@
 	        //         "Wearable4"     { "ItemDef" "8195" }
 	        //         "Wearable5"     { "ItemDef" "8196" }
 	        //     }
-	        // }
-	         
+	        // }    
 	    }
-	 "npc_boss_water_siren"
+	"npc_boss_water_siren"
 	    {
 	        "BaseClass"         		"npc_dota_creature"  
 	        "Model"             		"models/heroes/naga_siren/naga_siren.vmdl" 
@@ -346,7 +351,9 @@
 	        "TeamName"          		"DOTA_TEAM_NEUTRALS"
 	        "CombatClassAttack"     	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 	        "CombatClassDefend"     	"DOTA_COMBAT_CLASS_DEFEND_SOFT"
-	        "UnitRelationshipClass"   	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"  
+	        "UnitRelationshipClass"   	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+
+	        "vscripts"					"minion_ai.lua"  
 
 	        // "Creature"
 	        // {
@@ -358,10 +365,9 @@
 	        //         "Wearable4"     { "ItemDef" "8195" }
 	        //         "Wearable5"     { "ItemDef" "8196" }
 	        //     }
-	        // }
-	         
+	        // }     
 	    }         	       
-	 "npc_boss_earth"
+	"npc_boss_earth"
 	    {
 	        // General
 	        "BaseClass"         "npc_dota_creature"  // Class of entity of link to.
@@ -469,7 +475,7 @@
 		        }
 		    }
 	    } 
-	   "npc_earth_boss_orb"
+	"npc_earth_boss_orb"
 	    {
 	        // General
 	        "BaseClass"         "npc_dota_creature"  // Class of entity of link to.
@@ -572,7 +578,7 @@
 	        //----------------------------------------------------------------
 	        "AttackDesire"        "0"   // How much bots want to attack them vs other non-hero things
 	    }
-	 "npc_boss_lightning"
+	"npc_boss_lightning"
 	    {
 	        // General
 	        "BaseClass"         "npc_dota_creature"  // Class of entity of link to.
@@ -681,7 +687,7 @@
 		        }
 		    }
 	    }
-	 "npc_lightning_boss_pillar"
+	"npc_lightning_boss_pillar"
 	    {
 	        // General
 	        "BaseClass"         "npc_dota_creature"  // Class of entity of link to.
@@ -783,7 +789,7 @@
 	        //----------------------------------------------------------------
 	        "AttackDesire"        "0"   // How much bots want to attack them vs other non-hero things
 	    }
-	 "npc_call_thunder_dummy"
+	"npc_call_thunder_dummy"
 	    {
 	        // General
 	        "BaseClass"         "npc_dota_base_additive"  // Class of entity of link to.
@@ -873,7 +879,7 @@
 	        //----------------------------------------------------------------
 	        "AttackDesire"        "1.5"   // How much bots want to attack them vs other non-hero things
 	    }
-	 "npc_combust_dummy"
+	"npc_combust_dummy"
 	    {
 	        // General
 	        "BaseClass"         "npc_dota_base_additive"  // Class of entity of link to.
