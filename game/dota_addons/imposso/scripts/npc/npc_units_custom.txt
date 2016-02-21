@@ -246,7 +246,7 @@
 	        "CombatClassDefend"     	"DOTA_COMBAT_CLASS_DEFEND_SOFT"
 	        "UnitRelationshipClass"   	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 
-	        "vscripts"					"minion_ai.lua"  
+	        "vscripts"					"libraries/mechanics/minion_ai.lua"  
 
 	        // "Creature"
 	        // {
@@ -300,7 +300,7 @@
 	        "CombatClassDefend"     	"DOTA_COMBAT_CLASS_DEFEND_SOFT"
 	        "UnitRelationshipClass"   	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 
-	        "vscripts"					"minion_ai.lua"  
+	        "vscripts"					"libraries/mechanics/minion_ai.lua"  
 
 	        // "Creature"
 	        // {
@@ -353,7 +353,7 @@
 	        "CombatClassDefend"     	"DOTA_COMBAT_CLASS_DEFEND_SOFT"
 	        "UnitRelationshipClass"   	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 
-	        "vscripts"					"minion_ai.lua"  
+	        "vscripts"					"libraries/mechanics/minion_ai.lua"  
 
 	        // "Creature"
 	        // {

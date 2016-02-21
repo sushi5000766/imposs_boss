@@ -322,7 +322,7 @@ function Submerge ( event )
 
 	local targetUnits = FindUnitsInRadius(
 			caster:GetTeamNumber(),
-			target:GetAbsOrigin(), 
+			caster:GetAbsOrigin(), 
 			nil,
 			6000,
 			DOTA_UNIT_TARGET_TEAM_ENEMY,
@@ -332,6 +332,7 @@ function Submerge ( event )
 			false)
 
 	for _, unit in pairs(targetUnits) do
+		target = unit
 		submergeLocation = unit:GetAbsOrigin()
 		break
 	end
@@ -412,8 +413,8 @@ function CallTheSea ( event )
 	for i = 1, num do
 		local x = math.random(-5000, 5000)
 		local y = math.random(-5000, 5000)
-		local spawnLocation = (x, y, 0)
-		ParticleManager:CreateParticle("", PATTACH_WORLDORIGIN, caster)
+		local spawnLocation = Vector(x, y, 0)
+		--ParticleManager:CreateParticle("", PATTACH_WORLDORIGIN, caster)
 
 		local minionType = math.random(1, 3)
 
