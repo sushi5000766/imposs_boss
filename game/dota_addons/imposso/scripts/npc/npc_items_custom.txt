@@ -1,5 +1,9 @@
 "DOTAAbilities"
 {
+
+///////////////////////////////////////////////
+////----------Consumables---------------/////
+/////////////////////////////////////////////
 	"item_big_mana_item"
 	  {
 	    "ID"              "1105"
@@ -719,96 +723,7 @@
 	      }
 	    }
 	  }
-	"item_staff_druid_staff"
-	  {
-	    "ID"              "1113"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
-	    "BaseClass"           "item_datadriven"
-	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
-	    "AbilityTextureName"      "item_eagle"
 	
-	    "AbilityCooldown"       "90"
-	    "AbilityManaCost"       "15"
-	    "AbilityCastPoint" "0.2"
-	
-	    // Item Info
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"       "0"
-	    "ItemCost"            "0"
-	    "ItemInitialCharges"      "0"
-	    "ItemDroppable"         "0"
-	    "ItemSellable"          "0"
-	    "ItemStackable"         "0"
-	    "ItemRequiresCharges"     "0"
-	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-	    "ItemPermanent"     "1"
-	    
-	    "MaxUpgradeLevel"       "1"
-	    "ItemBaseLevel"         "1"
-	
-	    "precache"
-	    {
-	        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirits.vpcf"
-	        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_launch.vpcf"
-	        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
-	        "particle"  "particles/vera_main.vpcf"
-	        "particle"  "particles/vera_child.vpcf"
-	    }
-	
-	    "OnSpellStart"
-	    {
-	        "RunScript"
-	        {
-	            "ScriptFile"  "libraries/player_spells/druid/bear.lua"
-	            "Function"    "bird_form"
-	        }
-	
-	        "RunScript"
-	        {
-	            "ScriptFile"  "libraries/player_spells/druid/bear.lua"
-	            "Function"    "CastFireSpirits"
-	            "modifier_stack_name"   "modifier_fire_spirit_stack_datadriven"
-	            "sub_ability_name"      "dr_vera"
-	        }
-	
-	        "ApplyModifier"
-	        {
-	            "Target"         "CASTER"
-	            "ModifierName"    "modifier_fire_spirit_stack_datadriven"            
-	        }
-	    }
-	
-	    "Modifiers"
-	    {
-	
-	        "modifier_fire_spirit_stack_datadriven"
-	        {
-	            "IsBuff"    "1"
-	            "IsPurgable"    "0"
-	            "Duration"  "12"
-	            
-	            "OnDestroy"
-	            {
-	                "RunScript"
-	                {
-	                    "ScriptFile"        "libraries/player_spells/druid/bear.lua"
-	                    "Function"          "RemoveFireSpirits"
-	                    
-	                    "sub_ability_name"  "dr_vera"
-	                }
-	
-	                "RunScript"
-	                {
-	                    "ScriptFile"  "libraries/player_spells/druid/bear.lua"
-	                    "Function"    "bird_revert"
-	                }
-	            }
-	        }
-	    }
-	  }
 	"item_team_revive_item"
 	  {
 	    "ID"              "1101"
@@ -933,4 +848,608 @@
 	      }
 	    }
 	  }
+
+///////////////////////////////////////////////
+////----------Staves---------------------/////
+/////////////////////////////////////////////
+
+	"item_ice_staff"
+	  {
+	    "ID"              "1114"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "AbilityUnitTargetFlags"    "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_gem"
+	
+	    "AbilityCastRange"        "500"
+	
+	    "AbilityCooldown"       "45"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "0"
+	    "ItemStackable" "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "OnSpellStart"
+	    {
+	      "ApplyModifier"
+	      {
+	      	"ModifierName"	"modifier_ice_staff_active"
+	      	"Target" 		"TARGET"
+	      	"Duration"		"14"
+	      }
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_ice_staff_active"
+	    	{
+	    		"Passive"			"0"
+	    		"IsHidden"			"0"
+	    		"IsDebuff"			"0"
+	    		"IsBuff"			"1"
+	    
+	    		"EffectName"		"particle_name"
+	    		"EffectAttachType"	"follow_origin"
+	    
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "34" 
+	    		}
+	    	}
+
+	    	"modifier_ice_staff_passive"
+	    	{
+	    		"Passive"			"1"
+	    		"IsHidden"			"1"
+	    		"IsDebuff"			"0"
+	    	
+	    		"EffectName"		"particle_name"
+	    		"EffectAttachType"	"follow_origin"
+	    	
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_MANA_BONUS" "200"
+	    		    "MODIFIER_PROPERTY_HEALTH_BONUS" "500" 
+	    		}
+	    	}
+	    }
+	  }
+
+	"item_staff_druid_staff"
+	  {
+	    "ID"              "1113"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_eagle"
+	
+	    "AbilityCooldown"       "90"
+	    "AbilityManaCost"       "15"
+	    "AbilityCastPoint" "0.2"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "0"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    "ItemPermanent"     "1"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirits.vpcf"
+	        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_launch.vpcf"
+	        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
+	        "particle"  "particles/vera_main.vpcf"
+	        "particle"  "particles/vera_child.vpcf"
+	    }
+	
+	    "OnSpellStart"
+	    {
+	        "RunScript"
+	        {
+	            "ScriptFile"  "libraries/player_spells/druid/bear.lua"
+	            "Function"    "bird_form"
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"  "libraries/player_spells/druid/bear.lua"
+	            "Function"    "CastFireSpirits"
+	            "modifier_stack_name"   "modifier_fire_spirit_stack_datadriven"
+	            "sub_ability_name"      "dr_vera"
+	        }
+	
+	        "ApplyModifier"
+	        {
+	            "Target"         "CASTER"
+	            "ModifierName"    "modifier_fire_spirit_stack_datadriven"            
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	
+	        "modifier_fire_spirit_stack_datadriven"
+	        {
+	            "IsBuff"    "1"
+	            "IsPurgable"    "0"
+	            "Duration"  "12"
+	            
+	            "OnDestroy"
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"        "libraries/player_spells/druid/bear.lua"
+	                    "Function"          "RemoveFireSpirits"
+	                    
+	                    "sub_ability_name"  "dr_vera"
+	                }
+	
+	                "RunScript"
+	                {
+	                    "ScriptFile"  "libraries/player_spells/druid/bear.lua"
+	                    "Function"    "bird_revert"
+	                }
+	            }
+	        }
+	    }
+	  }
+
+
+///////////////////////////////////////////////
+////----------Bows---------------------/////
+/////////////////////////////////////////////
+
+
+	"item_bow_demise"
+	  {
+	    "ID"              "1115"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_BASIC"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_gem"
+	
+	    "AbilityCastRange"        "650"
+	
+	    "AbilityCooldown"       "40"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "0"
+	    "ItemStackable" "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "OnSpellStart"
+	    {
+	      "LinearProjectile"
+	      {
+	         "Target"      	 "POINT"
+	      	"EffectName"	 "particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf"
+	      	"MoveSpeed"		 "1000"
+	      	"StartRadius"	 "200"
+	      	"StartPosition"  "attach_attack1"
+	      	"EndRadius"      "200"
+	      	"HasFrontalCone" "0"
+	      	"FixedDistance"  "800"
+	      	"TargetTeams"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	      	"TargetTypes"	 "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+	      	"TargetFlags"	 "DOTA_UNIT_TARGET_FLAG_NONE"						
+	        "ProvidesVision" "1"
+	        "VisionRadius" 	 "0"
+	      }
+	    }
+
+	    "OnProjectileHitUnit"
+	    {
+	    	"DeleteOnHit"	"0"
+	    	"Damage"
+	    	{
+	    		"Target"		"TARGET"
+	    		"Type"			"DAMAGE_TYPE_MAGICAL"
+	    		"Damage"		"400"
+	    	}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_demise_passive"
+	    	{
+	    		"Passive"			"1"
+	    		"IsHidden"			"1"
+	    		"IsDebuff"			"0"
+	    	
+	    		"EffectName"		"particle_name"
+	    		"EffectAttachType"	"follow_origin"
+	    	
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_MANA_BONUS" "30"
+	    		    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "15" 
+	    		}
+
+	    		"OnAttackLanded"
+	    		{
+	    			"RunScript"
+			        {
+			            "ScriptFile"  "libraries/player_spells/ranger/rapid_fire.lua"
+			            "Function"    "ranger_burn"
+			        }
+	    		}
+	    	}
+	    }
+	  }
+
+	"item_bow_heart"
+	  {
+	    "ID"              "1116"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_medallion_of_courage"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "0"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "Modifiers"
+	    {
+	      "token_mod"
+	      {
+	        "Passive"      "1"
+	        "IsHidden"      "1"
+	        "IsDebuff"      "0"
+
+	        "Properties"
+    	    {
+    	    	"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "15" 
+    	        "MODIFIER_PROPERTY_HEALTH_BONUS" "1000"  
+    	        "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "30"
+    	    }	    
+	      }
+	    }
+	  }
+
+///////////////////////////////////////////////
+////----------Daggers---------------------/////
+/////////////////////////////////////////////
+
+	"item_dagger_berserk"
+	  {
+	    "ID"              "1117"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_BASIC"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_gem"
+	
+	    "AbilityCastRange"        "500"
+	
+	    "AbilityCooldown"       "20"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "0"
+	    "ItemStackable" "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "OnSpellStart"
+	    {
+	      "TrackingProjectile"
+	      {
+	      	"Target"           	"TARGET"
+	      	"EffectName"		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+	      	"Dodgeable"			"1"
+	      	"ProvidesVision"	"1"
+	      	"VisionRadius"		"0"
+	      	"MoveSpeed"        	"950"
+	      	"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	      }
+	    }
+
+	    "OnProjectileHitUnit"
+	    {
+	    	"DeleteOnHit"	"1"
+	    	"Damage"
+	    	{
+	    		"Target"		"TARGET"
+	    		"Type"			"DAMAGE_TYPE_PHYSICAL"
+	    		"Damage"		"300"
+	    	}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_dagger_berserk_passive"
+	    	{
+	    		"Passive"			"1"
+	    		"IsHidden"			"1"
+	    		"IsDebuff"			"0"
+	    	
+	    		"EffectName"		"particle_name"
+	    		"EffectAttachType"	"follow_origin"
+	    	
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "15" 
+	    		    "MODIFIER_PROPERTY_HEALTH_BONUS" "500" 
+	    		}
+	    	}
+	    }
+	  }
+
+	"item_dagger_cruel"
+	  {
+	    "ID"              "1118"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_medallion_of_courage"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "0"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "Modifiers"
+	    {
+	      "modifier_dagger_cruel_passive"
+	      {
+	        "Passive"      "1"
+	        "IsHidden"      "1"
+	        "IsDebuff"      "0"
+
+	        "Properties"
+    	    {
+    	    	"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "40" 
+    	        "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"0.5"
+    	    }	    
+	      }
+	    }
+	  }
+
+
+	"item_dagger_spirit"
+	  {
+	    "ID"              "1119"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_medallion_of_courage"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "0"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+	    "AbilityCooldown"       "25"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+
+	    "OnSpellStart"
+	    {
+	    	"ApplyModifier"
+	    	{
+	    		"ModifierName"	"modifier_name"
+	    		"Target" 		"CASTER"
+	    		"Duration"		"4"
+	    	}
+	    }
+	
+	    "Modifiers"
+	    {
+
+	   	  "modifier_dagger_spirit_active"
+	   	  {
+	   	  	"Passive"			"0"
+	   	  	"IsHidden"			"0"
+	   	  	"IsDebuff"			"0"
+	   	  
+	   	  	"EffectName"		"particle_name"
+	   	  	"EffectAttachType"	"follow_origin"
+	   	  
+	   	  	"OnAttackLanded"
+	   	  	{
+	   	  		"Heal"
+	   	  		{
+	   	  			"Target"        "CASTER"
+	   	  			"HealAmount"	"1500"
+	   	  		}
+
+	   	  		"RemoveModifier"
+	   	  		{
+	   	  			"ModifierName"	"modifier_dagger_spirit_active"
+	   	  			"Target" 		"CASTER"
+	   	  		}
+	   	  	}
+	   	  }
+
+	      "modifier_dagger_spirit_passive"
+	      {
+	        "Passive"      "1"
+	        "IsHidden"      "1"
+	        "IsDebuff"      "0"
+
+	        "Properties"
+    	    {
+    	    	"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "20" 
+    	    }	    
+	      }
+	    }
+	  }
+
+///////////////////////////////////////////////
+////----------Swords---------------------/////
+/////////////////////////////////////////////
+
+	"item_sword_depraved"
+	  {
+	    "ID"              "1120"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_BASIC"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_gem"
+	
+	    "AbilityCastRange"        "500"
+	
+	    "AbilityCooldown"       "20"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "0"
+	    "ItemStackable" "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "OnSpellStart"
+	    {
+	      "ActOnTargets"
+	      {
+	      	"Target"
+	      	{
+	      		"Center"  	"TARGET"
+	      		"Radius" 	"450"
+	      		"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	      		"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	      	}
+	      
+	      	"Action"    
+	      	{
+	      		"Damage"
+	      		{
+	      			"Target"		"TARGET"
+	      			"Type"			"DAMAGE_TYPE_PHYSICAL"
+	      			"Damage"		"400"
+	      		}
+	      	}
+	      }
+
+	      "Damage"
+	      {
+	      	"Target"		"CASTER"
+	      	"Type"			"DAMAGE_TYPE_PHYSICAL"
+	      	"Damage"		"250"
+	      }
+	    }
+
+	    "OnProjectileHitUnit"
+	    {
+	    	"DeleteOnHit"	"1"
+	    	"Damage"
+	    	{
+	    		"Target"		"TARGET"
+	    		"Type"			"DAMAGE_TYPE_PHYSICAL"
+	    		"Damage"		"300"
+	    	}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_sword_depraved_passive"
+	    	{
+	    		"Passive"			"1"
+	    		"IsHidden"			"1"
+	    		"IsDebuff"			"0"
+	    	
+	    		"EffectName"		"particle_name"
+	    		"EffectAttachType"	"follow_origin"
+	    	
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "20" 
+	    		}
+	    	}
+	    }
+	  }
+
 }

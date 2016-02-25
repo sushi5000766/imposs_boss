@@ -28,3 +28,10 @@ function snipe( event )
 	}
 	arrow = ProjectileManager:CreateLinearProjectile(info)
 end
+
+function ranger_burn( event )
+	local caster = event.caster
+	local target = event.target
+
+	target:SetMana(target:GetMana() - 8)
+end
