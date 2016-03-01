@@ -144,6 +144,57 @@ function GameMode:OnAllPlayersLoaded()
 
 end
 
+CustomGameEventManager:RegisterListener("hero_picked", Dynamic_Wrap(GameMode, 'CreatePickedHero'))
+
+function GameMode:CreatePickedHero(event)
+  local player = PlayerResource:GetPlayer(event.PlayerID)
+  local heroname = event.heroname
+  
+  if heroname == "Death Knight" then
+
+    local hero = CreateHeroForPlayer("npc_dota_hero_vengefulspirit", player)
+
+  elseif heroname == "Druid" then
+
+    local hero = CreateHeroForPlayer("npc_dota_hero_furion", player)
+
+  elseif heroname == "Fire Mage" then
+
+    local hero = CreateHeroForPlayer("npc_dota_hero_lina", player)
+
+  elseif heroname == "Ice Mage" then
+
+    local hero = CreateHeroForPlayer("npc_dota_hero_crystal_maiden", player)
+
+  elseif heroname == "Paladin" then
+
+    local hero = CreateHeroForPlayer("npc_dota_hero_omniknight", player)
+
+  elseif heroname == "Priest" then
+
+    local hero = CreateHeroForPlayer("npc_dota_hero_silencer", player)
+
+  elseif heroname == "Ranger" then
+
+    local hero = CreateHeroForPlayer("npc_dota_hero_windrunner", player)
+
+  elseif heroname == "Rogue" then
+
+    local hero = CreateHeroForPlayer("npc_dota_hero_phantom_assassin", player)
+
+  elseif heroname == "Warlock" then
+
+    local hero = CreateHeroForPlayer("npc_dota_hero_warlock", player)
+
+  elseif heroname == "Warrior" then
+
+    local hero = CreateHeroForPlayer("npc_dota_hero_dragon_knight", player)
+
+  end
+
+
+end
+
 --[[
   This function is called once and only once for every player when they spawn into the game for the first time.  It is also called
   if the player's hero is replaced with a new hero for any reason.  This function is useful for initializing heroes, such as adding
@@ -260,26 +311,6 @@ function GameMode:Setup()
 
   if ShopToggle == 0 then
 
-    local ui_off = 80
-
-    Timers:CreateTimer(function()
-      ui_off = ui_off - 1
-      for k, hero in pairs( heroTable ) do
-        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(hero:GetPlayerOwnerID()), "update_resource", {
-        value = player_gem[hero:GetPlayerOwnerID()]
-        })
-        CustomGameEventManager:Send_ServerToAllClients("hide_mana_bar", {})
-      end
-      if ui_off == 0 then
-        return
-      else
-        return 1
-      end
-    end)
-
-
-    
-
     AddFOWViewer(2, Vector(-7400, -6550, 260), 3000, 99999, true)
 
     if shop_dummy == nil then
@@ -298,7 +329,7 @@ function GameMode:Setup()
     local Quest = SpawnEntityFromTableSynchronous( "quest", { name = "QuestName", title = "#QuestTimer" } )
     local play_count = PlayerResource:GetPlayerCountForTeam(2)
 
-    local end_end = 16
+    local end_end = 80
 
     Quest.EndTime = end_end
 
@@ -313,26 +344,65 @@ function GameMode:Setup()
       if Quest.EndTime == 0 then 
           EmitGlobalSound("Tutorial.Quest.complete_01") -- Part of game_sounds_music_tutorial
 
-          for i=0, play_count - 1 do
-            if PlayerResource:GetPlayer(i):GetAssignedHero() == nil then
-              late_pick_bool[i] = true
-            elseif PlayerResource:GetPlayer(i):GetAssignedHero() ~= nil then
-              late_pick_bool[i] = false
-            end
-          end
-
           Quest:CompleteQuest()
           GameMode:ArenaSetup()
           return
       elseif Quest.EndTime == 20 then 
           
           for i=0, play_count - 1 do
+            print("@@@@@@@@@")
             print("random!")
-            if PlayerResource:GetPlayer(i):GetAssignedHero() == nil then
-              PlayerResource:GetPlayer(i):MakeRandomHeroSelection()
-              local force_hero = PlayerResource:GetSelectedHeroName(i)
-              PlayerResource:SetHasRepicked(i)
+
+            local player_random = PlayerResource:GetPlayer(i)
+
+            if player_random:GetAssignedHero() == nil then
+
+              local random_hero = RandomInt(1, 10)
+
+              if random_hero == 1 then
+
+                local hero = CreateHeroForPlayer("npc_dota_hero_vengefulspirit", player_random)
+
+              elseif random_hero == 2 then
+
+                local hero = CreateHeroForPlayer("npc_dota_hero_furion", player_random)
+
+              elseif random_hero == 3 then
+
+                local hero = CreateHeroForPlayer("npc_dota_hero_lina", player_random)
+
+              elseif random_hero == 4 then
+
+                local hero = CreateHeroForPlayer("npc_dota_hero_crystal_maiden", player_random)
+
+              elseif random_hero == 5 then
+
+                local hero = CreateHeroForPlayer("npc_dota_hero_omniknight", player_random)
+
+              elseif random_hero == 6 then
+
+                local hero = CreateHeroForPlayer("npc_dota_hero_silencer", player_random)
+
+              elseif random_hero == 7 then
+
+                local hero = CreateHeroForPlayer("npc_dota_hero_windrunner", player_random)
+
+              elseif random_hero == 8 then
+
+                local hero = CreateHeroForPlayer("npc_dota_hero_phantom_assassin", player_random)
+
+              elseif random_hero == 9 then
+
+                local hero = CreateHeroForPlayer("npc_dota_hero_warlock", player_random)
+
+              elseif random_hero == 10 then
+
+                local hero = CreateHeroForPlayer("npc_dota_hero_dragon_knight", player_random)
+
+              end
+
             end
+            
           end
 
           return 1          

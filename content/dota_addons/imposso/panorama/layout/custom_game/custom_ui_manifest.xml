@@ -58,6 +58,7 @@
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/testing_ui.xml" />
     <CustomUIElement type="GameInfo"            layoutfile="file://{resources}/layout/custom_game/side_info.xml" />
     <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/cam_lock.xml" />
+    <CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/pick_screen.xml" />
     
     <!--<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/containers/container_base.xml" /-->
     <!--<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_progress.xml" /> -->

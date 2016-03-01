@@ -7,6 +7,29 @@ function shop_envelop( event )
 	end
 end
 
+function shadow_staff( event )
+	local caster = event.caster
+	local ability = event.ability
+
+	if boss:GetHealth() <= (boss:GetMaxHealth() * 0.3) then
+		local damageTable = {
+			victim = boss,
+			attacker = caster,
+			damage = 450,
+			damage_type = DAMAGE_TYPE_MAGICAL,
+			}				 
+		ApplyDamage(damageTable)
+	else
+		local damageTable = {
+			victim = boss,
+			attacker = caster,
+			damage = 200,
+			damage_type = DAMAGE_TYPE_MAGICAL,
+			}				 
+		ApplyDamage(damageTable)
+	end
+end
+
 function envelop( event )
 	local caster = event.caster
 	local ability = event.ability

@@ -47,7 +47,7 @@ function undead_step( event )
 	ParticleManager:SetParticleControl(tele_out_effect, 0, targetPos)
 
 	FindClearSpaceForUnit(caster, targetPos, true) 
-	caster:SetForwardVector((target:GetAbsOrigin()-caster:GetAbsOrigin()):Normalized())
+	--caster:SetForwardVector((target:GetAbsOrigin()-caster:GetAbsOrigin()):Normalized())
 	
 end
 
@@ -58,7 +58,7 @@ function unholy( event )
 
 	local group = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), nil, 300, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	for k, v in pairs( group ) do
-		count = count + 1
+		local count = count + 1
 		print(count)
 	end
 
@@ -68,6 +68,29 @@ function unholy( event )
 		end
 	elseif count > 1 then
 		local heal = 1000 / count
+		for k, v in pairs( group ) do
+			v:SetHealth(v:GetHealth() + heal)
+		end
+	end
+end
+
+function radiance_heal( event )
+	local caster = event.caster
+	local ability = event.ability
+	local count = 0
+
+	local group = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), nil, 400, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	for k, v in pairs( group ) do
+		local count = count + 1
+		print(count)
+	end
+
+	if count == 1 then
+		for k, v in pairs( group ) do
+			v:SetHealth(v:GetHealth() + 750)
+		end
+	elseif count > 1 then
+		local heal = 2250 / count
 		for k, v in pairs( group ) do
 			v:SetHealth(v:GetHealth() + heal)
 		end

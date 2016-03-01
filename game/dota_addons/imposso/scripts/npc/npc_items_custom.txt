@@ -853,7 +853,144 @@
 ////----------Staves---------------------/////
 /////////////////////////////////////////////
 
-	"item_ice_staff"
+	"item_staff_fire"
+	  {
+	    "ID"              "1123"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_medallion_of_courage"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "0"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "Modifiers"
+	    {
+	      "token_mod"
+	      {
+	        "Passive"      "1"
+	        "IsHidden"      "1"
+	        "IsDebuff"      "0"
+
+	        "Properties"
+    		{
+    			"MODIFIER_PROPERTY_MANA_BONUS" "100"
+    		    "MODIFIER_PROPERTY_HEALTH_BONUS" "1000" 
+    		}    
+	      }
+	    }
+	  }
+
+	"item_staff_light"
+	  {
+	    "ID"              "1124"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_medallion_of_courage"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "0"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "Modifiers"
+	    {
+	      "token_mod"
+	      {
+	        "Passive"      "1"
+	        "IsHidden"      "1"
+	        "IsDebuff"      "0"
+
+	        "Properties"
+    		{
+    			"MODIFIER_PROPERTY_MANA_BONUS" "100"
+    		    "MODIFIER_PROPERTY_HEALTH_BONUS" "500" 
+    		}    
+	      }
+	    }
+	  }
+
+
+	"item_staff_shadow"
+	  {
+	    "ID"              "1125"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_medallion_of_courage"
+
+	    "AbilityCooldown"       "45"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "0"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+
+	    "OnSpellStart"
+	    {
+	    	"RunScript"
+	        {
+	            "ScriptFile"  "libraries/player_spells/warlock/lock.lua"
+	            "Function"    "shadow_staff"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	      "token_mod"
+	      {
+	        "Passive"      "1"
+	        "IsHidden"      "1"
+	        "IsDebuff"      "0"
+
+	        "Properties"
+    		{
+    		    "MODIFIER_PROPERTY_HEALTH_BONUS" "1500" 
+    		}    
+	      }
+	    }
+	  }
+
+	"item_staff_ice"
 	  {
 	    "ID"              "1114"
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
@@ -1042,7 +1179,7 @@
 	
 	    // Item Info
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"       "0"
+	    "AbilityManaCost"       "27"
 	    "ItemCost"            "0"
 	    "ItemInitialCharges"      "0"
 	    "ItemDroppable"         "0"
@@ -1099,7 +1236,6 @@
 	    	
 	    		"Properties"
 	    		{
-	    			"MODIFIER_PROPERTY_MANA_BONUS" "30"
 	    		    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "15" 
 	    		}
 
@@ -1153,6 +1289,49 @@
     	    	"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "15" 
     	        "MODIFIER_PROPERTY_HEALTH_BONUS" "1000"  
     	        "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "30"
+    	    }	    
+	      }
+	    }
+	  }
+
+	"item_bow_ferocity"
+	  {
+	    "ID"              "1122"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_medallion_of_courage"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "0"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+	
+	    "Modifiers"
+	    {
+	      "modifier_bow_ferocity_passive"
+	      {
+	        "Passive"      "1"
+	        "IsHidden"      "1"
+	        "IsDebuff"      "0"
+
+	        "Properties"
+    	    {
+    	    	"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "20" 
+    	        "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "100"  
+    	        "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "10"
     	    }	    
 	      }
 	    }
@@ -1449,6 +1628,60 @@
 	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "20" 
 	    		}
 	    	}
+	    }
+	  }
+
+
+	"item_sword_radiance"
+	  {
+	    "ID"              "1121"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+	    "BaseClass"           "item_datadriven"
+	    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"      "item_medallion_of_courage"
+	
+	    // Item Info
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0"
+	    "ItemCost"            "0"
+	    "ItemInitialCharges"      "0"
+	    "ItemDroppable"         "0"
+	    "ItemSellable"          "0"
+	    "ItemStackable"         "0"
+	    "ItemRequiresCharges"     "0"
+	    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+	    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+	    "AbilityCooldown"       "25"
+	    
+	    "MaxUpgradeLevel"       "1"
+	    "ItemBaseLevel"         "1"
+
+	    "OnSpellStart"
+	    {
+	    	"RunScript"
+	        {
+	            "ScriptFile"  "libraries/player_spells/death_knight/undead.lua"
+	            "Function"    "radiance_heal"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+
+	      "modifier_sword_radiance_passive"
+	      {
+	        "Passive"      "1"
+	        "IsHidden"      "1"
+	        "IsDebuff"      "0"
+
+	        "Properties"
+		    {
+		    	"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "20" 
+		    }	    
+	      }
 	    }
 	  }
 
